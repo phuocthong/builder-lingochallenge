@@ -20,7 +20,7 @@ const chatHistory: ChatHistoryItem[] = [
   },
   {
     id: 2,
-    title: 'Dịch từ "Happy" sang ti��ng Việt',
+    title: 'Dịch từ "Happy" sang tiếng Việt',
     description: "Bởi anh Vũ Đình phúc",
     date: "10:25 - 26/07/2022",
     time: "12 người trả lời đúng",
@@ -40,21 +40,21 @@ export function ChatHistory() {
       </div>
 
       {/* History Items */}
-      <div className="p-4 space-y-4">
+      <div className="p-4 space-y-3">
         {chatHistory.map((item) => (
           <div
             key={item.id}
-            className="p-3 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors cursor-pointer"
+            className="p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors cursor-pointer border border-blue-100"
           >
-            <h4 className="font-medium text-gray-900 text-sm mb-1">
+            <h4 className="font-semibold text-gray-900 text-sm mb-1">
               {item.title}
             </h4>
-            <p className="text-xs text-gray-600 mb-2">{item.description}</p>
-            <div className="flex justify-between items-center text-xs text-gray-500">
-              <span>{item.date}</span>
-              <span>{item.time}</span>
+            <p className="text-xs text-gray-600 mb-3">{item.description}</p>
+            <div className="text-xs text-gray-500 mb-2">
+              <div className="mb-1">{item.date}</div>
+              <div className="text-green-600 font-medium">{item.time}</div>
             </div>
-            <p className="text-xs text-gray-600 mt-2">{item.progress}</p>
+            <p className="text-xs text-gray-600">{item.progress}</p>
           </div>
         ))}
       </div>
