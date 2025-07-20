@@ -60,13 +60,13 @@ export function Leaderboard() {
         </div>
 
         {/* Time filters */}
-        <div className="flex space-x-2">
+        <div className="flex space-x-1">
           {months.map((month, index) => (
             <button
               key={month}
-              className={`px-3 py-1 text-xs rounded-full ${
+              className={`px-3 py-1.5 text-xs rounded-md ${
                 index === 0
-                  ? "bg-purple-100 text-purple-700"
+                  ? "bg-purple-100 text-purple-700 font-medium"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
