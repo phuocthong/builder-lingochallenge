@@ -36,20 +36,14 @@ export function Header() {
           </Link>
         </nav>
 
-        {/* Auth Buttons */}
+        {/* User Profile */}
         <div className="flex items-center space-x-3">
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-purple-600 text-purple-600 hover:bg-purple-50"
-          >
-            <span className="hidden sm:inline">Đăng nhập</span>
-            <span className="sm:hidden">Đăng nhập</span>
-          </Button>
-          <Button size="sm" className="bg-purple-600 hover:bg-purple-700">
-            <span className="hidden sm:inline">Đăng ký</span>
-            <span className="sm:hidden">Đăng ký</span>
-          </Button>
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+              <span className="text-white text-sm font-medium">Đ</span>
+            </div>
+            <span className="text-gray-900 font-medium">Đức Minh</span>
+          </div>
         </div>
       </div>
     </header>
