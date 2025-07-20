@@ -130,26 +130,27 @@ export function ChatInterface() {
       </div>
 
       {/* Input */}
-      <div className="p-4 border-t">
-        <div className="flex space-x-2">
+      <div className="p-4 border-t bg-gray-50">
+        <div className="flex space-x-3">
           <Input
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Nhập câu trả lời của bạn..."
-            className="flex-1"
+            className="flex-1 bg-white"
           />
           <Button
             onClick={handleSendMessage}
-            className="bg-purple-600 hover:bg-purple-700"
+            className="bg-gray-400 hover:bg-gray-500 px-4"
             disabled={!inputText.trim()}
           >
-            <Send className="h-4 w-4" />
+            Gửi
           </Button>
         </div>
-        <p className="text-xs text-gray-500 mt-2 text-center">
-          Tôi đang đáng tồn tại 462 thảm gia lời lẽ
-        </p>
+        <div className="flex items-center justify-center mt-3 text-xs text-gray-500">
+          <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+          Vui lòng đáng nhập 462 thảm gia tối lại
+        </div>
       </div>
     </div>
   );
