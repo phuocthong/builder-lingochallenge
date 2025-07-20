@@ -47,12 +47,14 @@ export function ChatInterface() {
   return (
     <div className="bg-white rounded-lg shadow-sm border h-full flex flex-col">
       {/* Chat Header */}
-      <div className="flex items-center p-4 border-b bg-purple-50">
-        <div className="bg-purple-600 p-2 rounded-full mr-3">
+      <div className="flex items-center p-4 border-b bg-white">
+        <div className="bg-purple-600 p-2 rounded-lg mr-3">
           <Bot className="h-5 w-5 text-white" />
         </div>
         <div>
-          <h3 className="font-semibold text-gray-900">Trò chuyện với Bot</h3>
+          <h3 className="font-semibold text-gray-900 text-base">
+            Trò chuyện với Bot
+          </h3>
         </div>
       </div>
 
