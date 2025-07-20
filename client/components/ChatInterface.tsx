@@ -19,6 +19,12 @@ export function ChatInterface() {
       sender: "bot",
       timestamp: "10:30",
     },
+    {
+      id: 2,
+      text: 'Dịch từ "Fantastic" sang tiếng Việt',
+      sender: "bot",
+      timestamp: "11:30",
+    },
   ]);
   const [inputText, setInputText] = useState("");
 
@@ -110,7 +116,7 @@ export function ChatInterface() {
             size="sm"
             className="text-sm bg-green-50 border-green-200 text-green-700 hover:bg-green-100 px-4 py-2"
           >
-            ✓ Chính xác!
+            ✓ Chính x��c!
           </Button>
         </div>
 
