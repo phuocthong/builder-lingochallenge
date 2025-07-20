@@ -118,11 +118,11 @@ export function Leaderboard() {
       {/* User Rank Display */}
       <div className="px-4 pb-4">
         <div className="border-t pt-3">
-          <div className="flex items-center text-sm text-gray-600">
+          <div className="flex items-center text-sm text-blue-600">
             <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center mr-2">
               <span className="text-white text-xs">👤</span>
             </div>
-            <span>Hạng của bạn: #5 (98 câu đúng)</span>
+            <span className="font-medium">Hạng của bạn: #5 (98 câu đúng)</span>
           </div>
         </div>
       </div>
