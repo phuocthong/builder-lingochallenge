@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Bot, LogIn, LogOut, User, Trophy } from "lucide-react";
+import { Bot, LogIn, LogOut, User, Trophy, UserPlus } from "lucide-react";
 import { useState } from "react";
 
 interface UserStats {
@@ -18,26 +18,25 @@ interface AuthUser {
   stats?: UserStats;
 }
 
-export function Header() {
+interface HeaderProps {
+  onShowLogin?: () => void;
+  onShowRegister?: () => void;
+}
+
+export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
   const [user, setUser] = useState<AuthUser>({
-    id: 'user-123',
-    name: 'Người dùng',
-    avatar: 'ND',
-    isLoggedIn: true,
-    stats: {
-      rank: 45,
-      totalCorrect: 523,
-      streak: 7,
-      accuracy: 89
-    }
+    id: '',
+    name: '',
+    avatar: '',
+    isLoggedIn: false // Default to not logged in
   });
 
-  const handleLogin = () => {
+  const handleLogin = (userData?: Partial<AuthUser>) => {
     // Mock login - in real app this would integrate with auth system
     setUser({
-      id: 'user-123',
-      name: 'Người dùng',
-      avatar: 'ND',
+      id: userData?.id || 'user-123',
+      name: userData?.name || 'Người dùng',
+      avatar: userData?.avatar || 'ND',
       isLoggedIn: true,
       stats: {
         rank: 45,
@@ -55,6 +54,24 @@ export function Header() {
       avatar: '',
       isLoggedIn: false
     });
+  };
+
+  const handleShowLogin = () => {
+    if (onShowLogin) {
+      onShowLogin();
+    } else {
+      // Fallback - directly login for demo
+      handleLogin();
+    }
+  };
+
+  const handleShowRegister = () => {
+    if (onShowRegister) {
+      onShowRegister();
+    } else {
+      // Fallback - directly login for demo
+      handleLogin();
+    }
   };
 
   return (
@@ -129,11 +146,24 @@ export function Header() {
             </div>
           ) : (
             <div className="flex items-center space-x-3">
-              <div className="text-sm text-gray-600">
-                Đăng nhập để tham gia trả lời câu hỏi
+              <div className="hidden md:block text-sm text-gray-600">
+                Tham gia ngay để trả lời câu hỏi và cạnh tranh!
               </div>
+              
+              {/* Register Button */}
               <Button
-                onClick={handleLogin}
+                variant="outline"
+                onClick={handleShowRegister}
+                className="flex items-center space-x-1 border-purple-200 text-purple-700 hover:bg-purple-50"
+                size="sm"
+              >
+                <UserPlus className="h-4 w-4" />
+                <span>Đăng ký</span>
+              </Button>
+
+              {/* Login Button */}
+              <Button
+                onClick={handleShowLogin}
                 className="bg-purple-600 hover:bg-purple-700 flex items-center space-x-1"
                 size="sm"
               >
@@ -165,6 +195,39 @@ export function Header() {
           </div>
         </div>
       )}
+
+      {/* Mobile Auth Buttons */}
+      {!user.isLoggedIn && (
+        <div className="md:hidden mt-3 pt-3 border-t border-gray-100">
+          <div className="text-center">
+            <p className="text-sm text-gray-600 mb-2">
+              Tham gia ngay để trả lời câu hỏi và cạnh tranh!
+            </p>
+            <div className="flex space-x-2 justify-center">
+              <Button
+                variant="outline"
+                onClick={handleShowRegister}
+                className="flex items-center space-x-1 border-purple-200 text-purple-700"
+                size="sm"
+              >
+                <UserPlus className="h-4 w-4" />
+                <span>Đăng ký</span>
+              </Button>
+              <Button
+                onClick={handleShowLogin}
+                className="bg-purple-600 hover:bg-purple-700 flex items-center space-x-1"
+                size="sm"
+              >
+                <LogIn className="h-4 w-4" />
+                <span>Đăng nhập</span>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
+
+// Export the handleLogin function for external use
+export type { AuthUser };
