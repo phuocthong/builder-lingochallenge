@@ -77,25 +77,26 @@ export function Leaderboard() {
       </div>
 
       {/* Leaderboard List */}
-      <div className="p-4 space-y-3">
+      <div className="p-4 space-y-2">
         {leaderboardData.map((user) => (
           <div
             key={user.id}
             className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <div className="flex items-center space-x-3">
-              <div className="flex items-center justify-center w-6 h-6 text-xs font-bold text-gray-600">
+              <div className="flex items-center justify-center w-6 h-6 text-sm font-bold text-gray-700">
                 {user.rank}
               </div>
+              <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-medium ${
                   user.rank === 1
-                    ? "bg-yellow-500"
+                    ? "bg-blue-500"
                     : user.rank === 2
-                      ? "bg-gray-400"
+                      ? "bg-blue-500"
                       : user.rank === 3
-                        ? "bg-orange-400"
-                        : "bg-purple-500"
+                        ? "bg-blue-500"
+                        : "bg-blue-500"
                 }`}
               >
                 {user.avatar}
@@ -105,7 +106,9 @@ export function Leaderboard() {
               </span>
             </div>
             <div className="text-right">
-              <div className="font-semibold text-gray-900">{user.score}</div>
+              <div className="font-bold text-gray-900 text-lg">
+                {user.score}
+              </div>
               <div className="text-xs text-gray-500">{user.unit}</div>
             </div>
           </div>
