@@ -40,11 +40,16 @@ export function Header() {
         <div className="flex items-center space-x-3">
           <Button
             variant="outline"
+            size="sm"
             className="border-purple-600 text-purple-600 hover:bg-purple-50"
           >
-            Đăng nhập
+            <span className="hidden sm:inline">Đăng nhập</span>
+            <span className="sm:hidden">Đăng nhập</span>
           </Button>
-          <Button className="bg-purple-600 hover:bg-purple-700">Đăng ký</Button>
+          <Button size="sm" className="bg-purple-600 hover:bg-purple-700">
+            <span className="hidden sm:inline">Đăng ký</span>
+            <span className="sm:hidden">Đăng ký</span>
+          </Button>
         </div>
       </div>
     </header>
