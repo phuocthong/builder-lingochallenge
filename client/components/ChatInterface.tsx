@@ -19,12 +19,6 @@ export function ChatInterface() {
       sender: "bot",
       timestamp: "10:30",
     },
-    {
-      id: 2,
-      text: 'Dịch từ "Amazing" sang tiếng Việt',
-      sender: "bot",
-      timestamp: "10:31",
-    },
   ]);
   const [inputText, setInputText] = useState("");
 
@@ -148,7 +142,7 @@ export function ChatInterface() {
           </Button>
         </div>
         <p className="text-xs text-gray-500 mt-2 text-center">
-          Tôi đang đáng tồn tại 462 thảm gia lời l��
+          Tôi đang đáng tồn tại 462 thảm gia lời lẽ
         </p>
       </div>
     </div>
