@@ -15,22 +15,22 @@ export function Header() {
         </Link>
 
         {/* Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
           <Link
             to="/"
-            className="text-gray-700 hover:text-purple-600 font-medium"
+            className="text-gray-700 hover:text-purple-600 font-medium text-sm xl:text-base"
           >
             Trang chủ
           </Link>
           <Link
             to="/about"
-            className="text-gray-700 hover:text-purple-600 font-medium"
+            className="text-gray-700 hover:text-purple-600 font-medium text-sm xl:text-base"
           >
             Giới thiệu
           </Link>
           <Link
             to="/guide"
-            className="text-gray-700 hover:text-purple-600 font-medium"
+            className="text-gray-700 hover:text-purple-600 font-medium text-sm xl:text-base"
           >
             Hướng dẫn
           </Link>
