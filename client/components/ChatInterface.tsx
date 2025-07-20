@@ -101,24 +101,30 @@ export function ChatInterface() {
           </div>
         ))}
 
-        {/* Suggestions */}
-        <div className="flex flex-wrap gap-2 mt-4">
+        {/* Response suggestion */}
+        <div className="flex justify-center mt-6">
           <Button
             variant="outline"
             size="sm"
-            className="text-xs bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
+            className="text-sm bg-green-50 border-green-200 text-green-700 hover:bg-green-100 px-4 py-2"
           >
             ✓ Chính xác!
           </Button>
         </div>
 
         {/* User typing indicator */}
-        <div className="text-sm text-gray-500">
-          Người dùng đang trả lời...
-          <div className="flex space-x-1 mt-1">
-            <span className="text-blue-500">Minh Anh</span>
-            <span className="text-blue-500">Thanh Hòa</span>
-            <span className="text-blue-500">Văn Nam</span>
+        <div className="text-sm text-gray-500 mt-6">
+          <p className="mb-2">Người dùng đang trả lời...</p>
+          <div className="flex flex-wrap gap-2">
+            <span className="text-blue-600 bg-blue-50 px-2 py-1 rounded text-xs">
+              Minh Anh
+            </span>
+            <span className="text-blue-600 bg-blue-50 px-2 py-1 rounded text-xs">
+              Thanh Hòa
+            </span>
+            <span className="text-blue-600 bg-blue-50 px-2 py-1 rounded text-xs">
+              Văn Nam
+            </span>
           </div>
         </div>
       </div>
