@@ -19,11 +19,22 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="min-h-screen bg-purple-50">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route
+              path="/about"
+              element={<PlaceholderPage title="Giới thiệu" />}
+            />
+            <Route
+              path="/guide"
+              element={<PlaceholderPage title="Hướng dẫn" />}
+            />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
