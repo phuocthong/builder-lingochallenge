@@ -61,7 +61,7 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: 'Xin chào! Tôi là EnglishBot. Tôi sẽ đưa ra các câu hỏi tiếng Anh định kỳ để các bạn trả lời.',
+      text: 'Xin chào! 👋 Tôi là EnglishBot. Tôi sẽ đưa ra câu hỏi tiếng Anh để các bạn trả lời. Hãy sẵn sàng!',
       sender: "bot",
       timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
     },
@@ -129,7 +129,7 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
     const randomQuestion = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
     const questionMessage: Message = {
       id: Date.now(),
-      text: randomQuestion.question,
+      text: `📚 ${randomQuestion.question}`,
       sender: "bot",
       timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
       isQuestion: true,
@@ -162,7 +162,7 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
     
     const answerMessage: Message = {
       id: Date.now() + 1,
-      text: `Đáp án đúng là: "${correctAnswer}"`,
+      text: `✅ Đáp án đúng: "${correctAnswer}"`,
       sender: "system",
       timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
     };
@@ -171,10 +171,10 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
     setCurrentQuestionId(null);
     setWaitingForAnswer(false);
     
-    // Ask next question after 10 seconds
+    // Ask next question after 8 seconds
     setTimeout(() => {
       askNewQuestion();
-    }, 10000);
+    }, 8000);
   };
 
   const handleInputClick = () => {
@@ -233,8 +233,8 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
           const responseMessage: Message = {
             id: Date.now() + 1,
             text: isCorrect ? 
-              `Chính xác! 🎉 "${currentQuestion.correctAnswer}" là đáp án đúng.` : 
-              `Không chính xác. Đáp án đúng là: "${currentQuestion.correctAnswer}"`,
+              `🎉 Chính xác! "${currentQuestion.correctAnswer}" là đáp án đúng.` : 
+              `❌ Không chính xác. Đáp án đúng là: "${currentQuestion.correctAnswer}"`,
             sender: "bot",
             timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
           };
@@ -262,40 +262,43 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
 
   return (
     <div className="bg-white rounded-lg shadow-sm border h-full flex flex-col">
-      {/* Chat Header */}
-      <div className="flex items-center p-4 border-b bg-white">
-        <div className="bg-purple-600 p-2 rounded-lg mr-3">
-          <Bot className="h-5 w-5 text-white" />
+      {/* Chat Header - Mobile Optimized */}
+      <div className="flex items-center p-3 sm:p-4 border-b bg-gradient-to-r from-purple-600 to-blue-600">
+        <div className="bg-white p-2 rounded-lg mr-3 shadow-sm">
+          <Bot className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600" />
         </div>
-        <div>
-          <h3 className="font-semibold text-gray-900 text-base">
-            Trò chuyện với Bot
+        <div className="flex-1">
+          <h3 className="font-semibold text-white text-sm sm:text-base">
+            🤖 EnglishBot
           </h3>
-          <p className="text-xs text-gray-500">Bot sẽ đưa ra câu hỏi mỗi 30-60 giây</p>
+          <p className="text-xs text-purple-100">Câu hỏi mỗi 30-60 giây</p>
+        </div>
+        <div className="text-xs text-purple-100 bg-white/20 px-2 py-1 rounded">
+          {waitingForAnswer ? "⏰ Đang chờ" : "💭 Chuẩn bị"}
         </div>
       </div>
 
-      {/* Login Prompt Alert */}
+      {/* Login Prompt Alert - Mobile Optimized */}
       {showLoginPrompt && (
-        <div className="p-4 border-b bg-yellow-50">
+        <div className="p-3 border-b bg-yellow-50">
           <Alert className="border-yellow-200 bg-yellow-50">
             <Lock className="h-4 w-4 text-yellow-600" />
             <AlertDescription className="text-yellow-800">
-              <div className="flex items-center justify-between">
-                <span>Bạn cần đăng nhập để tham gia trả lời câu hỏi!</span>
-                <div className="flex space-x-2 ml-4">
+              <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+                <span className="text-sm">Đăng nhập để tham gia trả lời!</span>
+                <div className="flex space-x-2">
                   <Button
                     size="sm"
                     variant="outline"
                     onClick={onShowRegister}
-                    className="text-xs border-yellow-300 text-yellow-700 hover:bg-yellow-100"
+                    className="text-xs border-yellow-300 text-yellow-700 hover:bg-yellow-100 flex-1 sm:flex-none"
                   >
                     Đăng ký
                   </Button>
                   <Button
                     size="sm"
                     onClick={onShowLogin}
-                    className="text-xs bg-yellow-600 hover:bg-yellow-700 text-white"
+                    className="text-xs bg-yellow-600 hover:bg-yellow-700 text-white flex-1 sm:flex-none"
                   >
                     <LogIn className="h-3 w-3 mr-1" />
                     Đăng nhập
@@ -307,44 +310,47 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
         </div>
       )}
 
-      {/* Messages */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      {/* Messages - Mobile Optimized */}
+      <div className="flex-1 p-3 sm:p-4 space-y-3 sm:space-y-4 overflow-y-auto">
         {messages.map((message) => (
           <div
             key={message.id}
             className={cn(
-              "flex items-start space-x-3",
-              message.sender === "user" && "flex-row-reverse space-x-reverse",
+              "flex items-start space-x-2 sm:space-x-3",
+              message.sender === "user" ? "flex-row-reverse space-x-reverse" : "",
             )}
           >
+            {/* Avatar */}
             <div
               className={cn(
-                "p-2 rounded-full",
+                "p-1.5 sm:p-2 rounded-full flex-shrink-0",
                 message.sender === "bot" ? "bg-purple-100" : 
                 message.sender === "system" ? "bg-green-100" :
                 "bg-blue-100",
               )}
             >
               {message.sender === "bot" ? (
-                <Bot className="h-4 w-4 text-purple-600" />
+                <Bot className="h-3 w-3 sm:h-4 sm:w-4 text-purple-600" />
               ) : message.sender === "system" ? (
-                <CheckCircle className="h-4 w-4 text-green-600" />
+                <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
               ) : (
-                <User className="h-4 w-4 text-blue-600" />
+                <User className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
               )}
             </div>
+
+            {/* Message Bubble */}
             <div
               className={cn(
-                "max-w-xs lg:max-w-md px-4 py-2 rounded-lg",
+                "max-w-[75%] sm:max-w-xs lg:max-w-md px-3 py-2 rounded-2xl",
                 message.sender === "bot"
-                  ? "bg-gray-100 text-gray-900"
+                  ? "bg-gray-100 text-gray-900 rounded-bl-sm"
                   : message.sender === "system"
-                  ? "bg-green-100 text-green-800 border border-green-200"
+                  ? "bg-green-100 text-green-800 border border-green-200 rounded-bl-sm"
                   : message.isCorrect === true
-                  ? "bg-green-600 text-white"
+                  ? "bg-green-500 text-white rounded-br-sm"
                   : message.isCorrect === false
-                  ? "bg-red-600 text-white"
-                  : "bg-purple-600 text-white",
+                  ? "bg-red-500 text-white rounded-br-sm"
+                  : "bg-blue-500 text-white rounded-br-sm",
               )}
             >
               <div className="flex items-center">
@@ -352,9 +358,9 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
                 {message.sender === "user" && message.isCorrect !== undefined && (
                   <div className="ml-2">
                     {message.isCorrect ? (
-                      <CheckCircle className="h-4 w-4" />
+                      <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4" />
                     ) : (
-                      <XCircle className="h-4 w-4" />
+                      <XCircle className="h-3 w-3 sm:h-4 sm:w-4" />
                     )}
                   </div>
                 )}
@@ -366,13 +372,13 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
                     ? "text-gray-500"
                     : message.sender === "system"
                     ? "text-green-600"
-                    : "text-purple-200",
+                    : "text-white/80",
                 )}
               >
                 {message.timestamp}
               </p>
               {message.isQuestion && (
-                <div className="mt-2 p-2 bg-yellow-100 rounded text-xs text-yellow-800">
+                <div className="mt-2 p-2 bg-yellow-100 rounded-lg text-xs text-yellow-800 border">
                   ⏰ Câu hỏi đang chờ trả lời...
                 </div>
               )}
@@ -380,14 +386,14 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
           </div>
         ))}
 
-        {/* Current question active users */}
+        {/* Current question active users - Mobile Optimized */}
         {waitingForAnswer && answeredUsers.length > 0 && (
-          <div className="text-sm text-gray-500 mt-6">
-            <p className="mb-2">Đã trả lời ({answeredUsers.length}):</p>
-            <div className="flex flex-wrap gap-2">
+          <div className="text-sm text-gray-500 mt-4 p-3 bg-blue-50 rounded-lg">
+            <p className="mb-2 font-medium">👥 Đã trả lời ({answeredUsers.length}):</p>
+            <div className="flex flex-wrap gap-1.5">
               {answeredUsers.slice(0, 10).map((user, index) => (
-                <span key={`${user.userId}-${index}`} className="text-blue-600 bg-blue-50 px-2 py-1 rounded text-xs">
-                  {user.userName} ({user.timestamp})
+                <span key={`${user.userId}-${index}`} className="text-blue-600 bg-white px-2 py-1 rounded-full text-xs font-medium">
+                  {user.userName}
                 </span>
               ))}
             </div>
@@ -397,9 +403,9 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
-      <div className="p-4 border-t bg-gray-50">
-        <div className="flex space-x-3">
+      {/* Input - Mobile Optimized */}
+      <div className="p-3 sm:p-4 border-t bg-gray-50">
+        <div className="flex space-x-2 sm:space-x-3">
           <Input
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
@@ -407,50 +413,51 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
             onClick={handleInputClick}
             placeholder={
               currentUser.isLoggedIn 
-                ? "Nhập câu trả lời của bạn..." 
-                : "Đăng nhập để tham gia trả lời..."
+                ? "Nhập câu trả lời..." 
+                : "Đăng nhập để trả lời..."
             }
             className={cn(
-              "flex-1",
+              "flex-1 text-sm",
               currentUser.isLoggedIn ? "bg-white" : "bg-gray-100 cursor-pointer"
             )}
             disabled={!currentUser.isLoggedIn || !waitingForAnswer}
           />
           <Button
             onClick={handleSendMessage}
-            className="bg-purple-600 hover:bg-purple-700 px-4"
+            className="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4"
             disabled={!inputText.trim() || !currentUser.isLoggedIn || !waitingForAnswer}
+            size="sm"
           >
             {currentUser.isLoggedIn ? <Send className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
           </Button>
         </div>
         
-        <div className="flex items-center justify-center mt-3 text-xs text-gray-500">
+        <div className="flex items-center justify-center mt-2 text-xs text-gray-500">
           <div className={cn(
             "w-2 h-2 rounded-full mr-2",
             currentUser.isLoggedIn ? "bg-green-500" : "bg-red-500"
           )}></div>
           {currentUser.isLoggedIn ? 
-            `Đăng nhập với tên: ${currentUser.name}` : 
-            "Vui lòng đăng nhập để tham gia trả lời câu hỏi"
+            `✅ Đã đăng nhập` : 
+            "❌ Chưa đăng nhập"
           }
         </div>
 
-        {/* Call to action for non-logged-in users */}
+        {/* Call to action for non-logged-in users - Mobile Optimized */}
         {!currentUser.isLoggedIn && (
-          <div className="mt-3 flex justify-center space-x-2">
+          <div className="mt-3 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-2">
             <Button
               size="sm"
               variant="outline"
               onClick={onShowRegister}
-              className="text-xs border-purple-200 text-purple-700 hover:bg-purple-50"
+              className="text-xs border-purple-200 text-purple-700 hover:bg-purple-50 flex-1 sm:flex-none"
             >
-              Đăng ký miễn phí
+              🎯 Đăng ký miễn phí
             </Button>
             <Button
               size="sm"
               onClick={onShowLogin}
-              className="text-xs bg-purple-600 hover:bg-purple-700"
+              className="text-xs bg-purple-600 hover:bg-purple-700 flex-1 sm:flex-none"
             >
               <LogIn className="h-3 w-3 mr-1" />
               Đăng nhập ngay
