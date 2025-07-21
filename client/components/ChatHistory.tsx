@@ -50,14 +50,14 @@ const generateRecentHistory = (): ChatHistoryItem[] => {
   
   const now = new Date();
   
-  return questions.slice(0, 15).map((item, index) => {
+  return questions.slice(0, 5).map((item, index) => {
     const questionTime = new Date(now.getTime() - (index * 5 * 60 * 1000)); // 5 minutes apart
     const numCorrectUsers = Math.floor(Math.random() * 12) + 3;
     const numTotalUsers = numCorrectUsers + Math.floor(Math.random() * 8) + 2;
     
     const correctUsers = users
       .sort(() => Math.random() - 0.5)
-      .slice(0, Math.min(numCorrectUsers, 50)) // Max 50 as per requirements
+      .slice(0, Math.min(numCorrectUsers, 5)) // Max 5 for simplified view
       .map((name, userIndex) => ({
         id: `user-${index}-${userIndex}`,
         name,
@@ -95,7 +95,7 @@ export function ChatHistory() {
           <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
           <h3 className="font-semibold text-white text-sm sm:text-base">📚 Lịch sử câu hỏi</h3>
         </div>
-        <p className="text-xs text-purple-100 mt-1">{chatHistory.length} câu hỏi gần nhất</p>
+        <p className="text-xs text-purple-100 mt-1">5 câu hỏi gần nhất</p>
       </div>
 
       {/* History Items - Mobile Optimized */}
@@ -155,11 +155,11 @@ export function ChatHistory() {
                 <div className="flex items-center mb-2">
                   <Trophy className="h-3 w-3 text-yellow-500 mr-1" />
                   <span className="text-xs font-medium text-gray-700">
-                    🏆 Top {Math.min(item.correctUsers.length, 50)} trả lời đúng sớm nhất
+                    🏆 Top {Math.min(item.correctUsers.length, 5)} trả lời đúng sớm nhất
                   </span>
                 </div>
                 <div className="space-y-1.5 max-h-24 sm:max-h-32 overflow-y-auto">
-                  {item.correctUsers.slice(0, 50).map((user) => (
+                  {item.correctUsers.slice(0, 5).map((user) => (
                     <div 
                       key={user.id}
                       className="flex items-center justify-between bg-white rounded-lg px-2 sm:px-3 py-1.5 text-xs shadow-sm"
@@ -175,9 +175,9 @@ export function ChatHistory() {
                       <span className="text-gray-500 text-xs">🕐 {user.answeredAt}</span>
                     </div>
                   ))}
-                  {item.correctUsers.length > 50 && (
+                  {item.correctUsers.length > 5 && (
                     <div className="text-xs text-gray-500 text-center py-1 bg-gray-50 rounded">
-                      ... và {item.correctUsers.length - 50} người khác
+                      ... và {item.correctUsers.length - 5} người khác
                     </div>
                   )}
                 </div>
