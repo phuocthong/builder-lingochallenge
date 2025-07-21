@@ -4,6 +4,7 @@ import { Input } from "./ui/input";
 import { Send, Bot, User, CheckCircle, XCircle, Lock, LogIn } from "lucide-react";
 import { cn } from "../lib/utils";
 import { Alert, AlertDescription } from "./ui/alert";
+import { useAuth } from "../contexts/AuthContext";
 
 interface Message {
   id: number;
@@ -40,7 +41,7 @@ const QUESTIONS = [
   { question: 'Dịch từ "Wonderful" sang tiếng Việt', answer: 'tuyệt vời' },
   { question: 'Dịch từ "Intelligent" sang tiếng Việt', answer: 'thông minh' },
   { question: 'Dịch từ "Friendly" sang tiếng Việt', answer: 'thân thiện' },
-  { question: 'Dịch từ "Amazing" sang tiếng Việt', answer: 'tuyệt vời' },
+  { question: 'D���ch từ "Amazing" sang tiếng Việt', answer: 'tuyệt vời' },
   { question: 'Dịch từ "Confident" sang tiếng Việt', answer: 'tự tin' },
   { question: 'Dịch từ "Creative" sang tiếng Việt', answer: 'sáng tạo' },
 ];
@@ -58,6 +59,7 @@ const MOCK_USERS = [
 ];
 
 export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProps) {
+  const { user, updateStats } = useAuth();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -67,12 +69,6 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
     },
   ]);
   const [inputText, setInputText] = useState("");
-  const [currentUser] = useState<ChatUser>({
-    id: '',
-    name: '',
-    avatar: '',
-    isLoggedIn: false // Default to not logged in
-  });
   const [currentQuestionId, setCurrentQuestionId] = useState<number | null>(null);
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [questionStartTime, setQuestionStartTime] = useState<Date | null>(null);
@@ -178,7 +174,7 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
   };
 
   const handleInputClick = () => {
-    if (!currentUser.isLoggedIn) {
+    if (!user.isLoggedIn) {
       const now = Date.now();
       // Prevent spam clicking
       if (now - lastClickTime > 1000) {
@@ -194,12 +190,12 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
   };
 
   const handleSendMessage = () => {
-    if (!currentUser.isLoggedIn) {
+    if (!user.isLoggedIn) {
       handleInputClick();
       return;
     }
 
-    if (inputText.trim() && currentUser.isLoggedIn) {
+    if (inputText.trim() && user.isLoggedIn) {
       const userAnswer = inputText.trim().toLowerCase();
       const currentQuestion = messages.find(msg => msg.id === currentQuestionId);
       
@@ -208,15 +204,28 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
         
         // Add user to answered users list
         const newAnsweredUser = {
-          userId: currentUser.id,
-          userName: currentUser.name,
+          userId: user.id,
+          userName: user.name,
           timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" })
         };
-        
+
         setAnsweredUsers(prev => {
-          const filtered = prev.filter(user => user.userId !== currentUser.id);
+          const filtered = prev.filter(answeredUser => answeredUser.userId !== user.id);
           return [newAnsweredUser, ...filtered].slice(0, 10);
         });
+
+        // Update user stats on correct answer
+        if (isCorrect && user.stats) {
+          updateStats({
+            totalCorrect: user.stats.totalCorrect + 1,
+            streak: user.stats.streak + 1,
+            accuracy: Math.round(((user.stats.totalCorrect + 1) / (user.stats.totalCorrect + 1)) * 100)
+          });
+        } else if (!isCorrect && user.stats) {
+          updateStats({
+            streak: 0
+          });
+        }
 
         const newMessage: Message = {
           id: Date.now(),
@@ -412,39 +421,39 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
             onKeyPress={handleKeyPress}
             onClick={handleInputClick}
             placeholder={
-              currentUser.isLoggedIn 
-                ? "Nhập câu trả lời..." 
+              user.isLoggedIn
+                ? "Nhập câu trả lời..."
                 : "Đăng nhập để trả lời..."
             }
             className={cn(
               "flex-1 text-sm",
-              currentUser.isLoggedIn ? "bg-white" : "bg-gray-100 cursor-pointer"
+              user.isLoggedIn ? "bg-white" : "bg-gray-100 cursor-pointer"
             )}
-            disabled={!currentUser.isLoggedIn || !waitingForAnswer}
+            disabled={!user.isLoggedIn || !waitingForAnswer}
           />
           <Button
             onClick={handleSendMessage}
             className="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4"
-            disabled={!inputText.trim() || !currentUser.isLoggedIn || !waitingForAnswer}
+            disabled={!inputText.trim() || !user.isLoggedIn || !waitingForAnswer}
             size="sm"
           >
-            {currentUser.isLoggedIn ? <Send className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
+            {user.isLoggedIn ? <Send className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
           </Button>
         </div>
         
         <div className="flex items-center justify-center mt-2 text-xs text-gray-500">
           <div className={cn(
             "w-2 h-2 rounded-full mr-2",
-            currentUser.isLoggedIn ? "bg-green-500" : "bg-red-500"
+            user.isLoggedIn ? "bg-green-500" : "bg-red-500"
           )}></div>
-          {currentUser.isLoggedIn ? 
-            `✅ Đã đăng nhập` : 
+          {user.isLoggedIn ?
+            `✅ Đã đăng nhập - ${user.name}` :
             "❌ Chưa đăng nhập"
           }
         </div>
 
         {/* Call to action for non-logged-in users - Mobile Optimized */}
-        {!currentUser.isLoggedIn && (
+        {!user.isLoggedIn && (
           <div className="mt-3 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-2">
             <Button
               size="sm"
