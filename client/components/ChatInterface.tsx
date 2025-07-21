@@ -317,7 +317,7 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
             key={message.id}
             className={cn(
               "flex items-start space-x-2 sm:space-x-3",
-              message.sender === "user" ? "flex-row-reverse space-x-reverse" : "",
+              message.sender === "user" ? "" : "flex-row-reverse space-x-reverse",
             )}
           >
             {/* Avatar */}
@@ -343,14 +343,14 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
               className={cn(
                 "max-w-[75%] sm:max-w-xs lg:max-w-md px-3 py-2 rounded-2xl",
                 message.sender === "bot"
-                  ? "bg-gray-100 text-gray-900 rounded-bl-sm"
+                  ? "bg-gray-100 text-gray-900 rounded-br-sm"
                   : message.sender === "system"
-                  ? "bg-green-100 text-green-800 border border-green-200 rounded-bl-sm"
+                  ? "bg-green-100 text-green-800 border border-green-200 rounded-br-sm"
                   : message.isCorrect === true
-                  ? "bg-green-500 text-white rounded-br-sm"
+                  ? "bg-green-500 text-white rounded-bl-sm"
                   : message.isCorrect === false
-                  ? "bg-red-500 text-white rounded-br-sm"
-                  : "bg-blue-500 text-white rounded-br-sm",
+                  ? "bg-red-500 text-white rounded-bl-sm"
+                  : "bg-blue-500 text-white rounded-bl-sm",
               )}
             >
               <div className="flex items-center">
