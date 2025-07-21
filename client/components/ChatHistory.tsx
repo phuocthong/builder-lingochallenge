@@ -17,7 +17,7 @@ interface ChatHistoryItem {
   totalAnswered: number;
 }
 
-// Generate more recent history data for demonstration
+// Generate dynamic recent history data
 const generateRecentHistory = (): ChatHistoryItem[] => {
   const questions = [
     { q: 'Dịch từ "Beautiful" sang tiếng Việt', a: "đẹp" },
@@ -41,30 +41,30 @@ const generateRecentHistory = (): ChatHistoryItem[] => {
     { q: 'Dịch từ "Polite" sang tiếng Việt', a: "lịch sự" },
     { q: 'Dịch từ "Helpful" sang tiếng Việt', a: "hữu ích" }
   ];
-
+  
   const users = [
     "Minh Anh", "Thành Hòa", "Văn Nam", "Thu Trang", "Đức Minh",
     "Lan Anh", "Hoàng Nam", "Mai Linh", "Quốc Duy", "Bảo Trân",
     "Hồng Nhung", "Việt Hùng", "Thanh Tú", "Kim Anh", "Đức Thắng"
   ];
-
+  
   const now = new Date();
-
+  
   return questions.slice(0, 15).map((item, index) => {
     const questionTime = new Date(now.getTime() - (index * 5 * 60 * 1000)); // 5 minutes apart
     const numCorrectUsers = Math.floor(Math.random() * 12) + 3;
     const numTotalUsers = numCorrectUsers + Math.floor(Math.random() * 8) + 2;
-
+    
     const correctUsers = users
       .sort(() => Math.random() - 0.5)
-      .slice(0, numCorrectUsers)
+      .slice(0, Math.min(numCorrectUsers, 50)) // Max 50 as per requirements
       .map((name, userIndex) => ({
         id: `user-${index}-${userIndex}`,
         name,
         answeredAt: new Date(questionTime.getTime() + (userIndex + 1) * 2000).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
         rank: userIndex + 1
       }));
-
+    
     return {
       id: questions.length - index,
       question: item.q,
@@ -79,90 +79,6 @@ const generateRecentHistory = (): ChatHistoryItem[] => {
 };
 
 const chatHistory: ChatHistoryItem[] = generateRecentHistory();
-  {
-    id: 1,
-    question: 'Dịch từ "Beautiful" sang tiếng Việt',
-    correctAnswer: "đẹp",
-    timestamp: "10:30",
-    date: "26/07/2024",
-    correctUsers: [
-      { id: "1", name: "Minh Anh", answeredAt: "10:31", rank: 1 },
-      { id: "2", name: "Thành Hòa", answeredAt: "10:31", rank: 2 },
-      { id: "3", name: "Văn Nam", answeredAt: "10:32", rank: 3 },
-      { id: "4", name: "Thu Trang", answeredAt: "10:32", rank: 4 },
-      { id: "5", name: "Đức Minh", answeredAt: "10:33", rank: 5 },
-      { id: "6", name: "Lan Anh", answeredAt: "10:33", rank: 6 },
-      { id: "7", name: "Hoàng Nam", answeredAt: "10:34", rank: 7 },
-      { id: "8", name: "Mai Linh", answeredAt: "10:34", rank: 8 },
-    ],
-    totalCorrect: 15,
-    totalAnswered: 23,
-  },
-  {
-    id: 2,
-    question: 'Dịch từ "Happy" sang tiếng Việt',
-    correctAnswer: "hạnh phúc",
-    timestamp: "10:25",
-    date: "26/07/2024",
-    correctUsers: [
-      { id: "2", name: "Thành Hòa", answeredAt: "10:26", rank: 1 },
-      { id: "1", name: "Minh Anh", answeredAt: "10:26", rank: 2 },
-      { id: "4", name: "Thu Trang", answeredAt: "10:27", rank: 3 },
-      { id: "5", name: "Đức Minh", answeredAt: "10:27", rank: 4 },
-      { id: "3", name: "Văn Nam", answeredAt: "10:28", rank: 5 },
-    ],
-    totalCorrect: 12,
-    totalAnswered: 18,
-  },
-  {
-    id: 3,
-    question: 'Dịch từ "Wonderful" sang tiếng Việt',
-    correctAnswer: "tuyệt vời",
-    timestamp: "10:20",
-    date: "26/07/2024",
-    correctUsers: [
-      { id: "1", name: "Minh Anh", answeredAt: "10:21", rank: 1 },
-      { id: "3", name: "Văn Nam", answeredAt: "10:21", rank: 2 },
-      { id: "2", name: "Thành Hòa", answeredAt: "10:22", rank: 3 },
-      { id: "6", name: "Lan Anh", answeredAt: "10:22", rank: 4 },
-      { id: "7", name: "Hoàng Nam", answeredAt: "10:23", rank: 5 },
-    ],
-    totalCorrect: 18,
-    totalAnswered: 25,
-  },
-  {
-    id: 4,
-    question: 'Dịch từ "Intelligent" sang tiếng Việt',
-    correctAnswer: "thông minh",
-    timestamp: "10:15",
-    date: "26/07/2024",
-    correctUsers: [
-      { id: "2", name: "Thành Hòa", answeredAt: "10:16", rank: 1 },
-      { id: "4", name: "Thu Trang", answeredAt: "10:16", rank: 2 },
-      { id: "1", name: "Minh Anh", answeredAt: "10:17", rank: 3 },
-      { id: "5", name: "Đức Minh", answeredAt: "10:17", rank: 4 },
-    ],
-    totalCorrect: 9,
-    totalAnswered: 16,
-  },
-  {
-    id: 5,
-    question: 'Dịch từ "Friendly" sang tiếng Việt',
-    correctAnswer: "thân thiện",
-    timestamp: "10:10",
-    date: "26/07/2024",
-    correctUsers: [
-      { id: "3", name: "Văn Nam", answeredAt: "10:11", rank: 1 },
-      { id: "1", name: "Minh Anh", answeredAt: "10:11", rank: 2 },
-      { id: "2", name: "Thành Hòa", answeredAt: "10:12", rank: 3 },
-      { id: "6", name: "Lan Anh", answeredAt: "10:12", rank: 4 },
-      { id: "7", name: "Hoàng Nam", answeredAt: "10:13", rank: 5 },
-      { id: "8", name: "Mai Linh", answeredAt: "10:13", rank: 6 },
-    ],
-    totalCorrect: 14,
-    totalAnswered: 22,
-  }
-];
 
 export function ChatHistory() {
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
@@ -239,7 +155,7 @@ export function ChatHistory() {
                 <div className="flex items-center mb-2">
                   <Trophy className="h-3 w-3 text-yellow-500 mr-1" />
                   <span className="text-xs font-medium text-gray-700">
-                    🏆 Top {Math.min(item.correctUsers.length, 50)} trả lời đúng
+                    🏆 Top {Math.min(item.correctUsers.length, 50)} trả lời đúng sớm nhất
                   </span>
                 </div>
                 <div className="space-y-1.5 max-h-24 sm:max-h-32 overflow-y-auto">
