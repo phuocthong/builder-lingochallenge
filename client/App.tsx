@@ -10,25 +10,26 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { LoginModal } from "./components/LoginModal";
 import { RegisterModal } from "./components/RegisterModal";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
 const queryClient = new QueryClient();
 
-const App = () => {
+const AppContent = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [user, setUser] = useState<{name: string; email: string} | null>(null);
+  const { login } = useAuth();
 
   const handleLogin = (userData: {name: string; email: string}) => {
-    setUser(userData);
+    login({ name: userData.name, email: userData.email });
     setShowLoginModal(false);
     console.log("User logged in:", userData);
   };
 
   const handleRegister = (userData: {name: string; email: string}) => {
-    setUser(userData);
+    login({ name: userData.name, email: userData.email });
     setShowRegisterModal(false);
     console.log("User registered:", userData);
   };
@@ -44,10 +45,6 @@ const App = () => {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
         <BrowserRouter>
           <div className="min-h-screen bg-purple-50">
             <Header 
@@ -92,6 +89,18 @@ const App = () => {
             />
           </div>
         </BrowserRouter>
+  );
+};
+
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <AuthProvider>
+          <Toaster />
+          <Sonner />
+          <AppContent />
+        </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );
