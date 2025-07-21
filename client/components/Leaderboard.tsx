@@ -103,13 +103,13 @@ export function Leaderboard() {
   const getRankIcon = (rank: number) => {
     switch (rank) {
       case 1:
-        return <Crown className="h-4 w-4 text-yellow-500" />;
+        return <Crown className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-500" />;
       case 2:
-        return <Medal className="h-4 w-4 text-gray-400" />;
+        return <Medal className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400" />;
       case 3:
-        return <Medal className="h-4 w-4 text-amber-600" />;
+        return <Medal className="h-3 w-3 sm:h-4 sm:w-4 text-amber-600" />;
       default:
-        return <Star className="h-3 w-3 text-gray-400" />;
+        return <Star className="h-2 w-2 sm:h-3 sm:w-3 text-gray-400" />;
     }
   };
 
@@ -122,32 +122,32 @@ export function Leaderboard() {
       case 3:
         return "bg-gradient-to-r from-amber-500 to-amber-600";
       default:
-        return "bg-blue-500";
+        return "bg-gradient-to-r from-blue-500 to-purple-500";
     }
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border">
-      {/* Header */}
-      <div className="p-4 border-b">
+    <div className="bg-white rounded-lg shadow-sm border h-full flex flex-col">
+      {/* Header - Mobile Optimized */}
+      <div className="p-3 sm:p-4 border-b bg-gradient-to-r from-yellow-500 to-orange-500">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center space-x-2">
-            <Trophy className="h-5 w-5 text-yellow-500" />
-            <h3 className="font-semibold text-gray-900">Bảng xếp hạng</h3>
+            <Trophy className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+            <h3 className="font-semibold text-white text-sm sm:text-base">🏆 Bảng xếp hạng</h3>
           </div>
-          <TrendingUp className="h-4 w-4 text-gray-400" />
+          <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
         </div>
 
-        {/* Time filters */}
-        <div className="flex space-x-1">
+        {/* Time filters - Mobile Grid */}
+        <div className="grid grid-cols-4 gap-1 sm:flex sm:space-x-1">
           {periods.map((period) => (
             <button
               key={period}
               onClick={() => setSelectedPeriod(period)}
-              className={`px-3 py-1.5 text-xs rounded-md transition-colors ${
+              className={`px-2 sm:px-3 py-1.5 text-xs rounded-md transition-all duration-200 font-medium ${
                 selectedPeriod === period
-                  ? "bg-purple-100 text-purple-700 font-medium"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  ? "bg-white text-orange-600 shadow-sm"
+                  : "bg-white/20 text-white hover:bg-white/30"
               }`}
             >
               {leaderboardData[period].name}
@@ -156,35 +156,45 @@ export function Leaderboard() {
         </div>
       </div>
 
-      {/* Leaderboard List */}
-      <div className="p-4 space-y-2 max-h-80 overflow-y-auto">
+      {/* Leaderboard List - Mobile Optimized */}
+      <div className="flex-1 p-3 sm:p-4 space-y-2 overflow-y-auto">
         {currentData.users.map((user) => (
           <div
             key={user.id}
-            className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors"
+            className="flex items-center justify-between p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition-colors bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-100"
           >
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center justify-center w-8 h-8">
+            <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
+              {/* Rank Icon */}
+              <div className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0">
                 {getRankIcon(user.rank)}
               </div>
+              
+              {/* Avatar */}
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-medium ${getRankBgColor(user.rank)}`}
+                className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white text-xs font-medium flex-shrink-0 ${getRankBgColor(user.rank)}`}
               >
                 {user.avatar}
               </div>
-              <div>
-                <div className="font-medium text-gray-900 text-sm">
+              
+              {/* User Info */}
+              <div className="flex-1 min-w-0">
+                <div className="font-medium text-gray-900 text-sm truncate">
                   {user.name}
                 </div>
-                <div className="flex items-center space-x-2 text-xs text-gray-500">
-                  <span>Streak: {user.streak}</span>
-                  <span>•</span>
-                  <span>Độ chính xác: {user.accuracy}%</span>
+                <div className="flex items-center space-x-1 sm:space-x-2 text-xs text-gray-500">
+                  <span className="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">
+                    S{user.streak}
+                  </span>
+                  <span className="bg-green-100 text-green-700 px-1.5 py-0.5 rounded">
+                    {user.accuracy}%
+                  </span>
                 </div>
               </div>
             </div>
-            <div className="text-right">
-              <div className="font-bold text-gray-900 text-lg">
+            
+            {/* Score */}
+            <div className="text-right flex-shrink-0">
+              <div className="font-bold text-gray-900 text-sm sm:text-lg">
                 {user.score.toLocaleString()}
               </div>
               <div className="text-xs text-gray-500">{user.unit}</div>
@@ -193,19 +203,19 @@ export function Leaderboard() {
         ))}
       </div>
 
-      {/* User Rank Display */}
+      {/* User Rank Display - Mobile Optimized */}
       {currentData.currentUserRank && (
-        <div className="px-4 pb-4">
+        <div className="p-3 sm:p-4">
           <div className="border-t pt-3">
-            <div className="bg-blue-50 rounded-lg p-3">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mr-3">
                     <span className="text-white text-xs font-medium">ND</span>
                   </div>
                   <div>
                     <div className="font-medium text-gray-900 text-sm">
-                      Hạng của bạn: #{currentData.currentUserRank.rank}
+                      🎯 Hạng #{currentData.currentUserRank.rank}
                     </div>
                     <div className="text-xs text-gray-600">
                       {currentData.currentUserRank.score} câu đúng • 
@@ -218,7 +228,7 @@ export function Leaderboard() {
                     {currentData.currentUserRank.score.toLocaleString()}
                   </div>
                   <div className="text-xs text-gray-500">
-                    / {currentData.currentUserRank.outOfTotal.toLocaleString()} người chơi
+                    / {currentData.currentUserRank.outOfTotal.toLocaleString()}
                   </div>
                 </div>
               </div>
