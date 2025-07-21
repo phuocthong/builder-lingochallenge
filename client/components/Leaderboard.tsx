@@ -1,5 +1,6 @@
 import { Trophy, TrendingUp, Medal, Crown, Star } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
 interface LeaderboardUser {
   id: string;
@@ -98,6 +99,7 @@ const periods = ["total", "week", "month", "year"];
 
 export function Leaderboard() {
   const [selectedPeriod, setSelectedPeriod] = useState("total");
+  const { user } = useAuth();
   const currentData = leaderboardData[selectedPeriod];
 
   const getRankIcon = (rank: number) => {
@@ -211,14 +213,14 @@ export function Leaderboard() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-white text-xs font-medium">ND</span>
+                    <span className="text-white text-xs font-medium">{user.isLoggedIn ? user.avatar : 'ND'}</span>
                   </div>
                   <div>
                     <div className="font-medium text-gray-900 text-sm">
-                      🎯 Hạng #{currentData.currentUserRank.rank}
+                      🎯 {user.isLoggedIn ? user.name : 'Bạn'} - Hạng #{currentData.currentUserRank.rank}
                     </div>
                     <div className="text-xs text-gray-600">
-                      {currentData.currentUserRank.score} câu đúng • 
+                      {currentData.currentUserRank.score} câu đúng •
                       Top {Math.round((currentData.currentUserRank.rank / currentData.currentUserRank.outOfTotal) * 100)}%
                     </div>
                   </div>
