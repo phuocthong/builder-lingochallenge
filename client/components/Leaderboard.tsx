@@ -34,13 +34,8 @@ const leaderboardData: Record<string, LeaderboardPeriod> = {
       { id: "3", name: "Văn Nam", score: 1957, unit: "câu đúng", avatar: "VN", rank: 3, streak: 12, accuracy: 87 },
       { id: "4", name: "Thu Trang", score: 1834, unit: "câu đúng", avatar: "TT", rank: 4, streak: 8, accuracy: 94 },
       { id: "5", name: "Đức Minh", score: 1672, unit: "câu đúng", avatar: "DM", rank: 5, streak: 5, accuracy: 86 },
-      { id: "6", name: "Lan Anh", score: 1589, unit: "câu đúng", avatar: "LA", rank: 6, streak: 18, accuracy: 91 },
-      { id: "7", name: "Hoàng Nam", score: 1456, unit: "câu đúng", avatar: "HN", rank: 7, streak: 7, accuracy: 88 },
-      { id: "8", name: "Mai Linh", score: 1334, unit: "câu đúng", avatar: "ML", rank: 8, streak: 11, accuracy: 90 },
-      { id: "9", name: "Quốc Duy", score: 1289, unit: "câu đúng", avatar: "QD", rank: 9, streak: 4, accuracy: 85 },
-      { id: "10", name: "Bảo Trân", score: 1156, unit: "câu đúng", avatar: "BT", rank: 10, streak: 9, accuracy: 93 },
     ],
-    currentUserRank: { rank: 45, score: 523, outOfTotal: 1250 }
+    currentUserRank: { rank: 8, score: 523, outOfTotal: 200 }
   },
   week: {
     id: "week",
@@ -51,13 +46,8 @@ const leaderboardData: Record<string, LeaderboardPeriod> = {
       { id: "4", name: "Thu Trang", score: 138, unit: "câu đúng", avatar: "TT", rank: 3, streak: 5, accuracy: 96 },
       { id: "6", name: "Lan Anh", score: 129, unit: "câu đúng", avatar: "LA", rank: 4, streak: 8, accuracy: 89 },
       { id: "3", name: "Văn Nam", score: 124, unit: "câu đúng", avatar: "VN", rank: 5, streak: 4, accuracy: 87 },
-      { id: "8", name: "Mai Linh", score: 118, unit: "câu đúng", avatar: "ML", rank: 6, streak: 6, accuracy: 92 },
-      { id: "5", name: "Đức Minh", score: 112, unit: "câu đúng", avatar: "DM", rank: 7, streak: 3, accuracy: 84 },
-      { id: "7", name: "Hoàng Nam", score: 106, unit: "câu đúng", avatar: "HN", rank: 8, streak: 5, accuracy: 88 },
-      { id: "9", name: "Quốc Duy", score: 98, unit: "câu đúng", avatar: "QD", rank: 9, streak: 2, accuracy: 83 },
-      { id: "10", name: "Bảo Trân", score: 94, unit: "câu đúng", avatar: "BT", rank: 10, streak: 4, accuracy: 95 },
     ],
-    currentUserRank: { rank: 12, score: 78, outOfTotal: 340 }
+    currentUserRank: { rank: 7, score: 78, outOfTotal: 50 }
   },
   month: {
     id: "month",
@@ -68,13 +58,8 @@ const leaderboardData: Record<string, LeaderboardPeriod> = {
       { id: "2", name: "Thành Hòa", score: 567, unit: "câu đúng", avatar: "TH", rank: 3, streak: 15, accuracy: 93 },
       { id: "6", name: "Lan Anh", score: 523, unit: "câu đúng", avatar: "LA", rank: 4, streak: 10, accuracy: 91 },
       { id: "3", name: "Văn Nam", score: 489, unit: "câu đúng", avatar: "VN", rank: 5, streak: 6, accuracy: 88 },
-      { id: "8", name: "Mai Linh", score: 445, unit: "câu đúng", avatar: "ML", rank: 6, streak: 9, accuracy: 92 },
-      { id: "5", name: "Đức Minh", score: 423, unit: "câu đúng", avatar: "DM", rank: 7, streak: 4, accuracy: 86 },
-      { id: "7", name: "Hoàng Nam", score: 398, unit: "câu đúng", avatar: "HN", rank: 8, streak: 7, accuracy: 89 },
-      { id: "9", name: "Quốc Duy", score: 367, unit: "câu đúng", avatar: "QD", rank: 9, streak: 3, accuracy: 84 },
-      { id: "10", name: "Bảo Trân", score: 334, unit: "câu đúng", avatar: "BT", rank: 10, streak: 5, accuracy: 94 },
     ],
-    currentUserRank: { rank: 23, score: 189, outOfTotal: 580 }
+    currentUserRank: { rank: 9, score: 189, outOfTotal: 80 }
   },
   year: {
     id: "year",
@@ -85,13 +70,8 @@ const leaderboardData: Record<string, LeaderboardPeriod> = {
       { id: "3", name: "Văn Nam", score: 1957, unit: "câu đúng", avatar: "VN", rank: 3, streak: 12, accuracy: 87 },
       { id: "4", name: "Thu Trang", score: 1834, unit: "câu đúng", avatar: "TT", rank: 4, streak: 8, accuracy: 94 },
       { id: "5", name: "Đức Minh", score: 1672, unit: "câu đúng", avatar: "DM", rank: 5, streak: 5, accuracy: 86 },
-      { id: "6", name: "Lan Anh", score: 1589, unit: "câu đúng", avatar: "LA", rank: 6, streak: 18, accuracy: 91 },
-      { id: "7", name: "Hoàng Nam", score: 1456, unit: "câu đúng", avatar: "HN", rank: 7, streak: 7, accuracy: 88 },
-      { id: "8", name: "Mai Linh", score: 1334, unit: "câu đúng", avatar: "ML", rank: 8, streak: 11, accuracy: 90 },
-      { id: "9", name: "Quốc Duy", score: 1289, unit: "câu đúng", avatar: "QD", rank: 9, streak: 4, accuracy: 85 },
-      { id: "10", name: "Bảo Trân", score: 1156, unit: "câu đúng", avatar: "BT", rank: 10, streak: 9, accuracy: 93 },
     ],
-    currentUserRank: { rank: 45, score: 523, outOfTotal: 1250 }
+    currentUserRank: { rank: 8, score: 523, outOfTotal: 200 }
   }
 };
 
@@ -220,7 +200,7 @@ export function Leaderboard() {
                       🎯 {user.isLoggedIn ? user.name : 'Bạn'} - Hạng #{currentData.currentUserRank.rank}
                     </div>
                     <div className="text-xs text-gray-600">
-                      {currentData.currentUserRank.score} câu đúng •
+                      {currentData.currentUserRank.score} câu đúng • 
                       Top {Math.round((currentData.currentUserRank.rank / currentData.currentUserRank.outOfTotal) * 100)}%
                     </div>
                   </div>
