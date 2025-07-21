@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Bot, LogIn, LogOut, User, Trophy, UserPlus, Menu } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
 interface UserStats {
   rank: number;
@@ -24,48 +25,17 @@ interface HeaderProps {
 }
 
 export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
-  const [user, setUser] = useState<AuthUser>({
-    id: '',
-    name: '',
-    avatar: '',
-    isLoggedIn: false // Default to not logged in
-  });
-  
+  const { user, logout } = useAuth();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const handleLogin = (userData?: Partial<AuthUser>) => {
-    // Mock login - in real app this would integrate with auth system
-    setUser({
-      id: userData?.id || 'user-123',
-      name: userData?.name || 'Người dùng',
-      avatar: userData?.avatar || 'ND',
-      isLoggedIn: true,
-      stats: {
-        rank: 45,
-        totalCorrect: 523,
-        streak: 7,
-        accuracy: 89
-      }
-    });
-    setShowMobileMenu(false);
-  };
-
   const handleLogout = () => {
-    setUser({
-      id: '',
-      name: '',
-      avatar: '',
-      isLoggedIn: false
-    });
+    logout();
     setShowMobileMenu(false);
   };
 
   const handleShowLogin = () => {
     if (onShowLogin) {
       onShowLogin();
-    } else {
-      // Fallback - directly login for demo
-      handleLogin();
     }
     setShowMobileMenu(false);
   };
@@ -73,9 +43,6 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
   const handleShowRegister = () => {
     if (onShowRegister) {
       onShowRegister();
-    } else {
-      // Fallback - directly login for demo
-      handleLogin();
     }
     setShowMobileMenu(false);
   };
