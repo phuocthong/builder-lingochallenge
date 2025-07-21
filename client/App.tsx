@@ -46,7 +46,7 @@ const AppContent = () => {
 
   return (
         <BrowserRouter>
-          <div className="min-h-screen bg-purple-50">
+          <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
             <Header 
               onShowLogin={handleShowLogin}
               onShowRegister={handleShowRegister}
