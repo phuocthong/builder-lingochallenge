@@ -17,7 +17,68 @@ interface ChatHistoryItem {
   totalAnswered: number;
 }
 
-const chatHistory: ChatHistoryItem[] = [
+// Generate more recent history data for demonstration
+const generateRecentHistory = (): ChatHistoryItem[] => {
+  const questions = [
+    { q: 'Dịch từ "Beautiful" sang tiếng Việt', a: "đẹp" },
+    { q: 'Dịch từ "Happy" sang tiếng Việt', a: "hạnh phúc" },
+    { q: 'Dịch từ "Wonderful" sang tiếng Việt', a: "tuyệt vời" },
+    { q: 'Dịch từ "Intelligent" sang tiếng Việt', a: "thông minh" },
+    { q: 'Dịch từ "Friendly" sang tiếng Việt', a: "thân thiện" },
+    { q: 'Dịch từ "Amazing" sang tiếng Việt', a: "tuyệt vời" },
+    { q: 'Dịch từ "Creative" sang tiếng Việt', a: "sáng tạo" },
+    { q: 'Dịch từ "Confident" sang tiếng Việt', a: "tự tin" },
+    { q: 'Dịch từ "Generous" sang tiếng Việt', a: "hào phóng" },
+    { q: 'Dịch từ "Patient" sang tiếng Việt', a: "kiên nhẫn" },
+    { q: 'Dịch từ "Honest" sang tiếng Việt', a: "trung thực" },
+    { q: 'Dịch từ "Brave" sang tiếng Việt', a: "dũng cảm" },
+    { q: 'Dịch từ "Kind" sang tiếng Việt', a: "tử tế" },
+    { q: 'Dịch từ "Smart" sang tiếng Việt', a: "thông minh" },
+    { q: 'Dịch từ "Funny" sang tiếng Việt', a: "hài hước" },
+    { q: 'Dịch từ "Strong" sang tiếng Việt', a: "mạnh mẽ" },
+    { q: 'Dịch từ "Fast" sang tiếng Việt', a: "nhanh" },
+    { q: 'Dịch từ "Careful" sang tiếng Việt', a: "cẩn thận" },
+    { q: 'Dịch từ "Polite" sang tiếng Việt', a: "lịch sự" },
+    { q: 'Dịch từ "Helpful" sang tiếng Việt', a: "hữu ích" }
+  ];
+
+  const users = [
+    "Minh Anh", "Thành Hòa", "Văn Nam", "Thu Trang", "Đức Minh",
+    "Lan Anh", "Hoàng Nam", "Mai Linh", "Quốc Duy", "Bảo Trân",
+    "Hồng Nhung", "Việt Hùng", "Thanh Tú", "Kim Anh", "Đức Thắng"
+  ];
+
+  const now = new Date();
+
+  return questions.slice(0, 15).map((item, index) => {
+    const questionTime = new Date(now.getTime() - (index * 5 * 60 * 1000)); // 5 minutes apart
+    const numCorrectUsers = Math.floor(Math.random() * 12) + 3;
+    const numTotalUsers = numCorrectUsers + Math.floor(Math.random() * 8) + 2;
+
+    const correctUsers = users
+      .sort(() => Math.random() - 0.5)
+      .slice(0, numCorrectUsers)
+      .map((name, userIndex) => ({
+        id: `user-${index}-${userIndex}`,
+        name,
+        answeredAt: new Date(questionTime.getTime() + (userIndex + 1) * 2000).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
+        rank: userIndex + 1
+      }));
+
+    return {
+      id: questions.length - index,
+      question: item.q,
+      correctAnswer: item.a,
+      timestamp: questionTime.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
+      date: questionTime.toLocaleDateString("vi-VN"),
+      correctUsers,
+      totalCorrect: numCorrectUsers,
+      totalAnswered: numTotalUsers
+    };
+  });
+};
+
+const chatHistory: ChatHistoryItem[] = generateRecentHistory();
   {
     id: 1,
     question: 'Dịch từ "Beautiful" sang tiếng Việt',
@@ -118,7 +179,7 @@ export function ChatHistory() {
           <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
           <h3 className="font-semibold text-white text-sm sm:text-base">📚 Lịch sử câu hỏi</h3>
         </div>
-        <p className="text-xs text-purple-100 mt-1">20 câu hỏi gần nhất</p>
+        <p className="text-xs text-purple-100 mt-1">{chatHistory.length} câu hỏi gần nhất</p>
       </div>
 
       {/* History Items - Mobile Optimized */}
