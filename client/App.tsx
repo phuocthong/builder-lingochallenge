@@ -12,6 +12,7 @@ import { LoginModal } from "./components/LoginModal";
 import { RegisterModal } from "./components/RegisterModal";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Index from "./pages/Index";
+import ChallengeRoom from "./pages/ChallengeRoom";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
@@ -68,6 +69,10 @@ const AppContent = () => {
               <Route
                 path="/guide"
                 element={<PlaceholderPage title="Hướng dẫn" />}
+              />
+              <Route
+                path="/challenge"
+                element={<ChallengeRoom />}
               />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
