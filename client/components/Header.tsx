@@ -83,6 +83,13 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
               >
                 📖 Hướng dẫn
               </Link>
+              <Link
+                to="/challenge"
+                className="text-gray-700 hover:text-purple-600 font-medium text-sm transition-colors flex items-center space-x-1"
+              >
+                <Zap className="h-4 w-4" />
+                <span>Phòng Thử thách</span>
+              </Link>
             </nav>
 
             {/* Auth Section */}
@@ -257,7 +264,7 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                     className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 flex items-center justify-center space-x-2"
                   >
                     <LogIn className="h-4 w-4" />
-                    <span>Đăng nh���p</span>
+                    <span>Đăng nhập</span>
                   </Button>
                 </div>
               </div>
