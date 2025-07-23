@@ -2,20 +2,21 @@ import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { 
-  Users, 
-  Crown, 
-  Trophy, 
-  Clock, 
-  Play, 
-  LogOut, 
-  UserCheck, 
+import {
+  Users,
+  Crown,
+  Trophy,
+  Clock,
+  Play,
+  LogOut,
+  UserCheck,
   UserX,
   Zap,
   Settings
 } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 import { ChallengeRoom } from "../../pages/ChallengeRoom";
+import { ChallengeStartInterface } from "./ChallengeStartInterface";
 
 interface WaitingRoomProps {
   room: ChallengeRoom;
@@ -24,15 +25,16 @@ interface WaitingRoomProps {
   onRoomUpdate: (room: ChallengeRoom) => void;
 }
 
-export function WaitingRoom({ 
-  room, 
-  onStartChallenge, 
-  onLeaveRoom, 
-  onRoomUpdate 
+export function WaitingRoom({
+  room,
+  onStartChallenge,
+  onLeaveRoom,
+  onRoomUpdate
 }: WaitingRoomProps) {
   const { user } = useAuth();
   const [readyUsers, setReadyUsers] = useState<Set<string>>(new Set());
   const [countdown, setCountdown] = useState<number | null>(null);
+  const [showStartInterface, setShowStartInterface] = useState(false);
   
   const isHost = room.participants.find(p => p.id === user.id)?.isHost || false;
   const allReady = room.participants.length >= 2 && 
@@ -84,7 +86,12 @@ export function WaitingRoom({
   };
 
   const startChallenge = () => {
-    setCountdown(5);
+    setShowStartInterface(true);
+  };
+
+  const handleActualStart = () => {
+    setShowStartInterface(false);
+    onStartChallenge();
   };
 
   const handleLeaveRoom = () => {
@@ -92,6 +99,16 @@ export function WaitingRoom({
       onLeaveRoom();
     }
   };
+
+  // Show start interface overlay when starting
+  if (showStartInterface) {
+    return (
+      <ChallengeStartInterface
+        room={room}
+        onStartChallenge={handleActualStart}
+      />
+    );
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
