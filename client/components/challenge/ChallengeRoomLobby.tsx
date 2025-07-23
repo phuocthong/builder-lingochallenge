@@ -16,7 +16,7 @@ interface ChallengeRoomLobbyProps {
 const mockRooms: ChallengeRoom[] = [
   {
     id: "room-1",
-    name: "�� Cuộc thi từ vựng cơ bản",
+    name: "🏆 Cuộc thi từ vựng cơ bản",
     hostId: "host1",
     hostName: "Minh Anh",
     participants: [
@@ -111,38 +111,38 @@ export function ChallengeRoomLobby({ onRoomCreated, onRoomJoined }: ChallengeRoo
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
       {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+      <div className="text-center mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
           ⚡ Phòng Thử thách EnglishBot
         </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto px-2">
           Tham gia hoặc tạo phòng để thử thách kiến thức tiếng Anh với bạn bè và người chơi khác
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="flex flex-col space-y-6 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
         {/* Create Room Panel */}
-        <div className="lg:col-span-1">
+        <div className="order-1 lg:col-span-1">
           <Card className="h-fit">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Plus className="h-5 w-5 text-purple-600" />
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center space-x-2 text-lg sm:text-xl">
+                <Plus className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600" />
                 <span>Tạo phòng mới</span>
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm">
                 Tạo phòng thử thách riêng với các cài đặt tùy chỉnh
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 pt-0">
               {!showCreateForm ? (
-                <Button 
+                <Button
                   onClick={() => setShowCreateForm(true)}
-                  className="w-full bg-purple-600 hover:bg-purple-700"
+                  className="w-full bg-purple-600 hover:bg-purple-700 h-12 text-base"
                   size="lg"
                 >
-                  <Plus className="h-4 w-4 mr-2" />
+                  <Plus className="h-5 w-5 mr-2" />
                   Tạo phòng thử thách
                 </Button>
               ) : (
@@ -155,6 +155,7 @@ export function ChallengeRoomLobby({ onRoomCreated, onRoomJoined }: ChallengeRoo
                       placeholder="Ví dụ: Thử thách từ vựng cơ bản"
                       value={roomName}
                       onChange={(e) => setRoomName(e.target.value)}
+                      className="h-11 text-base"
                     />
                   </div>
 
@@ -162,13 +163,14 @@ export function ChallengeRoomLobby({ onRoomCreated, onRoomJoined }: ChallengeRoo
                     <label className="text-sm font-medium text-gray-700 mb-2 block">
                       Số người tối đa: {maxParticipants}
                     </label>
-                    <div className="flex space-x-2">
+                    <div className="grid grid-cols-4 gap-2">
                       {[4, 6, 8, 10].map(num => (
                         <Button
                           key={num}
                           variant={maxParticipants === num ? "default" : "outline"}
                           size="sm"
                           onClick={() => setMaxParticipants(num)}
+                          className="h-10 text-sm font-medium"
                         >
                           {num}
                         </Button>
@@ -180,13 +182,14 @@ export function ChallengeRoomLobby({ onRoomCreated, onRoomJoined }: ChallengeRoo
                     <label className="text-sm font-medium text-gray-700 mb-2 block">
                       Số câu hỏi: {totalQuestions}
                     </label>
-                    <div className="flex space-x-2">
+                    <div className="grid grid-cols-4 gap-2">
                       {[10, 15, 20, 25].map(num => (
                         <Button
                           key={num}
                           variant={totalQuestions === num ? "default" : "outline"}
                           size="sm"
                           onClick={() => setTotalQuestions(num)}
+                          className="h-10 text-sm font-medium"
                         >
                           {num}
                         </Button>
@@ -198,13 +201,14 @@ export function ChallengeRoomLobby({ onRoomCreated, onRoomJoined }: ChallengeRoo
                     <label className="text-sm font-medium text-gray-700 mb-2 block">
                       Thời gian/câu: {timePerQuestion}s
                     </label>
-                    <div className="flex space-x-2">
+                    <div className="grid grid-cols-4 gap-2">
                       {[20, 30, 45, 60].map(time => (
                         <Button
                           key={time}
                           variant={timePerQuestion === time ? "default" : "outline"}
                           size="sm"
                           onClick={() => setTimePerQuestion(time)}
+                          className="h-10 text-sm font-medium"
                         >
                           {time}s
                         </Button>
@@ -212,17 +216,18 @@ export function ChallengeRoomLobby({ onRoomCreated, onRoomJoined }: ChallengeRoo
                     </div>
                   </div>
 
-                  <div className="flex space-x-2">
+                  <div className="grid grid-cols-2 gap-3">
                     <Button
                       onClick={handleCreateRoom}
                       disabled={!roomName.trim()}
-                      className="flex-1 bg-green-600 hover:bg-green-700"
+                      className="bg-green-600 hover:bg-green-700 h-11 text-base font-medium"
                     >
                       Tạo phòng
                     </Button>
                     <Button
                       variant="outline"
                       onClick={() => setShowCreateForm(false)}
+                      className="h-11 text-base font-medium"
                     >
                       Hủy
                     </Button>
@@ -234,79 +239,78 @@ export function ChallengeRoomLobby({ onRoomCreated, onRoomJoined }: ChallengeRoo
         </div>
 
         {/* Available Rooms */}
-        <div className="lg:col-span-2">
+        <div className="order-2 lg:col-span-2">
           <Card>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center space-x-2">
-                  <Search className="h-5 w-5 text-blue-600" />
-                  <span>Phòng có sẵn ({filteredRooms.length})</span>
-                </CardTitle>
-                <div className="w-64">
-                  <Input
-                    placeholder="Tìm kiếm phòng..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                </div>
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center space-x-2 text-lg sm:text-xl mb-3">
+                <Search className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+                <span>Phòng có sẵn ({filteredRooms.length})</span>
+              </CardTitle>
+              <div className="w-full">
+                <Input
+                  placeholder="Tìm kiếm phòng..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="h-11 text-base"
+                />
               </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pt-0">
               {filteredRooms.length === 0 ? (
-                <div className="text-center py-8">
-                  <Trophy className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-500">Không có phòng nào phù hợp</p>
+                <div className="text-center py-6 sm:py-8">
+                  <Trophy className="h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mx-auto mb-3 sm:mb-4" />
+                  <p className="text-gray-500 text-sm sm:text-base">Không có phòng nào phù hợp</p>
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {filteredRooms.map((room) => (
                     <div
                       key={room.id}
-                      className="border border-gray-200 rounded-lg p-4 hover:border-purple-300 transition-colors"
+                      className="border border-gray-200 rounded-lg p-3 sm:p-4 hover:border-purple-300 transition-colors"
                     >
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center space-x-3">
-                          <div className="flex items-center space-x-2">
-                            <Crown className="h-4 w-4 text-yellow-500" />
-                            <span className="font-medium text-gray-900">{room.hostName}</span>
+                      <div className="flex items-center justify-between mb-2 sm:mb-3">
+                        <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
+                          <div className="flex items-center space-x-1 sm:space-x-2 min-w-0">
+                            <Crown className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-500 flex-shrink-0" />
+                            <span className="font-medium text-gray-900 text-sm sm:text-base truncate">{room.hostName}</span>
                           </div>
-                          <Badge variant="secondary" className="text-xs">
+                          <Badge variant="secondary" className="text-xs flex-shrink-0">
                             Chủ phòng
                           </Badge>
                         </div>
-                        <Badge 
+                        <Badge
                           variant={room.state === 'waiting' ? 'default' : 'destructive'}
-                          className="text-xs"
+                          className="text-xs flex-shrink-0"
                         >
                           {room.state === 'waiting' ? '🟢 Chờ' : '🔴 Đang thi'}
                         </Badge>
                       </div>
 
-                      <h3 className="font-semibold text-lg text-gray-900 mb-2">
+                      <h3 className="font-semibold text-base sm:text-lg text-gray-900 mb-2 leading-tight">
                         {room.name}
                       </h3>
 
-                      <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
+                      <div className="flex items-center space-x-3 sm:space-x-4 text-xs sm:text-sm text-gray-600 mb-3">
                         <div className="flex items-center space-x-1">
-                          <Users className="h-4 w-4" />
+                          <Users className="h-3 w-3 sm:h-4 sm:w-4" />
                           <span>{room.participants.length}/{room.maxParticipants}</span>
                         </div>
                         <div className="flex items-center space-x-1">
-                          <Trophy className="h-4 w-4" />
+                          <Trophy className="h-3 w-3 sm:h-4 sm:w-4" />
                           <span>{room.totalQuestions} câu</span>
                         </div>
                         <div className="flex items-center space-x-1">
-                          <Clock className="h-4 w-4" />
+                          <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
                           <span>{room.timePerQuestion}s/câu</span>
                         </div>
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <div className="flex -space-x-2">
-                          {room.participants.slice(0, 5).map((participant) => (
+                        <div className="flex -space-x-2 flex-1 min-w-0 mr-3">
+                          {room.participants.slice(0, 4).map((participant) => (
                             <div
                               key={participant.id}
-                              className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-2 border-white flex items-center justify-center"
+                              className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-2 border-white flex items-center justify-center flex-shrink-0"
                               title={participant.name}
                             >
                               <span className="text-white text-xs font-medium">
@@ -314,10 +318,10 @@ export function ChallengeRoomLobby({ onRoomCreated, onRoomJoined }: ChallengeRoo
                               </span>
                             </div>
                           ))}
-                          {room.participants.length > 5 && (
-                            <div className="w-8 h-8 bg-gray-400 rounded-full border-2 border-white flex items-center justify-center">
+                          {room.participants.length > 4 && (
+                            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-400 rounded-full border-2 border-white flex items-center justify-center flex-shrink-0">
                               <span className="text-white text-xs">
-                                +{room.participants.length - 5}
+                                +{room.participants.length - 4}
                               </span>
                             </div>
                           )}
@@ -330,10 +334,11 @@ export function ChallengeRoomLobby({ onRoomCreated, onRoomJoined }: ChallengeRoo
                             room.participants.some(p => p.id === user.id) ||
                             room.state !== 'waiting'
                           }
-                          className="bg-blue-600 hover:bg-blue-700"
+                          className="bg-blue-600 hover:bg-blue-700 px-4 py-2 h-9 text-sm font-medium flex-shrink-0"
+                          size="sm"
                         >
-                          {room.participants.some(p => p.id === user.id) 
-                            ? "Đã tham gia" 
+                          {room.participants.some(p => p.id === user.id)
+                            ? "Đã tham gia"
                             : room.participants.length >= room.maxParticipants
                             ? "Đầy"
                             : "Tham gia"
