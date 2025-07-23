@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
+import { DesktopCompetitionInterface } from "./DesktopCompetitionInterface";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Progress } from "../ui/progress";
 import { Badge } from "../ui/badge";
-import { 
-  Clock, 
-  Send, 
-  Trophy, 
-  Users, 
-  CheckCircle, 
+import {
+  Clock,
+  Send,
+  Trophy,
+  Users,
+  CheckCircle,
   XCircle,
   Zap,
   Target
@@ -17,6 +18,7 @@ import {
 import { useAuth } from "../../contexts/AuthContext";
 import { ChallengeRoom } from "../../pages/ChallengeRoom";
 import { LiveScoreboard } from "./LiveScoreboard";
+import { useResponsive } from "../../hooks/use-responsive";
 
 interface CompetitionInterfaceProps {
   room: ChallengeRoom;
@@ -58,12 +60,24 @@ const CHALLENGE_QUESTIONS: Question[] = [
   { id: 25, text: 'Dịch từ "Outstanding" sang tiếng Việt', correctAnswer: 'xuất sắc' },
 ];
 
-export function CompetitionInterface({ 
-  room, 
-  onChallengeComplete, 
-  onRoomUpdate 
+export function CompetitionInterface({
+  room,
+  onChallengeComplete,
+  onRoomUpdate
 }: CompetitionInterfaceProps) {
   const { user } = useAuth();
+  const { isDesktop } = useResponsive();
+
+  // Use enhanced desktop version for larger screens
+  if (isDesktop) {
+    return (
+      <DesktopCompetitionInterface
+        room={room}
+        onChallengeComplete={onChallengeComplete}
+        onRoomUpdate={onRoomUpdate}
+      />
+    );
+  }
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(room.timePerQuestion);
   const [userAnswer, setUserAnswer] = useState("");
@@ -251,7 +265,7 @@ export function CompetitionInterface({
               <div className="flex items-center justify-between">
                 <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
                   <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500" />
-                  <span>Câu h��i {currentQuestionIndex + 1}</span>
+                  <span>Câu hỏi {currentQuestionIndex + 1}</span>
                 </CardTitle>
                 <div className="flex items-center space-x-2 bg-gray-50 px-3 py-2 rounded-lg">
                   <Clock className={`h-4 w-4 sm:h-5 sm:w-5 ${timeLeft <= 10 ? 'text-red-500' : 'text-blue-500'}`} />
