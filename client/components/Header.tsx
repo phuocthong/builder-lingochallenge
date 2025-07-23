@@ -195,6 +195,14 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
               >
                 📖 Hướng dẫn
               </Link>
+              <Link
+                to="/challenge"
+                className="text-gray-700 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-2"
+                onClick={() => setShowMobileMenu(false)}
+              >
+                <Zap className="h-4 w-4" />
+                <span>⚡ Phòng Thử thách</span>
+              </Link>
             </nav>
 
             {/* Mobile Auth Section */}
