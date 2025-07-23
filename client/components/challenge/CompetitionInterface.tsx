@@ -214,75 +214,76 @@ export function CompetitionInterface({
   const progressPercentage = ((currentQuestionIndex + 1) / room.totalQuestions) * 100;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-6">
       {/* Header with Progress */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold text-gray-900">
+      <div className="mb-4 sm:mb-6">
+        <div className="mb-3 sm:mb-4">
+          <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 text-center lg:text-left">
             ⚡ {room.name}
           </h1>
-          <div className="flex items-center space-x-4 text-sm text-gray-600">
-            <div className="flex items-center space-x-1">
-              <Target className="h-4 w-4" />
+          <div className="flex flex-wrap justify-center lg:justify-start items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
+            <div className="flex items-center space-x-1 bg-gray-50 px-2 py-1 rounded">
+              <Target className="h-3 w-3 sm:h-4 sm:w-4" />
               <span>Câu {currentQuestionIndex + 1}/{room.totalQuestions}</span>
             </div>
-            <div className="flex items-center space-x-1">
-              <Users className="h-4 w-4" />
+            <div className="flex items-center space-x-1 bg-gray-50 px-2 py-1 rounded">
+              <Users className="h-3 w-3 sm:h-4 sm:w-4" />
               <span>{room.participants.length} người chơi</span>
             </div>
           </div>
         </div>
-        
+
         {/* Progress Bar */}
         <div className="space-y-2">
-          <div className="flex justify-between text-sm">
+          <div className="flex justify-between text-xs sm:text-sm">
             <span className="text-gray-600">Tiến độ</span>
             <span className="font-medium">{Math.round(progressPercentage)}%</span>
           </div>
-          <Progress value={progressPercentage} className="h-3" />
+          <Progress value={progressPercentage} className="h-2 sm:h-3" />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="flex flex-col space-y-4 sm:space-y-6 lg:grid lg:grid-cols-3 lg:gap-6 lg:space-y-0">
         {/* Question Panel */}
-        <div className="lg:col-span-2">
+        <div className="order-1 lg:col-span-2">
           <Card className="h-full">
-            <CardHeader>
+            <CardHeader className="pb-3 sm:pb-4">
               <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center space-x-2">
-                  <Zap className="h-5 w-5 text-yellow-500" />
-                  <span>Câu hỏi {currentQuestionIndex + 1}</span>
+                <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
+                  <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500" />
+                  <span>Câu h��i {currentQuestionIndex + 1}</span>
                 </CardTitle>
-                <div className="flex items-center space-x-2">
-                  <Clock className={`h-5 w-5 ${timeLeft <= 10 ? 'text-red-500' : 'text-blue-500'}`} />
-                  <span className={`text-xl font-bold ${timeLeft <= 10 ? 'text-red-500' : 'text-blue-600'}`}>
+                <div className="flex items-center space-x-2 bg-gray-50 px-3 py-2 rounded-lg">
+                  <Clock className={`h-4 w-4 sm:h-5 sm:w-5 ${timeLeft <= 10 ? 'text-red-500' : 'text-blue-500'}`} />
+                  <span className={`text-lg sm:text-xl font-bold ${timeLeft <= 10 ? 'text-red-500' : 'text-blue-600'}`}>
                     {timeLeft}s
                   </span>
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-4 sm:space-y-6 pt-0">
               {/* Question */}
-              <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 leading-tight">
                   📝 {currentQuestion.text}
                 </h2>
-                
+
                 {/* Answer Input */}
-                <div className="space-y-4">
-                  <div className="flex space-x-3">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
                     <Input
                       value={userAnswer}
                       onChange={(e) => setUserAnswer(e.target.value)}
                       onKeyPress={handleKeyPress}
-                      placeholder="Nh���p câu trả lời của bạn..."
+                      placeholder="Nhập câu trả lời của bạn..."
                       disabled={hasAnswered}
-                      className="flex-1 text-lg"
+                      className="flex-1 text-base sm:text-lg h-12 sm:h-auto"
                     />
                     <Button
                       onClick={handleSubmitAnswer}
                       disabled={hasAnswered || !userAnswer.trim()}
-                      className="bg-green-600 hover:bg-green-700 px-6"
+                      className="bg-green-600 hover:bg-green-700 px-6 h-12 text-base font-medium sm:px-6"
+                      size="lg"
                     >
                       <Send className="h-4 w-4 mr-2" />
                       Gửi
@@ -291,24 +292,24 @@ export function CompetitionInterface({
 
                   {/* Result Display */}
                   {showResult && (
-                    <div className={`p-4 rounded-lg ${
-                      isCorrect 
-                        ? 'bg-green-100 border border-green-300' 
+                    <div className={`p-3 sm:p-4 rounded-lg ${
+                      isCorrect
+                        ? 'bg-green-100 border border-green-300'
                         : 'bg-red-100 border border-red-300'
                     }`}>
                       <div className="flex items-center space-x-2">
                         {isCorrect ? (
-                          <CheckCircle className="h-5 w-5 text-green-600" />
+                          <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
                         ) : (
-                          <XCircle className="h-5 w-5 text-red-600" />
+                          <XCircle className="h-4 w-4 sm:h-5 sm:w-5 text-red-600" />
                         )}
-                        <span className={`font-medium ${
+                        <span className={`font-medium text-sm sm:text-base ${
                           isCorrect ? 'text-green-800' : 'text-red-800'
                         }`}>
                           {isCorrect ? '🎉 Chính xác!' : '❌ Sai rồi!'}
                         </span>
                       </div>
-                      <p className={`mt-2 ${
+                      <p className={`mt-2 text-sm sm:text-base ${
                         isCorrect ? 'text-green-700' : 'text-red-700'
                       }`}>
                         Đáp án đúng: <strong>"{currentQuestion.correctAnswer}"</strong>
@@ -320,18 +321,18 @@ export function CompetitionInterface({
 
               {/* Current Question Answerers */}
               {currentAnswerers.length > 0 && (
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <h3 className="font-medium text-gray-900 mb-3">
+                <div className="bg-blue-50 rounded-lg p-3 sm:p-4">
+                  <h3 className="font-medium text-gray-900 mb-2 sm:mb-3 text-sm sm:text-base">
                     👥 Đã trả lời ({currentAnswerers.length})
                   </h3>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {currentAnswerers.map((answerer) => (
                       <Badge
                         key={answerer.id}
                         variant={answerer.isCorrect ? "default" : "secondary"}
-                        className={`${
-                          answerer.isCorrect 
-                            ? 'bg-green-600 hover:bg-green-700' 
+                        className={`text-xs sm:text-sm ${
+                          answerer.isCorrect
+                            ? 'bg-green-600 hover:bg-green-700'
                             : 'bg-gray-500'
                         }`}
                       >
@@ -346,8 +347,8 @@ export function CompetitionInterface({
         </div>
 
         {/* Live Scoreboard */}
-        <div className="lg:col-span-1">
-          <LiveScoreboard 
+        <div className="order-2 lg:col-span-1">
+          <LiveScoreboard
             participants={room.participants}
             scores={participantScores}
             currentAnswerers={currentAnswerers}
