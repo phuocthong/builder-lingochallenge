@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Bot, LogIn, LogOut, User, Trophy, UserPlus, Menu } from "lucide-react";
+import { Bot, LogIn, LogOut, User, Trophy, UserPlus, Menu, Zap } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -257,7 +257,7 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                     className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 flex items-center justify-center space-x-2"
                   >
                     <LogIn className="h-4 w-4" />
-                    <span>Đăng nhập</span>
+                    <span>Đăng nh���p</span>
                   </Button>
                 </div>
               </div>
