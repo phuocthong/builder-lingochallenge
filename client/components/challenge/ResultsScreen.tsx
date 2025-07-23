@@ -1,10 +1,11 @@
+import { DesktopResultsScreen } from "./DesktopResultsScreen";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { 
-  Trophy, 
-  Crown, 
-  Medal, 
+import {
+  Trophy,
+  Crown,
+  Medal,
   Star,
   Home,
   RotateCcw,
@@ -15,6 +16,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 import { ChallengeRoom } from "../../pages/ChallengeRoom";
+import { useResponsive } from "../../hooks/use-responsive";
 
 interface ResultsScreenProps {
   room: ChallengeRoom;
@@ -23,6 +25,17 @@ interface ResultsScreenProps {
 
 export function ResultsScreen({ room, onReturnToLobby }: ResultsScreenProps) {
   const { user } = useAuth();
+  const { isDesktop } = useResponsive();
+
+  // Use enhanced desktop version for larger screens
+  if (isDesktop) {
+    return (
+      <DesktopResultsScreen
+        room={room}
+        onReturnToLobby={onReturnToLobby}
+      />
+    );
+  }
   
   // Sort participants by score (descending)
   const sortedParticipants = [...room.participants].sort((a, b) => {
