@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Bot, LogIn, LogOut, User, Trophy, UserPlus, Menu, Zap } from "lucide-react";
+import { Bot, LogIn, LogOut, User, Trophy, UserPlus, Menu, Zap, Users } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -89,6 +89,13 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
               >
                 <Zap className="h-4 w-4" />
                 <span>Phòng Thử thách</span>
+              </Link>
+              <Link
+                to="/friends"
+                className="text-gray-700 hover:text-purple-600 font-medium text-sm transition-colors flex items-center space-x-1"
+              >
+                <Users className="h-4 w-4" />
+                <span>Bạn bè</span>
               </Link>
             </nav>
 
@@ -202,6 +209,14 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
               >
                 <Zap className="h-4 w-4" />
                 <span>⚡ Phòng Thử thách</span>
+              </Link>
+              <Link
+                to="/friends"
+                className="text-gray-700 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-2"
+                onClick={() => setShowMobileMenu(false)}
+              >
+                <Users className="h-4 w-4" />
+                <span>👥 Bạn bè</span>
               </Link>
             </nav>
 
