@@ -13,6 +13,7 @@ import { RegisterModal } from "./components/RegisterModal";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Index from "./pages/Index";
 import ChallengeRoom from "./pages/ChallengeRoom";
+import Friends from "./pages/Friends";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
@@ -73,6 +74,10 @@ const AppContent = () => {
               <Route
                 path="/challenge"
                 element={<ChallengeRoom />}
+              />
+              <Route
+                path="/friends"
+                element={<Friends />}
               />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
