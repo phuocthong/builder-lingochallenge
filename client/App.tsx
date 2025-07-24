@@ -24,13 +24,13 @@ const AppContent = () => {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const { login } = useAuth();
 
-  const handleLogin = (userData: {name: string; email: string}) => {
+  const handleLogin = (userData: { name: string; email: string }) => {
     login({ name: userData.name, email: userData.email });
     setShowLoginModal(false);
     console.log("User logged in:", userData);
   };
 
-  const handleRegister = (userData: {name: string; email: string}) => {
+  const handleRegister = (userData: { name: string; email: string }) => {
     login({ name: userData.name, email: userData.email });
     setShowRegisterModal(false);
     console.log("User registered:", userData);
@@ -47,58 +47,52 @@ const AppContent = () => {
   };
 
   return (
-        <BrowserRouter>
-          <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
-            <Header 
-              onShowLogin={handleShowLogin}
-              onShowRegister={handleShowRegister}
-            />
-            <Routes>
-              <Route 
-                path="/" 
-                element={
-                  <Index 
-                    onShowLogin={handleShowLogin}
-                    onShowRegister={handleShowRegister}
-                  />
-                } 
+    <BrowserRouter>
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
+        <Header
+          onShowLogin={handleShowLogin}
+          onShowRegister={handleShowRegister}
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Index
+                onShowLogin={handleShowLogin}
+                onShowRegister={handleShowRegister}
               />
-              <Route
-                path="/about"
-                element={<PlaceholderPage title="Giới thiệu" />}
-              />
-              <Route
-                path="/guide"
-                element={<PlaceholderPage title="Hướng dẫn" />}
-              />
-              <Route
-                path="/challenge"
-                element={<ChallengeRoom />}
-              />
-              <Route
-                path="/friends"
-                element={<Friends />}
-              />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            }
+          />
+          <Route
+            path="/about"
+            element={<PlaceholderPage title="Giới thiệu" />}
+          />
+          <Route
+            path="/guide"
+            element={<PlaceholderPage title="Hướng dẫn" />}
+          />
+          <Route path="/challenge" element={<ChallengeRoom />} />
+          <Route path="/friends" element={<Friends />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
 
-            {/* Global Authentication Modals */}
-            <LoginModal
-              isOpen={showLoginModal}
-              onClose={() => setShowLoginModal(false)}
-              onLogin={handleLogin}
-              onSwitchToRegister={handleShowRegister}
-            />
+        {/* Global Authentication Modals */}
+        <LoginModal
+          isOpen={showLoginModal}
+          onClose={() => setShowLoginModal(false)}
+          onLogin={handleLogin}
+          onSwitchToRegister={handleShowRegister}
+        />
 
-            <RegisterModal
-              isOpen={showRegisterModal}
-              onClose={() => setShowRegisterModal(false)}
-              onRegister={handleRegister}
-              onSwitchToLogin={handleShowLogin}
-            />
-          </div>
-        </BrowserRouter>
+        <RegisterModal
+          isOpen={showRegisterModal}
+          onClose={() => setShowRegisterModal(false)}
+          onRegister={handleRegister}
+          onSwitchToLogin={handleShowLogin}
+        />
+      </div>
+    </BrowserRouter>
   );
 };
 

@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Bot, LogIn, LogOut, User, Trophy, UserPlus, Menu, Zap, Users } from "lucide-react";
+import {
+  Bot,
+  LogIn,
+  LogOut,
+  User,
+  Trophy,
+  UserPlus,
+  Menu,
+  Zap,
+  Users,
+} from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -109,19 +119,29 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                     <span className="font-medium">#{user.stats?.rank}</span>
                   </div>
                   <div className="text-gray-600">
-                    <span className="font-medium text-green-600">{user.stats?.totalCorrect}</span> đúng
+                    <span className="font-medium text-green-600">
+                      {user.stats?.totalCorrect}
+                    </span>{" "}
+                    đúng
                   </div>
                   <div className="text-gray-600">
-                    Streak: <span className="font-medium text-blue-600">{user.stats?.streak}</span>
+                    Streak:{" "}
+                    <span className="font-medium text-blue-600">
+                      {user.stats?.streak}
+                    </span>
                   </div>
                 </div>
 
                 {/* User Info */}
                 <div className="flex items-center space-x-2">
                   <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">{user.avatar}</span>
+                    <span className="text-white text-sm font-medium">
+                      {user.avatar}
+                    </span>
                   </div>
-                  <span className="text-gray-900 font-medium text-sm">{user.name}</span>
+                  <span className="text-gray-900 font-medium text-sm">
+                    {user.name}
+                  </span>
                 </div>
 
                 {/* Logout Button */}
@@ -140,7 +160,7 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                 <div className="text-sm text-gray-600">
                   Tham gia ngay để học!
                 </div>
-                
+
                 <Button
                   variant="outline"
                   onClick={handleShowRegister}
@@ -226,11 +246,15 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                 {/* User Info */}
                 <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
                   <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">{user.avatar}</span>
+                    <span className="text-white text-sm font-medium">
+                      {user.avatar}
+                    </span>
                   </div>
                   <div>
                     <div className="font-medium text-gray-900">{user.name}</div>
-                    <div className="text-xs text-gray-500">Người dùng đã đăng nhập</div>
+                    <div className="text-xs text-gray-500">
+                      Người dùng đã đăng nhập
+                    </div>
                   </div>
                 </div>
 
@@ -239,20 +263,28 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                   <div className="bg-yellow-50 p-3 rounded-lg text-center">
                     <div className="flex items-center justify-center mb-1">
                       <Trophy className="h-4 w-4 text-yellow-500 mr-1" />
-                      <span className="text-lg font-bold text-gray-900">#{user.stats?.rank}</span>
+                      <span className="text-lg font-bold text-gray-900">
+                        #{user.stats?.rank}
+                      </span>
                     </div>
                     <div className="text-xs text-gray-600">Xếp hạng</div>
                   </div>
                   <div className="bg-green-50 p-3 rounded-lg text-center">
-                    <div className="text-lg font-bold text-green-600">{user.stats?.totalCorrect}</div>
+                    <div className="text-lg font-bold text-green-600">
+                      {user.stats?.totalCorrect}
+                    </div>
                     <div className="text-xs text-gray-600">Câu đúng</div>
                   </div>
                   <div className="bg-blue-50 p-3 rounded-lg text-center">
-                    <div className="text-lg font-bold text-blue-600">{user.stats?.streak}</div>
+                    <div className="text-lg font-bold text-blue-600">
+                      {user.stats?.streak}
+                    </div>
                     <div className="text-xs text-gray-600">Streak</div>
                   </div>
                   <div className="bg-purple-50 p-3 rounded-lg text-center">
-                    <div className="text-lg font-bold text-purple-600">{user.stats?.accuracy}%</div>
+                    <div className="text-lg font-bold text-purple-600">
+                      {user.stats?.accuracy}%
+                    </div>
                     <div className="text-xs text-gray-600">Độ chính xác</div>
                   </div>
                 </div>
@@ -271,7 +303,7 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                 <div className="text-center text-sm text-gray-600 p-3 bg-purple-50 rounded-lg">
                   🎯 Tham gia ngay để học tiếng Anh và cạnh tranh!
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-3">
                   <Button
                     variant="outline"
