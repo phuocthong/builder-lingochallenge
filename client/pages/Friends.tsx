@@ -4,13 +4,13 @@ import { Input } from "../components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
-import { 
-  Users, 
-  UserPlus, 
-  Search, 
-  Zap, 
-  Check, 
-  X, 
+import {
+  Users,
+  UserPlus,
+  Search,
+  Zap,
+  Check,
+  X,
   Mail,
   Trophy,
   MessageCircle,
@@ -19,6 +19,7 @@ import {
   Heart
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
+import { FriendChallengeModal } from "../components/friends/FriendChallengeModal";
 
 // Mock data
 interface Friend {
@@ -132,6 +133,8 @@ export default function Friends() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Friend[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [showChallengeModal, setShowChallengeModal] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState<Friend | null>(null);
 
   if (!user.isLoggedIn) {
     return (
@@ -224,7 +227,12 @@ export default function Friends() {
   };
 
   const handleChallengeFriend = (friend: Friend) => {
-    alert(`Đã gửi lời mời thách đấu đến ${friend.name}! 🎯`);
+    setSelectedFriend(friend);
+    setShowChallengeModal(true);
+  };
+
+  const handleSendChallenge = (friend: Friend, settings: any) => {
+    alert(`Đã gửi thách đấu ${settings.challengeType} đến ${friend.name}! 🎯\n${settings.questionCount} câu hỏi, ${settings.timePerQuestion}s mỗi câu`);
   };
 
   return (
@@ -516,6 +524,17 @@ export default function Friends() {
             </Card>
           </TabsContent>
         </Tabs>
+
+        {/* Challenge Modal */}
+        <FriendChallengeModal
+          isOpen={showChallengeModal}
+          onClose={() => {
+            setShowChallengeModal(false);
+            setSelectedFriend(null);
+          }}
+          friend={selectedFriend}
+          onSendChallenge={handleSendChallenge}
+        />
       </div>
     </div>
   );
