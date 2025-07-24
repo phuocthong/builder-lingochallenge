@@ -110,11 +110,15 @@ const App = () => {
   );
 };
 
+// Only create root if it doesn't exist
 const rootElement = document.getElementById("root")!;
-if (!rootElement._reactRoot) {
-  const root = createRoot(rootElement);
-  rootElement._reactRoot = root;
-  root.render(<App />);
+let root: ReturnType<typeof createRoot>;
+
+if (!(rootElement as any).__reactRoot) {
+  root = createRoot(rootElement);
+  (rootElement as any).__reactRoot = root;
 } else {
-  rootElement._reactRoot.render(<App />);
+  root = (rootElement as any).__reactRoot;
 }
+
+root.render(<App />);
