@@ -125,8 +125,8 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
               </div>
 
               {/* User Profile Link */}
-              <Link 
-                to="/profile" 
+              <Link
+                to="/profile"
                 className="flex items-center space-x-2 hover:bg-gray-50 px-2 py-1.5 rounded-lg transition-all duration-200 group"
               >
                 <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -229,8 +229,8 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
             {user.isLoggedIn ? (
               <div className="space-y-3 mt-4">
                 {/* User Info */}
-                <Link 
-                  to="/profile" 
+                <Link
+                  to="/profile"
                   className="flex items-center space-x-3 p-3 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg hover:from-purple-100 hover:to-blue-100 transition-colors"
                   onClick={() => setShowMobileMenu(false)}
                 >
@@ -241,9 +241,7 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                   </div>
                   <div>
                     <div className="font-medium text-gray-900">{user.name}</div>
-                    <div className="text-xs text-purple-600">
-                      Xem hồ sơ →
-                    </div>
+                    <div className="text-xs text-purple-600">Xem hồ sơ →</div>
                   </div>
                 </Link>
 
