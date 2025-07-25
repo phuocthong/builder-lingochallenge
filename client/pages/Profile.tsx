@@ -8,7 +8,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Progress } from '../components/ui/progress';
 import { Avatar, AvatarFallback } from '../components/ui/avatar';
-import { Calendar, Target, Trophy, CheckCircle, Plus, Clock, Flame, Star } from 'lucide-react';
+import { Calendar, Target, Trophy, CheckCircle, Plus, Clock, Flame, Star, Users, Gift, Coins, Zap, MessageCircle, UserPlus, Phone } from 'lucide-react';
 
 interface Task {
   id: string;
@@ -20,6 +20,7 @@ interface Task {
   target: number;
   category: 'practice' | 'learning' | 'challenge' | 'social';
   reward: number;
+  points: number; // Added points system
   dueDate: Date;
   completedDate?: Date;
 }
@@ -33,18 +34,42 @@ interface Achievement {
   unlockedDate: Date;
 }
 
+interface Friend {
+  id: string;
+  name: string;
+  avatar: string;
+  level: number;
+  points: number;
+  status: 'online' | 'offline' | 'in-game';
+  streak: number;
+  isOnline: boolean;
+}
+
+interface PhoneCard {
+  id: string;
+  provider: string;
+  value: number;
+  cost: number;
+  discount?: number;
+  popular?: boolean;
+}
+
 const Profile: React.FC = () => {
   const { user } = useAuth();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [friends, setFriends] = useState<Friend[]>([]);
+  const [phoneCards, setPhoneCards] = useState<PhoneCard[]>([]);
+  const [userPoints, setUserPoints] = useState(1250); // Current user points
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskDescription, setNewTaskDescription] = useState('');
   const [newTaskType, setNewTaskType] = useState<'daily' | 'weekly'>('daily');
   const [newTaskCategory, setNewTaskCategory] = useState<Task['category']>('practice');
   const [newTaskTarget, setNewTaskTarget] = useState(1);
   const [showAddTask, setShowAddTask] = useState(false);
+  const [selectedTab, setSelectedTab] = useState('tasks');
 
-  // Initialize with sample tasks
+  // Initialize with sample data
   useEffect(() => {
     const sampleTasks: Task[] = [
       {
@@ -57,6 +82,7 @@ const Profile: React.FC = () => {
         target: 10,
         category: 'practice',
         reward: 50,
+        points: 25,
         dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000)
       },
       {
@@ -69,6 +95,7 @@ const Profile: React.FC = () => {
         target: 3,
         category: 'practice',
         reward: 100,
+        points: 50,
         dueDate: new Date(),
         completedDate: new Date()
       },
@@ -82,6 +109,7 @@ const Profile: React.FC = () => {
         target: 5,
         category: 'social',
         reward: 200,
+        points: 100,
         dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
       },
       {
@@ -94,6 +122,7 @@ const Profile: React.FC = () => {
         target: 1,
         category: 'challenge',
         reward: 300,
+        points: 150,
         dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
       }
     ];
@@ -101,7 +130,7 @@ const Profile: React.FC = () => {
     const sampleAchievements: Achievement[] = [
       {
         id: '1',
-        title: 'Người m���i bắt đầu',
+        title: 'Người mới bắt đầu',
         description: 'Hoàn thành nhiệm vụ đầu tiên',
         icon: '🌟',
         rarity: 'common',
@@ -117,8 +146,107 @@ const Profile: React.FC = () => {
       }
     ];
 
+    const sampleFriends: Friend[] = [
+      {
+        id: '1',
+        name: 'Minh Anh',
+        avatar: 'MA',
+        level: 15,
+        points: 2850,
+        status: 'online',
+        streak: 12,
+        isOnline: true
+      },
+      {
+        id: '2',
+        name: 'Đức Huy',
+        avatar: 'DH',
+        level: 22,
+        points: 4200,
+        status: 'in-game',
+        streak: 8,
+        isOnline: true
+      },
+      {
+        id: '3',
+        name: 'Thu Hà',
+        avatar: 'TH',
+        level: 18,
+        points: 3150,
+        status: 'offline',
+        streak: 5,
+        isOnline: false
+      },
+      {
+        id: '4',
+        name: 'Quang Nam',
+        avatar: 'QN',
+        level: 12,
+        points: 1920,
+        status: 'online',
+        streak: 15,
+        isOnline: true
+      },
+      {
+        id: '5',
+        name: 'Lan Anh',
+        avatar: 'LA',
+        level: 25,
+        points: 5800,
+        status: 'offline',
+        streak: 20,
+        isOnline: false
+      }
+    ];
+
+    const samplePhoneCards: PhoneCard[] = [
+      {
+        id: '1',
+        provider: 'Viettel',
+        value: 10000,
+        cost: 800,
+        popular: true
+      },
+      {
+        id: '2',
+        provider: 'Mobifone',
+        value: 20000,
+        cost: 1500,
+        discount: 10
+      },
+      {
+        id: '3',
+        provider: 'Vinaphone',
+        value: 50000,
+        cost: 3800,
+        discount: 15
+      },
+      {
+        id: '4',
+        provider: 'Viettel',
+        value: 100000,
+        cost: 7200,
+        discount: 20,
+        popular: true
+      },
+      {
+        id: '5',
+        provider: 'Vietnamobile',
+        value: 30000,
+        cost: 2300
+      },
+      {
+        id: '6',
+        provider: 'Gmobile',
+        value: 15000,
+        cost: 1200
+      }
+    ];
+
     setTasks(sampleTasks);
     setAchievements(sampleAchievements);
+    setFriends(sampleFriends);
+    setPhoneCards(samplePhoneCards);
   }, []);
 
   const addTask = () => {
@@ -134,6 +262,7 @@ const Profile: React.FC = () => {
       target: newTaskTarget,
       category: newTaskCategory,
       reward: newTaskType === 'daily' ? 50 : 200,
+      points: newTaskType === 'daily' ? 25 : 100,
       dueDate: new Date(Date.now() + (newTaskType === 'daily' ? 24 : 7 * 24) * 60 * 60 * 1000)
     };
 
@@ -148,6 +277,13 @@ const Profile: React.FC = () => {
     setTasks(prev => prev.map(task => {
       if (task.id === taskId) {
         const completed = newProgress >= task.target;
+        const wasCompleted = task.completed;
+        
+        // Award points when task is completed for the first time
+        if (completed && !wasCompleted) {
+          setUserPoints(prevPoints => prevPoints + task.points);
+        }
+        
         return {
           ...task,
           progress: Math.min(newProgress, task.target),
@@ -161,6 +297,16 @@ const Profile: React.FC = () => {
 
   const deleteTask = (taskId: string) => {
     setTasks(prev => prev.filter(task => task.id !== taskId));
+  };
+
+  const purchasePhoneCard = (cardId: string) => {
+    const card = phoneCards.find(c => c.id === cardId);
+    if (card && userPoints >= card.cost) {
+      setUserPoints(prev => prev - card.cost);
+      alert(`Đã mua thành công thẻ ${card.provider} ${card.value.toLocaleString()}đ!`);
+    } else {
+      alert('Không đủ điểm để mua thẻ này!');
+    }
   };
 
   const getTaskCategoryIcon = (category: Task['category']) => {
@@ -181,11 +327,28 @@ const Profile: React.FC = () => {
     }
   };
 
+  const getStatusColor = (status: Friend['status']) => {
+    switch (status) {
+      case 'online': return 'bg-green-500';
+      case 'in-game': return 'bg-blue-500';
+      case 'offline': return 'bg-gray-400';
+    }
+  };
+
+  const getStatusText = (status: Friend['status']) => {
+    switch (status) {
+      case 'online': return 'Trực tuyến';
+      case 'in-game': return 'Đang chơi';
+      case 'offline': return 'Ngoại tuyến';
+    }
+  };
+
   const dailyTasks = tasks.filter(task => task.type === 'daily');
   const weeklyTasks = tasks.filter(task => task.type === 'weekly');
   const completedTasks = tasks.filter(task => task.completed).length;
   const totalTasks = tasks.length;
   const completionRate = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+  const onlineFriends = friends.filter(friend => friend.isOnline).length;
 
   if (!user.isLoggedIn) {
     return (
@@ -222,6 +385,10 @@ const Profile: React.FC = () => {
                   <Flame className="w-3 h-3" />
                   <span>Streak {user.stats?.streak}</span>
                 </Badge>
+                <Badge variant="secondary" className="flex items-center space-x-1">
+                  <Coins className="w-3 h-3" />
+                  <span>{userPoints.toLocaleString()} điểm</span>
+                </Badge>
                 <Badge variant="secondary">
                   Độ chính xác: {user.stats?.accuracy}%
                 </Badge>
@@ -231,8 +398,8 @@ const Profile: React.FC = () => {
         </CardContent>
       </Card>
 
-      {/* Tasks Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Overview Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
@@ -250,10 +417,23 @@ const Profile: React.FC = () => {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Nhiệm vụ hôm nay</p>
-                <p className="text-2xl font-bold">{dailyTasks.length}</p>
+                <p className="text-sm text-gray-600">Điểm tích lũy</p>
+                <p className="text-2xl font-bold text-yellow-600">{userPoints.toLocaleString()}</p>
               </div>
-              <Calendar className="w-8 h-8 text-blue-500" />
+              <Coins className="w-8 h-8 text-yellow-500" />
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Bạn bè</p>
+                <p className="text-2xl font-bold">{friends.length}</p>
+                <p className="text-xs text-green-600">{onlineFriends} đang online</p>
+              </div>
+              <Users className="w-8 h-8 text-blue-500" />
             </div>
           </CardContent>
         </Card>
@@ -271,13 +451,16 @@ const Profile: React.FC = () => {
         </Card>
       </div>
 
-      {/* Tasks and Achievements Tabs */}
-      <Tabs defaultValue="tasks" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-2">
+      {/* Main Content Tabs */}
+      <Tabs value={selectedTab} onValueChange={setSelectedTab} className="space-y-4">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="tasks">Nhiệm vụ</TabsTrigger>
           <TabsTrigger value="achievements">Thành tích</TabsTrigger>
+          <TabsTrigger value="friends">Bạn bè</TabsTrigger>
+          <TabsTrigger value="shop">Cửa hàng</TabsTrigger>
         </TabsList>
 
+        {/* Tasks Tab */}
         <TabsContent value="tasks" className="space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="text-xl font-semibold">Nhiệm vụ của tôi</h3>
@@ -383,6 +566,9 @@ const Profile: React.FC = () => {
                           <Badge variant="outline" className="text-xs">
                             +{task.reward} XP
                           </Badge>
+                          <Badge variant="outline" className="text-xs bg-yellow-50 text-yellow-700">
+                            +{task.points} điểm
+                          </Badge>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2 ml-4">
@@ -418,13 +604,6 @@ const Profile: React.FC = () => {
                   </CardContent>
                 </Card>
               ))}
-              {dailyTasks.length === 0 && (
-                <Card>
-                  <CardContent className="text-center py-8">
-                    <p className="text-gray-500">Chưa có nhiệm vụ hàng ngày nào</p>
-                  </CardContent>
-                </Card>
-              )}
             </TabsContent>
 
             <TabsContent value="weekly" className="space-y-3">
@@ -451,6 +630,9 @@ const Profile: React.FC = () => {
                           </div>
                           <Badge variant="outline" className="text-xs">
                             +{task.reward} XP
+                          </Badge>
+                          <Badge variant="outline" className="text-xs bg-yellow-50 text-yellow-700">
+                            +{task.points} điểm
                           </Badge>
                         </div>
                         <div className="flex items-center space-x-2 mt-2 text-xs text-gray-500">
@@ -491,17 +673,11 @@ const Profile: React.FC = () => {
                   </CardContent>
                 </Card>
               ))}
-              {weeklyTasks.length === 0 && (
-                <Card>
-                  <CardContent className="text-center py-8">
-                    <p className="text-gray-500">Chưa có nhiệm vụ hàng tuần nào</p>
-                  </CardContent>
-                </Card>
-              )}
             </TabsContent>
           </Tabs>
         </TabsContent>
 
+        {/* Achievements Tab */}
         <TabsContent value="achievements" className="space-y-4">
           <h3 className="text-xl font-semibold">Thành tích đã mở khóa</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -525,6 +701,149 @@ const Profile: React.FC = () => {
               </Card>
             ))}
           </div>
+        </TabsContent>
+
+        {/* Friends Tab */}
+        <TabsContent value="friends" className="space-y-4">
+          <div className="flex justify-between items-center">
+            <h3 className="text-xl font-semibold">Danh sách bạn bè ({friends.length})</h3>
+            <Button className="flex items-center space-x-2">
+              <UserPlus className="w-4 h-4" />
+              <span>Thêm bạn</span>
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {friends.map(friend => (
+              <Card key={friend.id} className="hover:shadow-md transition-shadow">
+                <CardContent className="pt-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="relative">
+                      <Avatar className="w-12 h-12">
+                        <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                          {friend.avatar}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className={`absolute -bottom-1 -right-1 w-4 h-4 ${getStatusColor(friend.status)} rounded-full border-2 border-white`}></div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-medium">{friend.name}</h4>
+                      <p className="text-sm text-gray-600">Level {friend.level}</p>
+                      <p className="text-xs text-gray-500">{getStatusText(friend.status)}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 grid grid-cols-2 gap-2 text-center">
+                    <div className="bg-yellow-50 p-2 rounded">
+                      <p className="text-xs text-gray-600">Điểm</p>
+                      <p className="font-semibold text-yellow-600">{friend.points.toLocaleString()}</p>
+                    </div>
+                    <div className="bg-red-50 p-2 rounded">
+                      <p className="text-xs text-gray-600">Streak</p>
+                      <p className="font-semibold text-red-600">{friend.streak}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex space-x-2 mt-4">
+                    <Button size="sm" variant="outline" className="flex-1">
+                      <MessageCircle className="w-3 h-3 mr-1" />
+                      Nhắn tin
+                    </Button>
+                    <Button size="sm" variant="outline" className="flex-1">
+                      <Zap className="w-3 h-3 mr-1" />
+                      Thách đấu
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </TabsContent>
+
+        {/* Shop Tab */}
+        <TabsContent value="shop" className="space-y-4">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-xl font-semibold">Cửa hàng thẻ cào</h3>
+              <p className="text-sm text-gray-600">Đổi điểm tích lũy để nhận thẻ cào điện thoại</p>
+            </div>
+            <div className="flex items-center space-x-2 bg-yellow-50 px-4 py-2 rounded-lg">
+              <Coins className="w-5 h-5 text-yellow-600" />
+              <span className="font-semibold text-yellow-600">{userPoints.toLocaleString()} điểm</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {phoneCards.map(card => (
+              <Card key={card.id} className={`hover:shadow-md transition-shadow ${card.popular ? 'ring-2 ring-blue-500' : ''}`}>
+                <CardContent className="pt-4">
+                  {card.popular && (
+                    <Badge className="mb-2 bg-blue-500 text-white">
+                      🔥 Phổ biến
+                    </Badge>
+                  )}
+                  
+                  <div className="text-center mb-4">
+                    <Phone className="w-8 h-8 mx-auto mb-2 text-gray-600" />
+                    <h4 className="font-semibold text-lg">{card.provider}</h4>
+                    <p className="text-2xl font-bold text-green-600">{card.value.toLocaleString()}đ</p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Giá gốc:</span>
+                      {card.discount ? (
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm line-through text-gray-400">
+                            {Math.round(card.cost / (1 - card.discount / 100)).toLocaleString()} điểm
+                          </span>
+                          <Badge variant="destructive" className="text-xs">
+                            -{card.discount}%
+                          </Badge>
+                        </div>
+                      ) : (
+                        <span className="text-sm">{card.cost.toLocaleString()} điểm</span>
+                      )}
+                    </div>
+                    
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium">Giá bán:</span>
+                      <span className="text-lg font-bold text-yellow-600">{card.cost.toLocaleString()} điểm</span>
+                    </div>
+                  </div>
+
+                  <Button 
+                    className="w-full mt-4" 
+                    onClick={() => purchasePhoneCard(card.id)}
+                    disabled={userPoints < card.cost}
+                    variant={userPoints >= card.cost ? "default" : "secondary"}
+                  >
+                    {userPoints >= card.cost ? (
+                      <>
+                        <Gift className="w-4 h-4 mr-2" />
+                        Đổi ngay
+                      </>
+                    ) : (
+                      <>Không đủ điểm</>
+                    )}
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="mt-6">
+            <CardContent className="pt-6">
+              <h4 className="font-semibold mb-3">💡 Cách tích điểm:</h4>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li>• Hoàn thành nhiệm vụ hàng ngày: 25-50 điểm</li>
+                <li>• Hoàn thành nhiệm vụ hàng tuần: 100-150 điểm</li>
+                <li>• Thách đấu với bạn bè và thắng: 20-30 điểm</li>
+                <li>• Duy trì streak liên tục: 10 điểm/ngày</li>
+                <li>• Đạt thành tích đặc biệt: 50-200 điểm</li>
+              </ul>
+            </CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
     </div>
