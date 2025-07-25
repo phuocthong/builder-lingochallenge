@@ -20,7 +20,8 @@ import PlaceholderPage from "./pages/PlaceholderPage";
 
 const queryClient = new QueryClient();
 
-const AppContent = () => {
+// Separate component to ensure useAuth is called within AuthProvider
+const AppRoutes = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const { login } = useAuth();
@@ -48,53 +49,51 @@ const AppContent = () => {
   };
 
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
-        <Header
-          onShowLogin={handleShowLogin}
-          onShowRegister={handleShowRegister}
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
+      <Header
+        onShowLogin={handleShowLogin}
+        onShowRegister={handleShowRegister}
+      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Index
+              onShowLogin={handleShowLogin}
+              onShowRegister={handleShowRegister}
+            />
+          }
         />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Index
-                onShowLogin={handleShowLogin}
-                onShowRegister={handleShowRegister}
-              />
-            }
-          />
-          <Route
-            path="/about"
-            element={<PlaceholderPage title="Giới thiệu" />}
-          />
-          <Route
-            path="/guide"
-            element={<PlaceholderPage title="Hướng dẫn" />}
-          />
-          <Route path="/challenge" element={<ChallengeRoom />} />
-          <Route path="/friends" element={<Friends />} />
-          <Route path="/profile" element={<Profile />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Route
+          path="/about"
+          element={<PlaceholderPage title="Giới thiệu" />}
+        />
+        <Route
+          path="/guide"
+          element={<PlaceholderPage title="Hướng dẫn" />}
+        />
+        <Route path="/challenge" element={<ChallengeRoom />} />
+        <Route path="/friends" element={<Friends />} />
+        <Route path="/profile" element={<Profile />} />
+        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
 
-        {/* Global Authentication Modals */}
-        <LoginModal
-          isOpen={showLoginModal}
-          onClose={() => setShowLoginModal(false)}
-          onLogin={handleLogin}
-          onSwitchToRegister={handleShowRegister}
-        />
+      {/* Global Authentication Modals */}
+      <LoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLogin={handleLogin}
+        onSwitchToRegister={handleShowRegister}
+      />
 
-        <RegisterModal
-          isOpen={showRegisterModal}
-          onClose={() => setShowRegisterModal(false)}
-          onRegister={handleRegister}
-          onSwitchToLogin={handleShowLogin}
-        />
-      </div>
-    </BrowserRouter>
+      <RegisterModal
+        isOpen={showRegisterModal}
+        onClose={() => setShowRegisterModal(false)}
+        onRegister={handleRegister}
+        onSwitchToLogin={handleShowLogin}
+      />
+    </div>
   );
 };
 
@@ -103,9 +102,11 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AuthProvider>
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
           <Toaster />
           <Sonner />
-          <AppContent />
         </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>
