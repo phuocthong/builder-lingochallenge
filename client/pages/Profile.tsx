@@ -453,12 +453,27 @@ const Profile: React.FC = () => {
 
       {/* Main Content Tabs */}
       <Tabs value={selectedTab} onValueChange={setSelectedTab} className="space-y-4">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="tasks">Nhiệm vụ</TabsTrigger>
-          <TabsTrigger value="achievements">Thành tích</TabsTrigger>
-          <TabsTrigger value="friends">Bạn bè</TabsTrigger>
-          <TabsTrigger value="shop">Cửa hàng</TabsTrigger>
-        </TabsList>
+        <div className="flex justify-between items-center">
+          <TabsList className="grid grid-cols-4">
+            <TabsTrigger value="tasks">Nhiệm vụ</TabsTrigger>
+            <TabsTrigger value="achievements">Thành tích</TabsTrigger>
+            <TabsTrigger value="friends">Bạn bè</TabsTrigger>
+            <TabsTrigger value="shop">Cửa hàng</TabsTrigger>
+          </TabsList>
+
+          {/* Global Add Task Button */}
+          <Button
+            onClick={() => {
+              setSelectedTab('tasks');
+              setShowAddTask(true);
+            }}
+            className="flex items-center space-x-2"
+            variant="outline"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Thêm nhiệm vụ</span>
+          </Button>
+        </div>
 
         {/* Tasks Tab */}
         <TabsContent value="tasks" className="space-y-4">
