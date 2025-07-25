@@ -125,7 +125,7 @@ const Profile: React.FC = () => {
     const sampleAchievements: Achievement[] = [
       {
         id: '1',
-        title: 'Người m���i bắt đầu',
+        title: 'Người mới bắt đầu',
         description: 'Hoàn thành nhiệm vụ đầu tiên',
         icon: '🌟',
         rarity: 'common',
@@ -244,29 +244,7 @@ const Profile: React.FC = () => {
     setPhoneCards(samplePhoneCards);
   }, []);
 
-  const addTask = () => {
-    if (!newTaskTitle.trim()) return;
-    
-    const newTask: Task = {
-      id: Date.now().toString(),
-      title: newTaskTitle,
-      description: newTaskDescription,
-      type: newTaskType,
-      completed: false,
-      progress: 0,
-      target: newTaskTarget,
-      category: newTaskCategory,
-      reward: newTaskType === 'daily' ? 50 : 200,
-      points: newTaskType === 'daily' ? 25 : 100,
-      dueDate: new Date(Date.now() + (newTaskType === 'daily' ? 24 : 7 * 24) * 60 * 60 * 1000)
-    };
 
-    setTasks(prev => [...prev, newTask]);
-    setNewTaskTitle('');
-    setNewTaskDescription('');
-    setNewTaskTarget(1);
-    setShowAddTask(false);
-  };
 
   const updateTaskProgress = (taskId: string, newProgress: number) => {
     setTasks(prev => prev.map(task => {
