@@ -839,11 +839,17 @@ const Profile: React.FC = () => {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="flex-1 hover:bg-yellow-50 hover:text-yellow-600 hover:border-yellow-200"
+                      className={`flex-1 ${
+                        friend.isOnline && friend.status !== 'in-game'
+                          ? 'hover:bg-yellow-50 hover:text-yellow-600 hover:border-yellow-200'
+                          : 'opacity-60 cursor-not-allowed'
+                      }`}
                       onClick={() => challengeFriend(friend.id, friend.name)}
+                      disabled={!friend.isOnline || friend.status === 'in-game'}
                     >
                       <Zap className="w-3 h-3 mr-1" />
-                      Thách đấu
+                      {friend.status === 'in-game' ? 'Đang chơi' :
+                       !friend.isOnline ? 'Offline' : 'Thách đấu'}
                     </Button>
                   </div>
                 </CardContent>
