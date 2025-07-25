@@ -90,6 +90,24 @@ const Profile: React.FC = () => {
 
   const [selectedTab, setSelectedTab] = useState("tasks");
 
+  // Functions for friend interactions
+  const sendMessage = (friendId: string, friendName: string) => {
+    alert(`💬 Gửi tin nhắn cho ${friendName}!\n\nTính năng chat sẽ được phát triển trong phiên bản tiếp theo.`);
+  };
+
+  const challengeFriend = (friendId: string, friendName: string) => {
+    const confirm = window.confirm(`⚡ Bạn muốn thách đấu với ${friendName}?\n\nThách đấu sẽ bắt đầu ngay lập tức!`);
+    if (confirm) {
+      alert(`✅ Đã gửi lời mời thách đấu cho ${friendName}!\n\nĐang tìm phòng thách đấu...`);
+      // Here you would typically navigate to challenge room or show challenge modal
+      setTimeout(() => {
+        alert(`🎮 ${friendName} đã chấp nhận thách đấu!\nĐang chuyển đến phòng thách đấu...`);
+        // Navigate to challenge room in future implementation
+        // window.location.href = '/challenge';
+      }, 1500);
+    }
+  };
+
   // Initialize with sample data
   useEffect(() => {
     const sampleTasks: Task[] = [
