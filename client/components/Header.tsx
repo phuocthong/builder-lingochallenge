@@ -107,6 +107,15 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                 <Users className="h-4 w-4" />
                 <span>Bạn bè</span>
               </Link>
+              {user.isLoggedIn && (
+                <Link
+                  to="/profile"
+                  className="text-gray-700 hover:text-purple-600 font-medium text-sm transition-colors flex items-center space-x-1"
+                >
+                  <User className="h-4 w-4" />
+                  <span>Hồ sơ</span>
+                </Link>
+              )}
             </nav>
 
             {/* Auth Section */}
@@ -238,6 +247,16 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                 <Users className="h-4 w-4" />
                 <span>👥 Bạn bè</span>
               </Link>
+              {user.isLoggedIn && (
+                <Link
+                  to="/profile"
+                  className="text-gray-700 hover:text-purple-600 font-medium text-sm py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-2"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  <User className="h-4 w-4" />
+                  <span>👤 Hồ sơ</span>
+                </Link>
+              )}
             </nav>
 
             {/* Mobile Auth Section */}
