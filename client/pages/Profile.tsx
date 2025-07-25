@@ -815,11 +815,21 @@ const Profile: React.FC = () => {
                   </div>
 
                   <div className="flex space-x-2 mt-4">
-                    <Button size="sm" variant="outline" className="flex-1">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="flex-1 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200"
+                      onClick={() => sendMessage(friend.id, friend.name)}
+                    >
                       <MessageCircle className="w-3 h-3 mr-1" />
                       Nhắn tin
                     </Button>
-                    <Button size="sm" variant="outline" className="flex-1">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="flex-1 hover:bg-yellow-50 hover:text-yellow-600 hover:border-yellow-200"
+                      onClick={() => challengeFriend(friend.id, friend.name)}
+                    >
                       <Zap className="w-3 h-3 mr-1" />
                       Thách đấu
                     </Button>
