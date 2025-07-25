@@ -14,6 +14,7 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Index from "./pages/Index";
 import ChallengeRoom from "./pages/ChallengeRoom";
 import Friends from "./pages/Friends";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
@@ -73,6 +74,7 @@ const AppContent = () => {
           />
           <Route path="/challenge" element={<ChallengeRoom />} />
           <Route path="/friends" element={<Friends />} />
+          <Route path="/profile" element={<Profile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
