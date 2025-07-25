@@ -92,28 +92,40 @@ const Profile: React.FC = () => {
 
   // Functions for friend interactions
   const sendMessage = (friendId: string, friendName: string) => {
-    alert(`💬 Gửi tin nhắn cho ${friendName}!\n\nTính năng chat sẽ được phát triển trong phiên bản tiếp theo.`);
+    alert(
+      `💬 Gửi tin nhắn cho ${friendName}!\n\nTính năng chat sẽ được phát triển trong phiên bản tiếp theo.`,
+    );
   };
 
   const challengeFriend = (friendId: string, friendName: string) => {
-    const friend = friends.find(f => f.id === friendId);
+    const friend = friends.find((f) => f.id === friendId);
 
     if (!friend?.isOnline) {
-      alert(`😔 ${friendName} hiện đang offline!\n\nBạn có thể gửi lời mời thách đấu và họ sẽ nhận được khi online.`);
+      alert(
+        `😔 ${friendName} hiện đang offline!\n\nBạn có thể gửi lời mời thách đấu và họ sẽ nhận được khi online.`,
+      );
       return;
     }
 
-    if (friend.status === 'in-game') {
-      alert(`🎮 ${friendName} đang trong trận đấu khác!\n\nVui lòng thử lại sau.`);
+    if (friend.status === "in-game") {
+      alert(
+        `🎮 ${friendName} đang trong trận đấu khác!\n\nVui lòng thử lại sau.`,
+      );
       return;
     }
 
-    const confirm = window.confirm(`⚡ Bạn muốn thách đấu với ${friendName}?\n\nThách đấu sẽ bắt đầu ngay lập tức!`);
+    const confirm = window.confirm(
+      `⚡ Bạn muốn thách đấu với ${friendName}?\n\nThách đấu sẽ bắt đầu ngay lập tức!`,
+    );
     if (confirm) {
-      alert(`✅ Đã gửi lời mời thách đấu cho ${friendName}!\n\nĐang tìm phòng thách đấu...`);
+      alert(
+        `✅ Đã gửi lời mời thách đấu cho ${friendName}!\n\nĐang tìm phòng thách đấu...`,
+      );
       // Here you would typically navigate to challenge room or show challenge modal
       setTimeout(() => {
-        alert(`🎮 ${friendName} đã chấp nhận thách đấu!\nĐang chuyển đến phòng thách đấu...`);
+        alert(
+          `🎮 ${friendName} đã chấp nhận thách đấu!\nĐang chuyển đến phòng thách đấu...`,
+        );
         // Navigate to challenge room in future implementation
         // window.location.href = '/challenge';
       }, 1500);
@@ -840,16 +852,19 @@ const Profile: React.FC = () => {
                       size="sm"
                       variant="outline"
                       className={`flex-1 ${
-                        friend.isOnline && friend.status !== 'in-game'
-                          ? 'hover:bg-yellow-50 hover:text-yellow-600 hover:border-yellow-200'
-                          : 'opacity-60 cursor-not-allowed'
+                        friend.isOnline && friend.status !== "in-game"
+                          ? "hover:bg-yellow-50 hover:text-yellow-600 hover:border-yellow-200"
+                          : "opacity-60 cursor-not-allowed"
                       }`}
                       onClick={() => challengeFriend(friend.id, friend.name)}
-                      disabled={!friend.isOnline || friend.status === 'in-game'}
+                      disabled={!friend.isOnline || friend.status === "in-game"}
                     >
                       <Zap className="w-3 h-3 mr-1" />
-                      {friend.status === 'in-game' ? 'Đang chơi' :
-                       !friend.isOnline ? 'Offline' : 'Thách đấu'}
+                      {friend.status === "in-game"
+                        ? "Đang chơi"
+                        : !friend.isOnline
+                          ? "Offline"
+                          : "Thách đấu"}
                     </Button>
                   </div>
                 </CardContent>
