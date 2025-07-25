@@ -37,7 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = (userData: Partial<AuthUser>) => {
     const newUser: AuthUser = {
       id: userData.id || `user-${Date.now()}`,
-      name: userData.name || userData.email?.split('@')[0] || 'Người dùng',
+      name: userData.name || userData.email?.split('@')[0] || 'Người Dùng',
       email: userData.email || '',
       avatar: userData.avatar || (userData.name || userData.email?.split('@')[0] || 'ND').substring(0, 2).toUpperCase(),
       isLoggedIn: true,
