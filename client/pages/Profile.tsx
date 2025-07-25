@@ -96,6 +96,18 @@ const Profile: React.FC = () => {
   };
 
   const challengeFriend = (friendId: string, friendName: string) => {
+    const friend = friends.find(f => f.id === friendId);
+
+    if (!friend?.isOnline) {
+      alert(`😔 ${friendName} hiện đang offline!\n\nBạn có thể gửi lời mời thách đấu và họ sẽ nhận được khi online.`);
+      return;
+    }
+
+    if (friend.status === 'in-game') {
+      alert(`🎮 ${friendName} đang trong trận đấu khác!\n\nVui lòng thử lại sau.`);
+      return;
+    }
+
     const confirm = window.confirm(`⚡ Bạn muốn thách đấu với ${friendName}?\n\nThách đấu sẽ bắt đầu ngay lập tức!`);
     if (confirm) {
       alert(`✅ Đã gửi lời mời thách đấu cho ${friendName}!\n\nĐang tìm phòng thách đấu...`);
