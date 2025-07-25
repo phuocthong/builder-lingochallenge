@@ -61,12 +61,7 @@ const Profile: React.FC = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
   const [phoneCards, setPhoneCards] = useState<PhoneCard[]>([]);
   const [userPoints, setUserPoints] = useState(1250); // Current user points
-  const [newTaskTitle, setNewTaskTitle] = useState('');
-  const [newTaskDescription, setNewTaskDescription] = useState('');
-  const [newTaskType, setNewTaskType] = useState<'daily' | 'weekly'>('daily');
-  const [newTaskCategory, setNewTaskCategory] = useState<Task['category']>('practice');
-  const [newTaskTarget, setNewTaskTarget] = useState(1);
-  const [showAddTask, setShowAddTask] = useState(false);
+
   const [selectedTab, setSelectedTab] = useState('tasks');
 
   // Initialize with sample data
@@ -130,7 +125,7 @@ const Profile: React.FC = () => {
     const sampleAchievements: Achievement[] = [
       {
         id: '1',
-        title: 'Người mới bắt đầu',
+        title: 'Người m���i bắt đầu',
         description: 'Hoàn thành nhiệm vụ đầu tiên',
         icon: '🌟',
         rarity: 'common',
