@@ -437,76 +437,7 @@ const Profile: React.FC = () => {
         <TabsContent value="tasks" className="space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="text-xl font-semibold">Nhiệm vụ của tôi</h3>
-            <Button onClick={() => setShowAddTask(true)} className="flex items-center space-x-2">
-              <Plus className="w-4 h-4" />
-              <span>Thêm nhiệm vụ</span>
-            </Button>
           </div>
-
-          {showAddTask && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Tạo nhiệm vụ mới</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium">Tiêu đề</label>
-                  <Input
-                    value={newTaskTitle}
-                    onChange={(e) => setNewTaskTitle(e.target.value)}
-                    placeholder="Nhập tiêu đề nhiệm vụ..."
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium">Mô tả</label>
-                  <Textarea
-                    value={newTaskDescription}
-                    onChange={(e) => setNewTaskDescription(e.target.value)}
-                    placeholder="Mô tả chi tiết nhiệm vụ..."
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium">Loại nhiệm vụ</label>
-                    <select 
-                      value={newTaskType} 
-                      onChange={(e) => setNewTaskType(e.target.value as 'daily' | 'weekly')}
-                      className="w-full p-2 border rounded-md"
-                    >
-                      <option value="daily">Hàng ngày</option>
-                      <option value="weekly">Hàng tuần</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium">Danh mục</label>
-                    <select 
-                      value={newTaskCategory} 
-                      onChange={(e) => setNewTaskCategory(e.target.value as Task['category'])}
-                      className="w-full p-2 border rounded-md"
-                    >
-                      <option value="practice">Luyện tập</option>
-                      <option value="learning">Học tập</option>
-                      <option value="challenge">Thách đấu</option>
-                      <option value="social">Xã hội</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium">Mục tiêu (số lượng)</label>
-                  <Input
-                    type="number"
-                    min="1"
-                    value={newTaskTarget}
-                    onChange={(e) => setNewTaskTarget(parseInt(e.target.value) || 1)}
-                  />
-                </div>
-                <div className="flex space-x-2">
-                  <Button onClick={addTask}>Tạo nhiệm vụ</Button>
-                  <Button variant="outline" onClick={() => setShowAddTask(false)}>Hủy</Button>
-                </div>
-              </CardContent>
-            </Card>
-          )}
 
           <Tabs defaultValue="daily" className="w-full">
             <TabsList>
