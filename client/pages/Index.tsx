@@ -1,19 +1,19 @@
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { Card, CardContent } from "../components/ui/card";
-import { 
-  Bot, 
-  Users, 
-  Book, 
-  Star, 
-  Clock, 
-  Trophy, 
+import {
+  Bot,
+  Users,
+  Book,
+  Star,
+  Clock,
+  Trophy,
   Gift,
   Target,
   BarChart3,
   ArrowRight,
   Sparkles,
-  Play
+  Play,
 } from "lucide-react";
 import { ChatInterface } from "../components/ChatInterface";
 import { ChatHistory } from "../components/ChatHistory";
@@ -34,10 +34,8 @@ export default function Index({ onShowLogin, onShowRegister }: IndexProps) {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
         {/* Mobile-first responsive container */}
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 py-2 sm:py-4 lg:py-6">
-
           {/* Mobile: Single column, Desktop: Grid layout */}
           <div className="flex flex-col xl:grid xl:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
-
             {/* Main Chat Interface */}
             <div className="xl:col-span-2 order-1">
               <div className="h-[55vh] sm:h-[60vh] md:h-[65vh] xl:h-[calc(100vh-140px)]">
@@ -50,7 +48,6 @@ export default function Index({ onShowLogin, onShowRegister }: IndexProps) {
 
             {/* Right Sidebar - Mobile: Stack below chat */}
             <div className="xl:col-span-1 order-2 space-y-3 sm:space-y-4 lg:space-y-6">
-
               {/* Chat History */}
               <div className="h-[35vh] sm:h-[40vh] md:h-[45vh] xl:h-[calc(50vh-80px)]">
                 <ChatHistory />
@@ -60,7 +57,6 @@ export default function Index({ onShowLogin, onShowRegister }: IndexProps) {
               <div className="h-[35vh] sm:h-[40vh] md:h-[45vh] xl:h-[calc(50vh-80px)]">
                 <Leaderboard />
               </div>
-
             </div>
           </div>
 
@@ -76,74 +72,81 @@ export default function Index({ onShowLogin, onShowRegister }: IndexProps) {
     {
       icon: Bot,
       title: "AI Chatbot Thông Minh",
-      description: "Học tiếng Anh qua trò chuyện tự nhiên với AI bot được thiết kế đặc biệt"
+      description:
+        "Học tiếng Anh qua trò chuyện tự nhiên với AI bot được thiết kế đặc biệt",
     },
     {
       icon: Users,
-      title: "Thách Đấu Bạn Bè", 
-      description: "Cạnh tranh với bạn bè trong các cuộc thi tiếng Anh thú vị và hấp dẫn"
+      title: "Thách Đấu Bạn Bè",
+      description:
+        "Cạnh tranh với bạn bè trong các cuộc thi tiếng Anh thú vị và hấp dẫn",
     },
     {
       icon: Trophy,
       title: "Hệ Thống Xếp Hạng",
-      description: "Theo dõi tiến bộ và cạnh tranh với hàng nghìn người học khác"
+      description:
+        "Theo dõi tiến bộ và cạnh tranh với hàng nghìn người học khác",
     },
     {
       icon: Target,
       title: "Nhiệm Vụ Hàng Ngày",
-      description: "Hoàn thành các nhiệm vụ để duy trì động lực và nhận phần thưởng"
+      description:
+        "Hoàn thành các nhiệm vụ để duy trì động lực và nhận phần thưởng",
     },
     {
       icon: Gift,
       title: "Đổi Thưởng Hấp Dẫn",
-      description: "Quy đổi điểm thành thẻ cào điện thoại và nhiều phần quà khác"
+      description:
+        "Quy đổi điểm thành thẻ cào điện thoại và nhiều phần quà khác",
     },
     {
       icon: BarChart3,
       title: "Thống Kê Chi Tiết",
-      description: "Theo dõi chi tiết quá trình học tập với biểu đồ và báo cáo"
-    }
+      description: "Theo dõi chi tiết quá trình học tập với biểu đồ và báo cáo",
+    },
   ];
 
   const steps = [
     {
       number: "1",
       title: "Đăng Ký Miễn Phí",
-      description: "Tạo tài khoản chỉ trong 30 giây với email hoặc số điện thoại"
+      description:
+        "Tạo tài khoản chỉ trong 30 giây với email hoặc số điện thoại",
     },
     {
-      number: "2", 
+      number: "2",
       title: "Bắt Đầu Chat",
-      description: "Trò chuyện với AI bot và trả lời các câu hỏi tiếng Anh thú vị"
+      description:
+        "Trò chuyện với AI bot và trả lời các câu hỏi tiếng Anh thú vị",
     },
     {
       number: "3",
-      title: "Nhận Phần Thưởng", 
-      description: "Tích lũy điểm và đổi lấy thẻ cào, quà tặng hấp dẫn"
-    }
+      title: "Nhận Phần Thưởng",
+      description: "Tích lũy điểm và đổi lấy thẻ cào, quà tặng hấp dẫn",
+    },
   ];
 
   const stats = [
     {
       icon: Users,
       number: "10,000+",
-      label: "Người học"
+      label: "Người học",
     },
     {
       icon: Book,
-      number: "50,000+", 
-      label: "Câu hỏi"
+      number: "50,000+",
+      label: "Câu hỏi",
     },
     {
       icon: Star,
       number: "95%",
-      label: "Hài lòng"
+      label: "Hài lòng",
     },
     {
       icon: Clock,
       number: "24/7",
-      label: "Hỗ trợ"
-    }
+      label: "Hỗ trợ",
+    },
   ];
 
   return (
@@ -167,12 +170,13 @@ export default function Index({ onShowLogin, onShowRegister }: IndexProps) {
 
           {/* Subtitle */}
           <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Khám phá cách học tiếng Anh hiệu quả nhất với AI chatbot thông minh, thách đấu bạn bè và hệ thống phần thưởng hấp dẫn.
+            Khám phá cách học tiếng Anh hiệu quả nhất với AI chatbot thông minh,
+            thách đấu bạn bè và hệ thống phần thưởng hấp dẫn.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button 
+            <Button
               onClick={onShowRegister}
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg shadow-lg"
             >
@@ -180,9 +184,9 @@ export default function Index({ onShowLogin, onShowRegister }: IndexProps) {
               Bắt Đầu Miễn Phí
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button 
+            <Button
               onClick={onShowLogin}
-              variant="outline" 
+              variant="outline"
               className="border-2 border-purple-200 text-purple-700 hover:bg-purple-50 px-8 py-3 text-lg"
             >
               <Play className="w-5 h-5 mr-2" />
@@ -217,13 +221,17 @@ export default function Index({ onShowLogin, onShowRegister }: IndexProps) {
               Tại Sao Chọn EnglishBot?
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-              Những tính năng độc đáo giúp bạn học tiếng Anh hiệu quả và thú vị hơn bao giờ hết
+              Những tính năng độc đáo giúp bạn học tiếng Anh hiệu quả và thú vị
+              hơn bao giờ hết
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300 border-0 shadow-sm">
+              <Card
+                key={index}
+                className="hover:shadow-lg transition-shadow duration-300 border-0 shadow-sm"
+              >
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-purple-50 rounded-full flex items-center justify-center mx-auto mb-6">
                     <feature.icon className="w-8 h-8 text-blue-600" />
@@ -287,16 +295,29 @@ export default function Index({ onShowLogin, onShowRegister }: IndexProps) {
                 </span>
               </div>
               <p className="text-gray-400 leading-relaxed mb-4">
-                Nền tảng học tiếng Anh thông minh với AI chatbot, giúp bạn cải thiện kỹ năng tiếng Anh một cách hiệu quả và thú vị.
+                Nền tảng học tiếng Anh thông minh với AI chatbot, giúp bạn cải
+                thiện kỹ năng tiếng Anh một cách hiệu quả và thú vị.
               </p>
               <div className="flex space-x-4">
-                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-400 hover:text-white"
+                >
                   Facebook
                 </Button>
-                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-400 hover:text-white"
+                >
                   Twitter
                 </Button>
-                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-400 hover:text-white"
+                >
                   Instagram
                 </Button>
               </div>
@@ -305,20 +326,52 @@ export default function Index({ onShowLogin, onShowRegister }: IndexProps) {
             <div>
               <h4 className="font-semibold mb-4">Tính năng</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">AI Chatbot</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Thách đấu</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Bảng xếp hạng</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Đổi điểm</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    AI Chatbot
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Thách đấu
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Bảng xếp hạng
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Đổi điểm
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4">Hỗ trợ</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Trung tâm trợ giúp</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Liên hệ</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Điều khoản</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Chính sách</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Trung tâm trợ giúp
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Liên hệ
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Điều khoản
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Chính sách
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

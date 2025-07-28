@@ -1,13 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import {
-  Bot,
-  LogOut,
-  Trophy,
-  Flame,
-  Menu,
-  X
-} from "lucide-react";
+import { Bot, LogOut, Trophy, Flame, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -97,7 +90,9 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
               <div className="hidden lg:flex items-center space-x-4 text-sm">
                 <div className="flex items-center space-x-1">
                   <Trophy className="w-4 h-4 text-gray-500" />
-                  <span className="text-gray-600"># {user.stats?.rank || 45}</span>
+                  <span className="text-gray-600">
+                    # {user.stats?.rank || 45}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <span className="text-green-600 font-medium">

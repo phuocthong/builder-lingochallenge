@@ -30,7 +30,7 @@ import {
   Gift,
   Coins,
   Search,
-  MoreHorizontal
+  MoreHorizontal,
 } from "lucide-react";
 
 interface Task {
@@ -190,7 +190,7 @@ const Profile: React.FC = () => {
         status: "online",
         streak: 6,
         isOnline: true,
-      }
+      },
     ];
 
     const samplePhoneCards: PhoneCard[] = [
@@ -308,9 +308,9 @@ const Profile: React.FC = () => {
   };
 
   const filteredFriends = friends.filter(
-    friend =>
+    (friend) =>
       friend.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      friend.username.toLowerCase().includes(searchTerm.toLowerCase())
+      friend.username.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const dailyTasks = tasks.filter((task) => task.type === "daily");
@@ -334,28 +334,28 @@ const Profile: React.FC = () => {
     {
       id: "dashboard",
       label: "Dashboard",
-      icon: Home
+      icon: Home,
     },
     {
       id: "friends",
       label: "Bạn bè",
-      icon: Users
+      icon: Users,
     },
     {
       id: "add-friends",
       label: "Thêm bạn bè",
-      icon: UserPlus
+      icon: UserPlus,
     },
     {
       id: "tasks",
       label: "Nhiệm vụ",
-      icon: FileText
+      icon: FileText,
     },
     {
       id: "exchange",
       label: "Đổi điểm",
-      icon: CreditCard
-    }
+      icon: CreditCard,
+    },
   ];
 
   const stats = [
@@ -364,29 +364,29 @@ const Profile: React.FC = () => {
       iconBg: "bg-blue-100",
       iconColor: "text-blue-600",
       number: "1,000",
-      label: "Tổng câu trả lời"
+      label: "Tổng câu trả lời",
     },
     {
       icon: "check",
       iconBg: "bg-green-100",
       iconColor: "text-green-600",
       number: "82%",
-      label: "Tỷ lệ chính xác"
+      label: "Tỷ lệ chính xác",
     },
     {
       icon: "book",
       iconBg: "bg-purple-100",
       iconColor: "text-purple-600",
       number: "2,125",
-      label: "Từ đã học"
+      label: "Từ đã học",
     },
     {
       icon: "fire",
       iconBg: "bg-orange-100",
       iconColor: "text-orange-600",
       number: "28",
-      label: "Chuỗi dài nhất"
-    }
+      label: "Chuỗi dài nhất",
+    },
   ];
 
   const secondaryStats = [
@@ -396,7 +396,7 @@ const Profile: React.FC = () => {
       iconColor: "text-blue-600",
       number: "15",
       title: "Chuỗi hiện tại",
-      subtitle: "Ngày liên tiếp"
+      subtitle: "Ngày liên tiếp",
     },
     {
       icon: Clock,
@@ -404,7 +404,7 @@ const Profile: React.FC = () => {
       iconColor: "text-green-600",
       number: "2.5s",
       title: "Thời gian trung bình",
-      subtitle: "Mỗi câu hỏi"
+      subtitle: "Mỗi câu hỏi",
     },
     {
       icon: Calendar,
@@ -412,8 +412,8 @@ const Profile: React.FC = () => {
       iconColor: "text-purple-600",
       number: "45",
       title: "Ngày học tập",
-      subtitle: "Tổng số ngày"
-    }
+      subtitle: "Tổng số ngày",
+    },
   ];
 
   return (
@@ -501,18 +501,26 @@ const Profile: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {stats.map((stat, index) => (
                 <Card key={index} className="p-6 text-center">
-                  <div className={`w-14 h-14 ${stat.iconBg} rounded-full flex items-center justify-center mx-auto mb-3`}>
-                    {stat.icon === "question" && <FileText className={`w-6 h-6 ${stat.iconColor}`} />}
-                    {stat.icon === "check" && <CheckCircle className={`w-6 h-6 ${stat.iconColor}`} />}
-                    {stat.icon === "book" && <FileText className={`w-6 h-6 ${stat.iconColor}`} />}
-                    {stat.icon === "fire" && <Flame className={`w-6 h-6 ${stat.iconColor}`} />}
+                  <div
+                    className={`w-14 h-14 ${stat.iconBg} rounded-full flex items-center justify-center mx-auto mb-3`}
+                  >
+                    {stat.icon === "question" && (
+                      <FileText className={`w-6 h-6 ${stat.iconColor}`} />
+                    )}
+                    {stat.icon === "check" && (
+                      <CheckCircle className={`w-6 h-6 ${stat.iconColor}`} />
+                    )}
+                    {stat.icon === "book" && (
+                      <FileText className={`w-6 h-6 ${stat.iconColor}`} />
+                    )}
+                    {stat.icon === "fire" && (
+                      <Flame className={`w-6 h-6 ${stat.iconColor}`} />
+                    )}
                   </div>
                   <div className="text-2xl font-bold text-gray-900 mb-1">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-gray-600">
-                    {stat.label}
-                  </div>
+                  <div className="text-sm text-gray-600">{stat.label}</div>
                 </Card>
               ))}
             </div>
@@ -523,7 +531,9 @@ const Profile: React.FC = () => {
                 <Card key={index} className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className={`w-11 h-11 ${stat.iconBg} rounded-full flex items-center justify-center mb-3`}>
+                      <div
+                        className={`w-11 h-11 ${stat.iconBg} rounded-full flex items-center justify-center mb-3`}
+                      >
                         <stat.icon className={`w-5 h-5 ${stat.iconColor}`} />
                       </div>
                       <div className="text-sm text-gray-600 mb-1">
@@ -550,7 +560,9 @@ const Profile: React.FC = () => {
                 <div className="text-center">
                   <BarChart3 className="w-16 h-16 text-purple-600 mx-auto mb-4" />
                   <p className="text-gray-600">Biểu đồ tiến bộ theo tuần</p>
-                  <p className="text-sm text-gray-500 mt-2">Dữ liệu sẽ được hiển thị ở đây</p>
+                  <p className="text-sm text-gray-500 mt-2">
+                    Dữ liệu sẽ được hiển thị ở đây
+                  </p>
                 </div>
               </div>
             </Card>
@@ -576,10 +588,12 @@ const Profile: React.FC = () => {
             <Card className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Đăng xuất</h4>
+                  <h4 className="text-lg font-bold text-gray-900 mb-1">
+                    Đăng xuất
+                  </h4>
                   <p className="text-gray-600">Thoát khỏi tài khoản hiện tại</p>
                 </div>
-                <Button 
+                <Button
                   onClick={logout}
                   className="bg-red-600 hover:bg-red-700 text-white px-6 py-3"
                 >
@@ -622,8 +636,12 @@ const Profile: React.FC = () => {
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full border-2 border-white"></div>
                       </div>
                       <div>
-                        <h3 className="font-medium text-gray-900">{friend.name}</h3>
-                        <p className="text-sm text-gray-600">{friend.username}</p>
+                        <h3 className="font-medium text-gray-900">
+                          {friend.name}
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          {friend.username}
+                        </p>
                         <div className="flex items-center space-x-2 mt-1">
                           <span className="text-xs text-yellow-600">
                             ⭐ Đang hoạt động
@@ -654,8 +672,12 @@ const Profile: React.FC = () => {
         {activeTab === "add-friends" && (
           <div className="space-y-6">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">Thêm bạn bè</h1>
-              <p className="text-gray-600">Tìm và kết bạn với những người học khác</p>
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                Thêm bạn bè
+              </h1>
+              <p className="text-gray-600">
+                Tìm và kết bạn với những người học khác
+              </p>
             </div>
 
             <Card className="p-6">
@@ -670,7 +692,7 @@ const Profile: React.FC = () => {
                   onChange={(e) => setNewFriendUsername(e.target.value)}
                   className="flex-1"
                 />
-                <Button 
+                <Button
                   onClick={addFriend}
                   className="bg-blue-600 hover:bg-blue-700 text-white"
                 >
@@ -776,10 +798,7 @@ const Profile: React.FC = () => {
                               size="sm"
                               variant="outline"
                               onClick={() =>
-                                updateTaskProgress(
-                                  task.id,
-                                  task.progress + 1,
-                                )
+                                updateTaskProgress(task.id, task.progress + 1)
                               }
                               disabled={task.progress >= task.target}
                             >
@@ -846,9 +865,7 @@ const Profile: React.FC = () => {
 
                     <div className="text-center mb-4">
                       <Phone className="w-8 h-8 mx-auto mb-2 text-gray-600" />
-                      <h4 className="font-semibold text-lg">
-                        {card.provider}
-                      </h4>
+                      <h4 className="font-semibold text-lg">{card.provider}</h4>
                       <p className="text-2xl font-bold text-green-600">
                         {card.value.toLocaleString()}đ
                       </p>
@@ -856,9 +873,7 @@ const Profile: React.FC = () => {
 
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">
-                          Giá gốc:
-                        </span>
+                        <span className="text-sm text-gray-600">Giá gốc:</span>
                         {card.discount ? (
                           <div className="flex items-center space-x-2">
                             <span className="text-sm line-through text-gray-400">
@@ -867,10 +882,7 @@ const Profile: React.FC = () => {
                               ).toLocaleString()}{" "}
                               điểm
                             </span>
-                            <Badge
-                              variant="destructive"
-                              className="text-xs"
-                            >
+                            <Badge variant="destructive" className="text-xs">
                               -{card.discount}%
                             </Badge>
                           </div>
@@ -882,9 +894,7 @@ const Profile: React.FC = () => {
                       </div>
 
                       <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium">
-                          Giá bán:
-                        </span>
+                        <span className="text-sm font-medium">Giá bán:</span>
                         <span className="text-lg font-bold text-yellow-600">
                           {card.cost.toLocaleString()} điểm
                         </span>
