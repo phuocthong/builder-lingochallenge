@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Dialog, DialogContent } from "./ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
+import { VisuallyHidden } from "./ui/visually-hidden";
 import { AuthForms } from "./AuthForms";
 
 interface RegisterModalProps {
