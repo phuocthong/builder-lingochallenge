@@ -326,7 +326,7 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
             key={message.id}
             className={cn(
               "flex items-start space-x-2 sm:space-x-3",
-              message.sender === "user" ? "" : "flex-row-reverse space-x-reverse",
+              message.sender === "user" ? "flex-row-reverse space-x-reverse" : "",
             )}
           >
             {/* Avatar */}
