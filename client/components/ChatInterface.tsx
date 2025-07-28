@@ -319,89 +319,96 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
         </div>
       )}
 
-      {/* Messages - Mobile Optimized */}
-      <div className="flex-1 p-3 sm:p-4 space-y-3 sm:space-y-4 overflow-y-auto">
+      {/* Messages - Mobile Optimized (AI left, User right) */}
+      <div className="flex-1 p-2 sm:p-4 space-y-2 sm:space-y-3 overflow-y-auto">
         {messages.map((message) => (
           <div
             key={message.id}
             className={cn(
-              "flex items-start space-x-2 sm:space-x-3",
-              message.sender === "user" ? "" : "flex-row-reverse space-x-reverse",
+              "flex w-full",
+              message.sender === "user" ? "justify-end" : "justify-start"
             )}
           >
-            {/* Avatar */}
             <div
               className={cn(
-                "p-1.5 sm:p-2 rounded-full flex-shrink-0",
-                message.sender === "bot" ? "bg-purple-100" : 
-                message.sender === "system" ? "bg-green-100" :
-                "bg-blue-100",
+                "flex items-start max-w-[85%] sm:max-w-[75%]",
+                message.sender === "user" ? "flex-row-reverse space-x-reverse space-x-2" : "space-x-2"
               )}
             >
-              {message.sender === "bot" ? (
-                <Bot className="h-3 w-3 sm:h-4 sm:w-4 text-purple-600" />
-              ) : message.sender === "system" ? (
-                <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
-              ) : (
-                <User className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
-              )}
-            </div>
+              {/* Avatar */}
+              <div
+                className={cn(
+                  "p-1.5 sm:p-2 rounded-full flex-shrink-0 mt-0.5",
+                  message.sender === "bot" ? "bg-purple-100" :
+                  message.sender === "system" ? "bg-green-100" :
+                  "bg-blue-100",
+                )}
+              >
+                {message.sender === "bot" ? (
+                  <Bot className="h-3 w-3 sm:h-4 sm:w-4 text-purple-600" />
+                ) : message.sender === "system" ? (
+                  <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
+                ) : (
+                  <User className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
+                )}
+              </div>
 
-            {/* Message Bubble */}
-            <div
-              className={cn(
-                "max-w-[75%] sm:max-w-xs lg:max-w-md px-3 py-2 rounded-2xl",
-                message.sender === "bot"
-                  ? "bg-gray-100 text-gray-900 rounded-br-sm"
-                  : message.sender === "system"
-                  ? "bg-green-100 text-green-800 border border-green-200 rounded-br-sm"
-                  : message.isCorrect === true
-                  ? "bg-green-500 text-white rounded-bl-sm"
-                  : message.isCorrect === false
-                  ? "bg-red-500 text-white rounded-bl-sm"
-                  : "bg-blue-500 text-white rounded-bl-sm",
-              )}
-            >
-              <div className="flex items-center">
-                <p className="text-sm flex-1">{message.text}</p>
-                {message.sender === "user" && message.isCorrect !== undefined && (
-                  <div className="ml-2">
-                    {message.isCorrect ? (
-                      <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4" />
-                    ) : (
-                      <XCircle className="h-3 w-3 sm:h-4 sm:w-4" />
-                    )}
+              {/* Message Bubble */}
+              <div
+                className={cn(
+                  "px-3 py-2 rounded-lg break-words",
+                  message.sender === "bot"
+                    ? "bg-gray-100 text-gray-900 rounded-tl-sm"
+                    : message.sender === "system"
+                    ? "bg-green-100 text-green-800 border border-green-200 rounded-tl-sm"
+                    : message.isCorrect === true
+                    ? "bg-green-500 text-white rounded-tr-sm"
+                    : message.isCorrect === false
+                    ? "bg-red-500 text-white rounded-tr-sm"
+                    : "bg-blue-500 text-white rounded-tr-sm",
+                )}
+              >
+                <div className="flex items-start">
+                  <p className="text-sm leading-relaxed flex-1">{message.text}</p>
+                  {message.sender === "user" && message.isCorrect !== undefined && (
+                    <div className={cn("ml-2 flex-shrink-0", message.sender === "user" ? "mr-0" : "ml-0")}>
+                      {message.isCorrect ? (
+                        <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4" />
+                      ) : (
+                        <XCircle className="h-3 w-3 sm:h-4 sm:w-4" />
+                      )}
+                    </div>
+                  )}
+                </div>
+                <p
+                  className={cn(
+                    "text-xs mt-1 opacity-75",
+                    message.sender === "bot"
+                      ? "text-gray-500"
+                      : message.sender === "system"
+                      ? "text-green-600"
+                      : "text-white",
+                  )}
+                >
+                  {message.timestamp}
+                </p>
+                {message.isQuestion && (
+                  <div className="mt-2 p-2 bg-yellow-100 rounded-lg text-xs text-yellow-800 border">
+                    ⏰ Câu hỏi đang chờ trả lời...
                   </div>
                 )}
               </div>
-              <p
-                className={cn(
-                  "text-xs mt-1",
-                  message.sender === "bot"
-                    ? "text-gray-500"
-                    : message.sender === "system"
-                    ? "text-green-600"
-                    : "text-white/80",
-                )}
-              >
-                {message.timestamp}
-              </p>
-              {message.isQuestion && (
-                <div className="mt-2 p-2 bg-yellow-100 rounded-lg text-xs text-yellow-800 border">
-                  ⏰ Câu hỏi đang chờ trả lời...
-                </div>
-              )}
             </div>
           </div>
         ))}
 
         {/* Current question active users - Mobile Optimized */}
         {waitingForAnswer && answeredUsers.length > 0 && (
-          <div className="text-sm text-gray-500 mt-4 p-3 bg-blue-50 rounded-lg">
-            <p className="mb-2 font-medium">👥 Đã trả lời ({answeredUsers.length}):</p>
-            <div className="flex flex-wrap gap-1.5">
+          <div className="text-sm text-gray-500 mt-4 p-2 sm:p-3 bg-blue-50 rounded-lg mx-2">
+            <p className="mb-2 font-medium text-xs sm:text-sm">👥 Đã trả lời ({answeredUsers.length}):</p>
+            <div className="flex flex-wrap gap-1">
               {answeredUsers.slice(0, 10).map((user, index) => (
-                <span key={`${user.userId}-${index}`} className="text-blue-600 bg-white px-2 py-1 rounded-full text-xs font-medium">
+                <span key={`${user.userId}-${index}`} className="text-blue-600 bg-white px-1.5 py-0.5 rounded-full text-xs font-medium">
                   {user.userName}
                 </span>
               ))}
