@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "quasar dev",
     "build": "quasar build",
+    "preview": "quasar build && quasar serve dist/spa",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "type-check": "vue-tsc --build --force",
-    "preview": "vite preview"
+    "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.12",
