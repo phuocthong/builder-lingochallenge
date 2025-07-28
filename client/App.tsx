@@ -12,6 +12,7 @@ import { LoginModal } from "./components/LoginModal";
 import { RegisterModal } from "./components/RegisterModal";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Index from "./pages/Index";
+import About from "./pages/About";
 import ChallengeRoom from "./pages/ChallengeRoom";
 import Friends from "./pages/Friends";
 import Profile from "./pages/Profile";
