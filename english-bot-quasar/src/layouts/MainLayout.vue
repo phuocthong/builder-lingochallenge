@@ -14,7 +14,9 @@
 
         <q-toolbar-title class="flex items-center">
           <q-icon name="smart_toy" size="sm" class="q-mr-sm" />
-          <span class="text-weight-bold">English<span class="text-purple-200">Bot</span></span>
+          <span class="text-weight-bold"
+            >English<span class="text-purple-200">Bot</span></span
+          >
         </q-toolbar-title>
 
         <!-- Desktop Navigation -->
@@ -22,18 +24,30 @@
           <q-btn flat label="🏠 Trang chủ" to="/" />
           <q-btn flat label="⚡ Thách đấu" to="/challenge" />
           <q-btn flat label="👥 Bạn bè" to="/friends" />
-          <q-btn v-if="authStore.isLoggedIn" flat label="👤 Hồ sơ" to="/profile" />
+          <q-btn
+            v-if="authStore.isLoggedIn"
+            flat
+            label="👤 Hồ sơ"
+            to="/profile"
+          />
         </div>
 
         <!-- Auth Section -->
         <div class="q-ml-md">
           <template v-if="authStore.isLoggedIn">
             <!-- User Stats (Desktop) -->
-            <div class="gt-md inline-flex items-center q-mr-md bg-white bg-opacity-20 rounded q-pa-xs">
+            <div
+              class="gt-md inline-flex items-center q-mr-md bg-white bg-opacity-20 rounded q-pa-xs"
+            >
               <q-chip dense color="amber" text-color="dark" icon="emoji_events">
                 #{{ authStore.user.stats?.rank }}
               </q-chip>
-              <q-chip dense color="red" text-color="white" icon="local_fire_department">
+              <q-chip
+                dense
+                color="red"
+                text-color="white"
+                icon="local_fire_department"
+              >
                 {{ authStore.user.stats?.streak }}
               </q-chip>
               <q-chip dense color="green" text-color="white">
@@ -48,9 +62,13 @@
                   {{ authStore.user.avatar }}
                 </q-avatar>
               </template>
-              
+
               <q-list>
-                <q-item clickable v-close-popup @click="$router.push('/profile')">
+                <q-item
+                  clickable
+                  v-close-popup
+                  @click="$router.push('/profile')"
+                >
                   <q-item-section avatar>
                     <q-icon name="person" />
                   </q-item-section>
@@ -58,9 +76,9 @@
                     <q-item-label>Hồ sơ cá nhân</q-item-label>
                   </q-item-section>
                 </q-item>
-                
+
                 <q-separator />
-                
+
                 <q-item clickable v-close-popup @click="logout">
                   <q-item-section avatar>
                     <q-icon name="logout" />
@@ -74,8 +92,19 @@
           </template>
 
           <template v-else>
-            <q-btn flat label="Đăng ký" @click="showRegisterDialog = true" class="q-mr-sm" />
-            <q-btn unelevated color="white" text-color="primary" label="Đăng nhập" @click="showLoginDialog = true" />
+            <q-btn
+              flat
+              label="Đăng ký"
+              @click="showRegisterDialog = true"
+              class="q-mr-sm"
+            />
+            <q-btn
+              unelevated
+              color="white"
+              text-color="primary"
+              label="Đăng nhập"
+              @click="showLoginDialog = true"
+            />
           </template>
         </div>
       </q-toolbar>
@@ -104,7 +133,12 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable :active="$route.path === '/challenge'" to="/challenge" v-ripple>
+          <q-item
+            clickable
+            :active="$route.path === '/challenge'"
+            to="/challenge"
+            v-ripple
+          >
             <q-item-section avatar>
               <q-icon name="flash_on" />
             </q-item-section>
@@ -113,7 +147,12 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable :active="$route.path === '/friends'" to="/friends" v-ripple>
+          <q-item
+            clickable
+            :active="$route.path === '/friends'"
+            to="/friends"
+            v-ripple
+          >
             <q-item-section avatar>
               <q-icon name="people" />
             </q-item-section>
@@ -122,7 +161,13 @@
             </q-item-section>
           </q-item>
 
-          <q-item v-if="authStore.isLoggedIn" clickable :active="$route.path === '/profile'" to="/profile" v-ripple>
+          <q-item
+            v-if="authStore.isLoggedIn"
+            clickable
+            :active="$route.path === '/profile'"
+            to="/profile"
+            v-ripple
+          >
             <q-item-section avatar>
               <q-icon name="person" />
             </q-item-section>
@@ -133,7 +178,7 @@
 
           <template v-if="authStore.isLoggedIn">
             <q-separator class="q-my-md" />
-            
+
             <q-item-label header class="text-purple-8 text-weight-bold">
               THÔNG TIN
             </q-item-label>
@@ -145,8 +190,14 @@
                 </q-avatar>
               </q-item-section>
               <q-item-section>
-                <q-item-label class="text-weight-bold">{{ authStore.user.name }}</q-item-label>
-                <q-item-label caption>@{{ authStore.user.name.toLowerCase().replace(' ', '') }}</q-item-label>
+                <q-item-label class="text-weight-bold">{{
+                  authStore.user.name
+                }}</q-item-label>
+                <q-item-label caption
+                  >@{{
+                    authStore.user.name.toLowerCase().replace(" ", "")
+                  }}</q-item-label
+                >
               </q-item-section>
             </q-item>
 
@@ -154,15 +205,21 @@
             <div class="q-pa-md">
               <div class="row q-gutter-sm">
                 <div class="col bg-amber-1 rounded-borders q-pa-sm text-center">
-                  <div class="text-amber-8 text-weight-bold">{{ authStore.user.stats?.rank }}</div>
+                  <div class="text-amber-8 text-weight-bold">
+                    {{ authStore.user.stats?.rank }}
+                  </div>
                   <div class="text-caption text-grey-7">Hạng</div>
                 </div>
                 <div class="col bg-red-1 rounded-borders q-pa-sm text-center">
-                  <div class="text-red-8 text-weight-bold">{{ authStore.user.stats?.streak }}</div>
+                  <div class="text-red-8 text-weight-bold">
+                    {{ authStore.user.stats?.streak }}
+                  </div>
                   <div class="text-caption text-grey-7">Streak</div>
                 </div>
                 <div class="col bg-green-1 rounded-borders q-pa-sm text-center">
-                  <div class="text-green-8 text-weight-bold">{{ authStore.user.stats?.totalCorrect }}</div>
+                  <div class="text-green-8 text-weight-bold">
+                    {{ authStore.user.stats?.totalCorrect }}
+                  </div>
                   <div class="text-caption text-grey-7">Đúng</div>
                 </div>
               </div>
@@ -191,12 +248,7 @@
             label="Tên hiển thị"
             class="q-mb-md"
           />
-          <q-input
-            dense
-            v-model="loginForm.email"
-            label="Email"
-            type="email"
-          />
+          <q-input dense v-model="loginForm.email" label="Email" type="email" />
         </q-card-section>
 
         <q-card-actions align="right" class="text-primary">
@@ -241,39 +293,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useAuthStore } from '../stores/auth'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "../stores/auth";
 
-const router = useRouter()
-const authStore = useAuthStore()
+const router = useRouter();
+const authStore = useAuthStore();
 
-const leftDrawerOpen = ref(false)
-const showLoginDialog = ref(false)
-const showRegisterDialog = ref(false)
+const leftDrawerOpen = ref(false);
+const showLoginDialog = ref(false);
+const showRegisterDialog = ref(false);
 
 const loginForm = ref({
-  name: '',
-  email: ''
-})
+  name: "",
+  email: "",
+});
 
 const registerForm = ref({
-  name: '',
-  email: ''
-})
+  name: "",
+  email: "",
+});
 
 function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value
+  leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 
 function handleLogin() {
   if (loginForm.value.name && loginForm.value.email) {
     authStore.login({
       name: loginForm.value.name,
-      email: loginForm.value.email
-    })
-    showLoginDialog.value = false
-    loginForm.value = { name: '', email: '' }
+      email: loginForm.value.email,
+    });
+    showLoginDialog.value = false;
+    loginForm.value = { name: "", email: "" };
   }
 }
 
@@ -281,26 +333,26 @@ function handleRegister() {
   if (registerForm.value.name && registerForm.value.email) {
     authStore.login({
       name: registerForm.value.name,
-      email: registerForm.value.email
-    })
-    showRegisterDialog.value = false
-    registerForm.value = { name: '', email: '' }
+      email: registerForm.value.email,
+    });
+    showRegisterDialog.value = false;
+    registerForm.value = { name: "", email: "" };
   }
 }
 
 function switchToRegister() {
-  showLoginDialog.value = false
-  showRegisterDialog.value = true
+  showLoginDialog.value = false;
+  showRegisterDialog.value = true;
 }
 
 function switchToLogin() {
-  showRegisterDialog.value = false
-  showLoginDialog.value = true
+  showRegisterDialog.value = false;
+  showLoginDialog.value = true;
 }
 
 function logout() {
-  authStore.logout()
-  router.push('/')
+  authStore.logout();
+  router.push("/");
 }
 </script>
 

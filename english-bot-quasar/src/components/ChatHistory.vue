@@ -1,11 +1,16 @@
 <template>
   <div class="chat-history">
     <q-list>
-      <q-item v-for="session in historySessions" :key="session.id" clickable v-ripple>
+      <q-item
+        v-for="session in historySessions"
+        :key="session.id"
+        clickable
+        v-ripple
+      >
         <q-item-section avatar>
           <q-icon :name="session.icon" :color="session.color" />
         </q-item-section>
-        
+
         <q-item-section>
           <q-item-label>{{ session.title }}</q-item-label>
           <q-item-label caption>
@@ -14,8 +19,14 @@
         </q-item-section>
 
         <q-item-section side>
-          <q-chip 
-            :color="session.score / session.total >= 0.8 ? 'green' : session.score / session.total >= 0.6 ? 'orange' : 'red'"
+          <q-chip
+            :color="
+              session.score / session.total >= 0.8
+                ? 'green'
+                : session.score / session.total >= 0.6
+                  ? 'orange'
+                  : 'red'
+            "
             text-color="white"
             size="sm"
           >
@@ -32,72 +43,72 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useAuthStore } from '../stores/auth'
+import { ref, computed } from "vue";
+import { useAuthStore } from "../stores/auth";
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 
 interface HistorySession {
-  id: string
-  title: string
-  score: number
-  total: number
-  date: string
-  icon: string
-  color: string
+  id: string;
+  title: string;
+  score: number;
+  total: number;
+  date: string;
+  icon: string;
+  color: string;
 }
 
 const rawHistory = ref<HistorySession[]>([
   {
-    id: '1',
-    title: 'Từ vựng cơ bản',
+    id: "1",
+    title: "Từ vựng cơ bản",
     score: 8,
     total: 10,
-    date: '2 giờ trước',
-    icon: 'book',
-    color: 'green'
+    date: "2 giờ trước",
+    icon: "book",
+    color: "green",
   },
   {
-    id: '2',
-    title: 'Ngữ pháp tiếng Anh',
+    id: "2",
+    title: "Ngữ pháp tiếng Anh",
     score: 6,
     total: 10,
-    date: '1 ngày trước',
-    icon: 'grammar',
-    color: 'orange'
+    date: "1 ngày trước",
+    icon: "grammar",
+    color: "orange",
   },
   {
-    id: '3',
-    title: 'Hội thoại hàng ngày',
+    id: "3",
+    title: "Hội thoại hàng ngày",
     score: 9,
     total: 10,
-    date: '2 ngày trước',
-    icon: 'chat',
-    color: 'green'
+    date: "2 ngày trước",
+    icon: "chat",
+    color: "green",
   },
   {
-    id: '4',
-    title: 'Phát âm',
+    id: "4",
+    title: "Phát âm",
     score: 5,
     total: 10,
-    date: '3 ngày trước',
-    icon: 'volume_up',
-    color: 'red'
+    date: "3 ngày trước",
+    icon: "volume_up",
+    color: "red",
   },
   {
-    id: '5',
-    title: 'Đọc hiểu',
+    id: "5",
+    title: "Đọc hiểu",
     score: 7,
     total: 10,
-    date: '1 tuần trước',
-    icon: 'menu_book',
-    color: 'orange'
-  }
-])
+    date: "1 tuần trước",
+    icon: "menu_book",
+    color: "orange",
+  },
+]);
 
 const historySessions = computed(() => {
-  return authStore.isLoggedIn ? rawHistory.value : []
-})
+  return authStore.isLoggedIn ? rawHistory.value : [];
+});
 </script>
 
 <style scoped>

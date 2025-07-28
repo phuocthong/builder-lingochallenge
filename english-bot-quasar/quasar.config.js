@@ -1,92 +1,80 @@
 /* eslint-env node */
 
-import { configure } from 'quasar/wrappers'
+import { configure } from "quasar/wrappers";
 
 export default configure(function (/* ctx */) {
   return {
     eslint: {
       fix: true,
       warnings: true,
-      errors: true
+      errors: true,
     },
 
     preFetch: true,
 
     app: {
-      iconHash: false
+      iconHash: false,
     },
 
-    css: [
-      'app.scss'
-    ],
+    css: ["app.scss"],
 
-    extras: [
-      'material-icons'
-    ],
+    extras: ["material-icons"],
 
     build: {
       target: {
-        browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
-        node: 'node16'
+        browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
+        node: "node16",
       },
 
-      vueRouterMode: 'history'
+      vueRouterMode: "history",
     },
 
     devServer: {
       open: true,
-      port: 8080
+      port: 8080,
     },
 
     framework: {
       config: {},
-      plugins: [
-        'Notify',
-        'Dialog',
-        'Loading'
-      ]
+      plugins: ["Notify", "Dialog", "Loading"],
     },
 
-    animations: 'all',
+    animations: "all",
 
     ssr: {
       pwa: false,
       prodPort: 3000,
-      middlewares: [
-        'render'
-      ]
+      middlewares: ["render"],
     },
 
     pwa: {
-      workboxMode: 'generateSW',
+      workboxMode: "generateSW",
       injectPwaMetaTags: true,
-      swFilename: 'sw.js',
-      manifestFilename: 'manifest.json',
-      useCredentialsForManifestTag: false
+      swFilename: "sw.js",
+      manifestFilename: "manifest.json",
+      useCredentialsForManifestTag: false,
     },
 
     cordova: {},
 
     capacitor: {
-      hideSplashscreen: true
+      hideSplashscreen: true,
     },
 
     electron: {
       inspectPort: 5858,
 
-      bundler: 'packager',
+      bundler: "packager",
 
       packager: {},
 
       builder: {
-        appId: 'english-bot-quasar'
-      }
+        appId: "english-bot-quasar",
+      },
     },
 
     bex: {
-      contentScripts: [
-        'my-content-script'
-      ]
-    }
-  }
-})
+      contentScripts: ["my-content-script"],
+    },
+  };
+});

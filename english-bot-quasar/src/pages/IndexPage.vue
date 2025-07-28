@@ -37,9 +37,9 @@
 </template>
 
 <script setup lang="ts">
-import ChatInterface from '../components/ChatInterface.vue'
-import ChatHistory from '../components/ChatHistory.vue'
-import Leaderboard from '../components/Leaderboard.vue'
+import ChatInterface from "../components/ChatInterface.vue";
+import ChatHistory from "../components/ChatHistory.vue";
+import Leaderboard from "../components/Leaderboard.vue";
 </script>
 
 <style scoped>
