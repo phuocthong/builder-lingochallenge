@@ -88,13 +88,7 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
               <Zap className="h-4 w-4" />
               <span>Thách đấu</span>
             </Link>
-            <Link
-              to="/friends"
-              className="px-3 py-1.5 text-sm text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all duration-200 flex items-center space-x-1"
-            >
-              <Users className="h-4 w-4" />
-              <span>Bạn bè</span>
-            </Link>
+
             {user.isLoggedIn && (
               <Link
                 to="/profile"
