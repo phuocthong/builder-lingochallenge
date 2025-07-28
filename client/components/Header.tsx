@@ -199,14 +199,7 @@ export function Header({ onShowLogin, onShowRegister }: HeaderProps) {
                 <Zap className="h-4 w-4" />
                 <span>⚡ Thách đấu</span>
               </Link>
-              <Link
-                to="/friends"
-                className="text-gray-700 hover:text-purple-600 hover:bg-purple-50 font-medium text-sm py-2 px-3 rounded-lg transition-colors flex items-center space-x-2"
-                onClick={() => setShowMobileMenu(false)}
-              >
-                <Users className="h-4 w-4" />
-                <span>👥 Bạn bè</span>
-              </Link>
+
               {user.isLoggedIn && (
                 <Link
                   to="/profile"
