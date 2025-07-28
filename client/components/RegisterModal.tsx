@@ -43,6 +43,13 @@ export function RegisterModal({
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md p-0 overflow-hidden">
+        <VisuallyHidden>
+          <DialogTitle>
+            {authMode === "login" && "Đăng nhập"}
+            {authMode === "register" && "Đăng ký tài khoản"}
+            {authMode === "forgot" && "Quên mật khẩu"}
+          </DialogTitle>
+        </VisuallyHidden>
         <div className="p-6">
           <AuthForms
             mode={authMode}
