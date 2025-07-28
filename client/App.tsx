@@ -65,7 +65,7 @@ const AppRoutes = () => {
             />
           }
         />
-        <Route path="/about" element={<PlaceholderPage title="Giới thiệu" />} />
+        <Route path="/about" element={<About />} />
         <Route path="/guide" element={<PlaceholderPage title="Hướng dẫn" />} />
         <Route path="/challenge" element={<ChallengeRoom />} />
         <Route path="/friends" element={<Friends />} />
