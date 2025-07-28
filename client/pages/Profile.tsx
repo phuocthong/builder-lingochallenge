@@ -21,7 +21,7 @@ import {
   MessageCircle,
   Zap,
   MoreHorizontal,
-  Flame
+  Flame,
 } from "lucide-react";
 
 interface Friend {
@@ -48,32 +48,32 @@ const Profile: React.FC = () => {
         username: "@nguoidung",
         avatar: "ND",
         streak: 15,
-        isOnline: true
+        isOnline: true,
       },
       {
-        id: "2", 
+        id: "2",
         name: "Minh Anh",
         username: "@minhanh",
         avatar: "MA",
         streak: 12,
-        isOnline: true
+        isOnline: true,
       },
       {
         id: "3",
-        name: "Thu Hà", 
+        name: "Thu Hà",
         username: "@thuha",
         avatar: "TH",
         streak: 8,
-        isOnline: false
+        isOnline: false,
       },
       {
         id: "4",
         name: "Văn Nam",
-        username: "@vannam", 
+        username: "@vannam",
         avatar: "VN",
         streak: 5,
-        isOnline: true
-      }
+        isOnline: true,
+      },
     ]);
   }, []);
 
@@ -119,19 +119,30 @@ const Profile: React.FC = () => {
 
             {/* Navigation */}
             <div className="hidden md:flex items-center space-x-6">
-              <span className="text-sm text-gray-600 cursor-pointer hover:text-gray-900">Trang chủ</span>
-              <span className="text-sm text-gray-600 cursor-pointer hover:text-gray-900">Giới thiệu</span>
-              <span className="text-sm text-gray-600 cursor-pointer hover:text-gray-900">Thử thách</span>
+              <span className="text-sm text-gray-600 cursor-pointer hover:text-gray-900">
+                Trang chủ
+              </span>
+              <span className="text-sm text-gray-600 cursor-pointer hover:text-gray-900">
+                Giới thiệu
+              </span>
+              <span className="text-sm text-gray-600 cursor-pointer hover:text-gray-900">
+                Thử thách
+              </span>
             </div>
 
             {/* User Stats */}
             <div className="flex items-center space-x-4">
               <div className="hidden lg:flex items-center space-x-4 text-sm text-gray-600">
                 <div className="flex items-center space-x-1">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                    <line x1="3" y1="6" x2="21" y2="6"/>
-                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                  <svg
+                    className="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
                   </svg>
                   <span># 45</span>
                 </div>
@@ -152,15 +163,22 @@ const Profile: React.FC = () => {
                     {user.avatar}
                   </AvatarFallback>
                 </Avatar>
-                <span className="hidden sm:block text-sm font-medium text-gray-900">{user.name}</span>
+                <span className="hidden sm:block text-sm font-medium text-gray-900">
+                  {user.name}
+                </span>
               </div>
 
               {/* Logout Button */}
               <Button variant="outline" size="sm" className="text-sm">
-                <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                  <polyline points="16,17 21,12 16,7"/>
-                  <line x1="21" y1="12" x2="9" y2="12"/>
+                <svg
+                  className="w-4 h-4 mr-2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                  <polyline points="16,17 21,12 16,7" />
+                  <line x1="21" y1="12" x2="9" y2="12" />
                 </svg>
                 Đăng xuất
               </Button>
@@ -212,55 +230,71 @@ const Profile: React.FC = () => {
 
               {/* Friends List */}
               <div className="space-y-3">
-                {friends.filter(friend => 
-                  friend.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                  friend.username.toLowerCase().includes(searchQuery.toLowerCase())
-                ).map((friend) => (
-                  <Card key={friend.id} className="border border-gray-200">
-                    <CardContent className="p-6">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          {/* Avatar */}
-                          <div className="relative">
-                            <div className="w-14 h-14 rounded-full border-2 border-gray-300 bg-gradient-to-br from-purple-400 to-blue-400 flex items-center justify-center">
-                              <span className="text-white font-bold text-lg">{friend.avatar}</span>
+                {friends
+                  .filter(
+                    (friend) =>
+                      friend.name
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase()) ||
+                      friend.username
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase()),
+                  )
+                  .map((friend) => (
+                    <Card key={friend.id} className="border border-gray-200">
+                      <CardContent className="p-6">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3">
+                            {/* Avatar */}
+                            <div className="relative">
+                              <div className="w-14 h-14 rounded-full border-2 border-gray-300 bg-gradient-to-br from-purple-400 to-blue-400 flex items-center justify-center">
+                                <span className="text-white font-bold text-lg">
+                                  {friend.avatar}
+                                </span>
+                              </div>
+                              {/* Online Status */}
+                              {friend.isOnline && (
+                                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+                              )}
                             </div>
-                            {/* Online Status */}
-                            {friend.isOnline && (
-                              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
-                            )}
+
+                            {/* User Info */}
+                            <div className="space-y-1">
+                              <h3 className="font-medium text-gray-900 text-lg">
+                                {friend.name}
+                              </h3>
+                              <p className="text-gray-600 text-sm">
+                                {friend.username}
+                              </p>
+                              <div className="flex items-center space-x-2">
+                                <Flame className="w-3 h-3 text-yellow-500" />
+                                <span className="text-yellow-600 text-xs font-medium">
+                                  {friend.streak} ngày •{" "}
+                                  {friend.isOnline
+                                    ? "Đang hoạt động"
+                                    : "Offline"}
+                                </span>
+                              </div>
+                            </div>
                           </div>
 
-                          {/* User Info */}
-                          <div className="space-y-1">
-                            <h3 className="font-medium text-gray-900 text-lg">{friend.name}</h3>
-                            <p className="text-gray-600 text-sm">{friend.username}</p>
-                            <div className="flex items-center space-x-2">
-                              <Flame className="w-3 h-3 text-yellow-500" />
-                              <span className="text-yellow-600 text-xs font-medium">
-                                {friend.streak} ngày • {friend.isOnline ? 'Đang hoạt động' : 'Offline'}
-                              </span>
-                            </div>
+                          {/* Action Buttons */}
+                          <div className="flex items-center space-x-2">
+                            <Button
+                              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2"
+                              onClick={() => handleChallenge(friend.name)}
+                            >
+                              <Zap className="w-4 h-4 mr-2" />
+                              Th��� thách
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              <MoreHorizontal className="w-4 h-4 text-yellow-500" />
+                            </Button>
                           </div>
                         </div>
-
-                        {/* Action Buttons */}
-                        <div className="flex items-center space-x-2">
-                          <Button 
-                            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2"
-                            onClick={() => handleChallenge(friend.name)}
-                          >
-                            <Zap className="w-4 h-4 mr-2" />
-                            Th��� thách
-                          </Button>
-                          <Button variant="ghost" size="sm">
-                            <MoreHorizontal className="w-4 h-4 text-yellow-500" />
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                      </CardContent>
+                    </Card>
+                  ))}
               </div>
             </div>
           )}
@@ -271,11 +305,13 @@ const Profile: React.FC = () => {
                 <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
                 <p className="text-gray-600">Chào mừng trở lại, {user.name}!</p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-lg">Thống kê tổng quan</CardTitle>
+                    <CardTitle className="text-lg">
+                      Thống kê tổng quan
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
@@ -285,11 +321,15 @@ const Profile: React.FC = () => {
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Câu đúng:</span>
-                        <span className="font-semibold text-green-600">523</span>
+                        <span className="font-semibold text-green-600">
+                          523
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Streak:</span>
-                        <span className="font-semibold text-blue-600">7 ngày</span>
+                        <span className="font-semibold text-blue-600">
+                          7 ngày
+                        </span>
                       </div>
                     </div>
                   </CardContent>
@@ -301,8 +341,12 @@ const Profile: React.FC = () => {
           {activeTab === "add-friends" && (
             <div className="space-y-6">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Thêm bạn bè</h1>
-                <p className="text-gray-600">Tìm kiếm và kết bạn với người dùng khác</p>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  Thêm bạn bè
+                </h1>
+                <p className="text-gray-600">
+                  Tìm kiếm và kết bạn với người dùng khác
+                </p>
               </div>
               <div className="text-center py-12">
                 <UserPlus className="w-12 h-12 text-gray-400 mx-auto mb-4" />
@@ -315,7 +359,9 @@ const Profile: React.FC = () => {
             <div className="space-y-6">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Nhiệm vụ</h1>
-                <p className="text-gray-600">Hoàn thành nhiệm vụ để nhận điểm thưởng</p>
+                <p className="text-gray-600">
+                  Hoàn thành nhiệm vụ để nhận điểm thưởng
+                </p>
               </div>
               <div className="text-center py-12">
                 <ClipboardList className="w-12 h-12 text-gray-400 mx-auto mb-4" />
@@ -328,7 +374,9 @@ const Profile: React.FC = () => {
             <div className="space-y-6">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Đổi điểm</h1>
-                <p className="text-gray-600">Sử dụng điểm để đổi lấy phần thưởng</p>
+                <p className="text-gray-600">
+                  Sử dụng điểm để đổi lấy phần thưởng
+                </p>
               </div>
               <div className="text-center py-12">
                 <CreditCard className="w-12 h-12 text-gray-400 mx-auto mb-4" />

@@ -1,18 +1,24 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { Label } from "./ui/label";
 import { Alert, AlertDescription } from "./ui/alert";
-import { 
-  Eye, 
-  EyeOff, 
-  User, 
-  Mail, 
-  Lock, 
-  ArrowLeft, 
-  CheckCircle, 
-  AlertCircle 
+import {
+  Eye,
+  EyeOff,
+  User,
+  Mail,
+  Lock,
+  ArrowLeft,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 import { cn } from "../lib/utils";
 
@@ -40,14 +46,19 @@ interface FormErrors {
   general?: string;
 }
 
-export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthFormsProps) {
+export function AuthForms({
+  mode,
+  onModeChange,
+  onLogin,
+  onRegister,
+}: AuthFormsProps) {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
-  
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -99,17 +110,17 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
   };
 
   const handleInputChange = (field: keyof FormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    
+    setFormData((prev) => ({ ...prev, [field]: value }));
+
     // Clear error when user starts typing
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setIsLoading(true);
@@ -117,17 +128,17 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       if (mode === "login") {
         onLogin({
-          name: formData.name || formData.email.split('@')[0],
-          email: formData.email
+          name: formData.name || formData.email.split("@")[0],
+          email: formData.email,
         });
       } else if (mode === "register") {
         onRegister({
           name: formData.name,
-          email: formData.email
+          email: formData.email,
         });
       } else if (mode === "forgot") {
         setResetEmailSent(true);
@@ -144,7 +155,7 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
       name: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
     });
     setErrors({});
     setResetEmailSent(false);
@@ -170,7 +181,7 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
             </CardDescription>
           </div>
         </CardHeader>
-        
+
         <CardContent className="space-y-4">
           <Alert>
             <Mail className="h-4 w-4" />
@@ -178,7 +189,7 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
               Kiểm tra hộp thư đến và thư mục spam của bạn.
             </AlertDescription>
           </Alert>
-          
+
           <div className="space-y-2">
             <Button
               onClick={() => handleModeChange("login")}
@@ -186,7 +197,7 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
             >
               Quay lại đăng nhập
             </Button>
-            
+
             <Button
               variant="outline"
               onClick={() => setResetEmailSent(false)}
@@ -251,10 +262,7 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
                   placeholder="Nhập tên của bạn"
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
-                  className={cn(
-                    "pl-10",
-                    errors.name && "border-red-500"
-                  )}
+                  className={cn("pl-10", errors.name && "border-red-500")}
                 />
               </div>
               {errors.name && (
@@ -274,10 +282,7 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
                 placeholder="Nhập email của bạn"
                 value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
-                className={cn(
-                  "pl-10",
-                  errors.email && "border-red-500"
-                )}
+                className={cn("pl-10", errors.email && "border-red-500")}
               />
             </div>
             {errors.email && (
@@ -296,10 +301,12 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
                   type={showPassword ? "text" : "password"}
                   placeholder="Nhập mật khẩu"
                   value={formData.password}
-                  onChange={(e) => handleInputChange("password", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("password", e.target.value)
+                  }
                   className={cn(
                     "pl-10 pr-10",
-                    errors.password && "border-red-500"
+                    errors.password && "border-red-500",
                   )}
                 />
                 <Button
@@ -333,10 +340,12 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Nhập lại mật khẩu"
                   value={formData.confirmPassword}
-                  onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("confirmPassword", e.target.value)
+                  }
                   className={cn(
                     "pl-10 pr-10",
-                    errors.confirmPassword && "border-red-500"
+                    errors.confirmPassword && "border-red-500",
                   )}
                 />
                 <Button
@@ -360,11 +369,7 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
           )}
 
           {/* Submit Button */}
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={isLoading}
-          >
+          <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? (
               <div className="flex items-center space-x-2">
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
@@ -391,7 +396,7 @@ export function AuthForms({ mode, onModeChange, onLogin, onRegister }: AuthForms
                 >
                   Quên mật khẩu?
                 </Button>
-                
+
                 <div className="text-sm text-gray-600">
                   Chưa có tài khoản?{" "}
                   <Button

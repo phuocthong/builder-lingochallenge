@@ -1,7 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Send, Bot, User, CheckCircle, XCircle, Lock, LogIn } from "lucide-react";
+import {
+  Send,
+  Bot,
+  User,
+  CheckCircle,
+  XCircle,
+  Lock,
+  LogIn,
+} from "lucide-react";
 import { cn } from "../lib/utils";
 import { Alert, AlertDescription } from "./ui/alert";
 import { useAuth } from "../contexts/AuthContext";
@@ -36,14 +44,14 @@ interface ChatInterfaceProps {
 }
 
 const QUESTIONS = [
-  { question: 'Dịch từ "Beautiful" sang tiếng Việt', answer: 'đẹp' },
-  { question: 'Dịch từ "Happy" sang tiếng Việt', answer: 'hạnh phúc' },
-  { question: 'Dịch từ "Wonderful" sang tiếng Việt', answer: 'tuyệt vời' },
-  { question: 'Dịch từ "Intelligent" sang tiếng Việt', answer: 'thông minh' },
-  { question: 'Dịch từ "Friendly" sang tiếng Việt', answer: 'thân thiện' },
-  { question: 'D���ch từ "Amazing" sang tiếng Việt', answer: 'tuyệt vời' },
-  { question: 'Dịch từ "Confident" sang tiếng Việt', answer: 'tự tin' },
-  { question: 'Dịch từ "Creative" sang tiếng Việt', answer: 'sáng tạo' },
+  { question: 'Dịch từ "Beautiful" sang tiếng Việt', answer: "đẹp" },
+  { question: 'Dịch từ "Happy" sang tiếng Việt', answer: "hạnh phúc" },
+  { question: 'Dịch từ "Wonderful" sang tiếng Việt', answer: "tuyệt vời" },
+  { question: 'Dịch từ "Intelligent" sang tiếng Việt', answer: "thông minh" },
+  { question: 'Dịch từ "Friendly" sang tiếng Việt', answer: "thân thiện" },
+  { question: 'D���ch từ "Amazing" sang tiếng Việt', answer: "tuyệt vời" },
+  { question: 'Dịch từ "Confident" sang tiếng Việt', answer: "tự tin" },
+  { question: 'Dịch từ "Creative" sang tiếng Việt', answer: "sáng tạo" },
 ];
 
 // Mock other users answering
@@ -58,22 +66,32 @@ const MOCK_USERS = [
   { id: "user8", name: "Mai Linh", avatar: "ML" },
 ];
 
-export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProps) {
+export function ChatInterface({
+  onShowLogin,
+  onShowRegister,
+}: ChatInterfaceProps) {
   const { user, updateStats } = useAuth();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: 'Xin chào! 👋 Tôi là EnglishBot. Tôi sẽ đưa ra câu hỏi tiếng Anh để các bạn trả lời. Hãy sẵn sàng!',
+      text: "Xin chào! 👋 Tôi là EnglishBot. Tôi sẽ đưa ra câu hỏi tiếng Anh để các bạn trả lời. Hãy sẵn sàng!",
       sender: "bot",
-      timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
+      timestamp: new Date().toLocaleTimeString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
     },
   ]);
   const [inputText, setInputText] = useState("");
-  const [currentQuestionId, setCurrentQuestionId] = useState<number | null>(null);
+  const [currentQuestionId, setCurrentQuestionId] = useState<number | null>(
+    null,
+  );
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [questionStartTime, setQuestionStartTime] = useState<Date | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [answeredUsers, setAnsweredUsers] = useState<Array<{userId: string, userName: string, timestamp: string}>>([]);
+  const [answeredUsers, setAnsweredUsers] = useState<
+    Array<{ userId: string; userName: string; timestamp: string }>
+  >([]);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [lastClickTime, setLastClickTime] = useState<number>(0);
 
@@ -101,18 +119,23 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
         // Randomly add mock users who "answered"
         if (Math.random() < 0.3 && answeredUsers.length < 8) {
           const availableUsers = MOCK_USERS.filter(
-            user => !answeredUsers.some(answered => answered.userId === user.id)
+            (user) =>
+              !answeredUsers.some((answered) => answered.userId === user.id),
           );
-          
+
           if (availableUsers.length > 0) {
-            const randomUser = availableUsers[Math.floor(Math.random() * availableUsers.length)];
+            const randomUser =
+              availableUsers[Math.floor(Math.random() * availableUsers.length)];
             const newAnsweredUser = {
               userId: randomUser.id,
               userName: randomUser.name,
-              timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" })
+              timestamp: new Date().toLocaleTimeString("vi-VN", {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
             };
-            
-            setAnsweredUsers(prev => [newAnsweredUser, ...prev].slice(0, 10));
+
+            setAnsweredUsers((prev) => [newAnsweredUser, ...prev].slice(0, 10));
           }
         }
       }, 2000);
@@ -122,18 +145,22 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
   }, [waitingForAnswer, currentQuestionId, answeredUsers]);
 
   const askNewQuestion = () => {
-    const randomQuestion = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
+    const randomQuestion =
+      QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
     const questionMessage: Message = {
       id: Date.now(),
       text: `📚 ${randomQuestion.question}`,
       sender: "bot",
-      timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
+      timestamp: new Date().toLocaleTimeString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
       isQuestion: true,
       correctAnswer: randomQuestion.answer,
-      userResponses: []
+      userResponses: [],
     };
-    
-    setMessages(prev => [...prev, questionMessage]);
+
+    setMessages((prev) => [...prev, questionMessage]);
     setCurrentQuestionId(questionMessage.id);
     setWaitingForAnswer(true);
     setQuestionStartTime(new Date());
@@ -146,27 +173,32 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
   };
 
   const revealAnswer = (questionId: number, correctAnswer: string) => {
-    setMessages(prev => prev.map(msg => {
-      if (msg.id === questionId) {
-        return {
-          ...msg,
-          isQuestion: false
-        };
-      }
-      return msg;
-    }));
-    
+    setMessages((prev) =>
+      prev.map((msg) => {
+        if (msg.id === questionId) {
+          return {
+            ...msg,
+            isQuestion: false,
+          };
+        }
+        return msg;
+      }),
+    );
+
     const answerMessage: Message = {
       id: Date.now() + 1,
       text: `✅ Đáp án đúng: "${correctAnswer}"`,
       sender: "system",
-      timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
+      timestamp: new Date().toLocaleTimeString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
     };
-    
-    setMessages(prev => [...prev, answerMessage]);
+
+    setMessages((prev) => [...prev, answerMessage]);
     setCurrentQuestionId(null);
     setWaitingForAnswer(false);
-    
+
     // Ask next question after 8 seconds
     setTimeout(() => {
       askNewQuestion();
@@ -180,7 +212,7 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
       if (now - lastClickTime > 1000) {
         setShowLoginPrompt(true);
         setLastClickTime(now);
-        
+
         // Auto hide prompt after 4 seconds
         setTimeout(() => {
           setShowLoginPrompt(false);
@@ -197,20 +229,28 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
 
     if (inputText.trim() && user.isLoggedIn) {
       const userAnswer = inputText.trim().toLowerCase();
-      const currentQuestion = messages.find(msg => msg.id === currentQuestionId);
-      
+      const currentQuestion = messages.find(
+        (msg) => msg.id === currentQuestionId,
+      );
+
       if (currentQuestion && currentQuestion.isQuestion) {
-        const isCorrect = userAnswer === currentQuestion.correctAnswer?.toLowerCase();
-        
+        const isCorrect =
+          userAnswer === currentQuestion.correctAnswer?.toLowerCase();
+
         // Add user to answered users list
         const newAnsweredUser = {
           userId: user.id,
           userName: user.name,
-          timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" })
+          timestamp: new Date().toLocaleTimeString("vi-VN", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
         };
 
-        setAnsweredUsers(prev => {
-          const filtered = prev.filter(answeredUser => answeredUser.userId !== user.id);
+        setAnsweredUsers((prev) => {
+          const filtered = prev.filter(
+            (answeredUser) => answeredUser.userId !== user.id,
+          );
           return [newAnsweredUser, ...filtered].slice(0, 10);
         });
 
@@ -219,11 +259,14 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
           updateStats({
             totalCorrect: user.stats.totalCorrect + 1,
             streak: user.stats.streak + 1,
-            accuracy: Math.round(((user.stats.totalCorrect + 1) / (user.stats.totalCorrect + 1)) * 100)
+            accuracy: Math.round(
+              ((user.stats.totalCorrect + 1) / (user.stats.totalCorrect + 1)) *
+                100,
+            ),
           });
         } else if (!isCorrect && user.stats) {
           updateStats({
-            streak: 0
+            streak: 0,
           });
         }
 
@@ -231,34 +274,40 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
           id: Date.now(),
           text: inputText,
           sender: "user",
-          timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
-          isCorrect
+          timestamp: new Date().toLocaleTimeString("vi-VN", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          isCorrect,
         };
-        
-        setMessages(prev => [...prev, newMessage]);
-        
+
+        setMessages((prev) => [...prev, newMessage]);
+
         // Bot responds after 2 seconds
         setTimeout(() => {
           const responseMessage: Message = {
             id: Date.now() + 1,
-            text: isCorrect ? 
-              `🎉 Chính xác! "${currentQuestion.correctAnswer}" là đáp án đúng.` : 
-              `❌ Không chính xác. Đáp án đúng là: "${currentQuestion.correctAnswer}"`,
+            text: isCorrect
+              ? `🎉 Chính xác! "${currentQuestion.correctAnswer}" là đáp án đúng.`
+              : `❌ Không chính xác. Đáp án đúng là: "${currentQuestion.correctAnswer}"`,
             sender: "bot",
-            timestamp: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
+            timestamp: new Date().toLocaleTimeString("vi-VN", {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
           };
-          setMessages(prev => [...prev, responseMessage]);
-          
+          setMessages((prev) => [...prev, responseMessage]);
+
           // End current question and start new one
           setCurrentQuestionId(null);
           setWaitingForAnswer(false);
-          
+
           setTimeout(() => {
             askNewQuestion();
           }, 5000);
         }, 2000);
       }
-      
+
       setInputText("");
     }
   };
@@ -326,16 +375,20 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
             key={message.id}
             className={cn(
               "flex items-start space-x-2 sm:space-x-3",
-              message.sender === "user" ? "flex-row-reverse space-x-reverse" : "",
+              message.sender === "user"
+                ? "flex-row-reverse space-x-reverse"
+                : "",
             )}
           >
             {/* Avatar */}
             <div
               className={cn(
                 "p-1.5 sm:p-2 rounded-full flex-shrink-0",
-                message.sender === "bot" ? "bg-purple-100" : 
-                message.sender === "system" ? "bg-green-100" :
-                "bg-blue-100",
+                message.sender === "bot"
+                  ? "bg-purple-100"
+                  : message.sender === "system"
+                    ? "bg-green-100"
+                    : "bg-blue-100",
               )}
             >
               {message.sender === "bot" ? (
@@ -354,25 +407,26 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
                 message.sender === "bot"
                   ? "bg-gray-100 text-gray-900 rounded-br-sm"
                   : message.sender === "system"
-                  ? "bg-green-100 text-green-800 border border-green-200 rounded-br-sm"
-                  : message.isCorrect === true
-                  ? "bg-green-500 text-white rounded-bl-sm"
-                  : message.isCorrect === false
-                  ? "bg-red-500 text-white rounded-bl-sm"
-                  : "bg-blue-500 text-white rounded-bl-sm",
+                    ? "bg-green-100 text-green-800 border border-green-200 rounded-br-sm"
+                    : message.isCorrect === true
+                      ? "bg-green-500 text-white rounded-bl-sm"
+                      : message.isCorrect === false
+                        ? "bg-red-500 text-white rounded-bl-sm"
+                        : "bg-blue-500 text-white rounded-bl-sm",
               )}
             >
               <div className="flex items-center">
                 <p className="text-sm flex-1">{message.text}</p>
-                {message.sender === "user" && message.isCorrect !== undefined && (
-                  <div className="ml-2">
-                    {message.isCorrect ? (
-                      <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4" />
-                    ) : (
-                      <XCircle className="h-3 w-3 sm:h-4 sm:w-4" />
-                    )}
-                  </div>
-                )}
+                {message.sender === "user" &&
+                  message.isCorrect !== undefined && (
+                    <div className="ml-2">
+                      {message.isCorrect ? (
+                        <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4" />
+                      ) : (
+                        <XCircle className="h-3 w-3 sm:h-4 sm:w-4" />
+                      )}
+                    </div>
+                  )}
               </div>
               <p
                 className={cn(
@@ -380,8 +434,8 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
                   message.sender === "bot"
                     ? "text-gray-500"
                     : message.sender === "system"
-                    ? "text-green-600"
-                    : "text-white/80",
+                      ? "text-green-600"
+                      : "text-white/80",
                 )}
               >
                 {message.timestamp}
@@ -398,10 +452,15 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
         {/* Current question active users - Mobile Optimized */}
         {waitingForAnswer && answeredUsers.length > 0 && (
           <div className="text-sm text-gray-500 mt-4 p-3 bg-blue-50 rounded-lg">
-            <p className="mb-2 font-medium">👥 Đã trả lời ({answeredUsers.length}):</p>
+            <p className="mb-2 font-medium">
+              👥 Đã trả lời ({answeredUsers.length}):
+            </p>
             <div className="flex flex-wrap gap-1.5">
               {answeredUsers.slice(0, 10).map((user, index) => (
-                <span key={`${user.userId}-${index}`} className="text-blue-600 bg-white px-2 py-1 rounded-full text-xs font-medium">
+                <span
+                  key={`${user.userId}-${index}`}
+                  className="text-blue-600 bg-white px-2 py-1 rounded-full text-xs font-medium"
+                >
                   {user.userName}
                 </span>
               ))}
@@ -427,29 +486,36 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
             }
             className={cn(
               "flex-1 text-sm",
-              user.isLoggedIn ? "bg-white" : "bg-gray-100 cursor-pointer"
+              user.isLoggedIn ? "bg-white" : "bg-gray-100 cursor-pointer",
             )}
             disabled={!user.isLoggedIn || !waitingForAnswer}
           />
           <Button
             onClick={handleSendMessage}
             className="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4"
-            disabled={!inputText.trim() || !user.isLoggedIn || !waitingForAnswer}
+            disabled={
+              !inputText.trim() || !user.isLoggedIn || !waitingForAnswer
+            }
             size="sm"
           >
-            {user.isLoggedIn ? <Send className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
+            {user.isLoggedIn ? (
+              <Send className="h-4 w-4" />
+            ) : (
+              <Lock className="h-4 w-4" />
+            )}
           </Button>
         </div>
-        
+
         <div className="flex items-center justify-center mt-2 text-xs text-gray-500">
-          <div className={cn(
-            "w-2 h-2 rounded-full mr-2",
-            user.isLoggedIn ? "bg-green-500" : "bg-red-500"
-          )}></div>
-          {user.isLoggedIn ?
-            `✅ Đã đăng nhập - ${user.name}` :
-            "❌ Chưa đăng nhập"
-          }
+          <div
+            className={cn(
+              "w-2 h-2 rounded-full mr-2",
+              user.isLoggedIn ? "bg-green-500" : "bg-red-500",
+            )}
+          ></div>
+          {user.isLoggedIn
+            ? `✅ Đã đăng nhập - ${user.name}`
+            : "❌ Chưa đăng nhập"}
         </div>
 
         {/* Call to action for non-logged-in users - Mobile Optimized */}

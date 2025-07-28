@@ -16,7 +16,9 @@ export function LoginModal({
   onLogin,
   onSwitchToRegister,
 }: LoginModalProps) {
-  const [authMode, setAuthMode] = useState<"login" | "register" | "forgot">("login");
+  const [authMode, setAuthMode] = useState<"login" | "register" | "forgot">(
+    "login",
+  );
 
   const handleLogin = (userData: { name: string; email: string }) => {
     onLogin(userData);

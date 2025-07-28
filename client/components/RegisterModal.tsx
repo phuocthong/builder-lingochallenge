@@ -16,7 +16,9 @@ export function RegisterModal({
   onRegister,
   onSwitchToLogin,
 }: RegisterModalProps) {
-  const [authMode, setAuthMode] = useState<"login" | "register" | "forgot">("register");
+  const [authMode, setAuthMode] = useState<"login" | "register" | "forgot">(
+    "register",
+  );
 
   const handleLogin = (userData: { name: string; email: string }) => {
     onRegister(userData); // Auto login after register
