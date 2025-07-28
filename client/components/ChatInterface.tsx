@@ -419,9 +419,9 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input - Mobile Optimized */}
-      <div className="p-3 sm:p-4 border-t bg-gray-50">
-        <div className="flex space-x-2 sm:space-x-3">
+      {/* Input - Mobile Optimized for 440px */}
+      <div className="p-2 sm:p-4 border-t bg-gray-50">
+        <div className="flex space-x-2">
           <Input
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
@@ -433,50 +433,52 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
                 : "Đăng nhập để trả lời..."
             }
             className={cn(
-              "flex-1 text-sm",
+              "flex-1 text-sm h-9",
               user.isLoggedIn ? "bg-white" : "bg-gray-100 cursor-pointer"
             )}
             disabled={!user.isLoggedIn || !waitingForAnswer}
           />
           <Button
             onClick={handleSendMessage}
-            className="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4"
+            className="bg-blue-600 hover:bg-blue-700 px-3 h-9"
             disabled={!inputText.trim() || !user.isLoggedIn || !waitingForAnswer}
             size="sm"
           >
             {user.isLoggedIn ? <Send className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
           </Button>
         </div>
-        
+
         <div className="flex items-center justify-center mt-2 text-xs text-gray-500">
           <div className={cn(
-            "w-2 h-2 rounded-full mr-2",
+            "w-1.5 h-1.5 rounded-full mr-1.5",
             user.isLoggedIn ? "bg-green-500" : "bg-red-500"
           )}></div>
-          {user.isLoggedIn ?
-            `✅ Đã đăng nhập - ${user.name}` :
-            "❌ Chưa đăng nhập"
-          }
+          <span className="truncate">
+            {user.isLoggedIn ?
+              `✅ ${user.name}` :
+              "❌ Chưa đăng nhập"
+            }
+          </span>
         </div>
 
         {/* Call to action for non-logged-in users - Mobile Optimized */}
         {!user.isLoggedIn && (
-          <div className="mt-3 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-2">
+          <div className="mt-2 flex space-x-2">
             <Button
               size="sm"
               variant="outline"
               onClick={onShowRegister}
-              className="text-xs border-purple-200 text-purple-700 hover:bg-purple-50 flex-1 sm:flex-none"
+              className="text-xs border-purple-200 text-purple-700 hover:bg-purple-50 flex-1 h-8"
             >
-              🎯 Đăng ký miễn phí
+              🎯 Đăng ký
             </Button>
             <Button
               size="sm"
               onClick={onShowLogin}
-              className="text-xs bg-purple-600 hover:bg-purple-700 flex-1 sm:flex-none"
+              className="text-xs bg-purple-600 hover:bg-purple-700 flex-1 h-8"
             >
               <LogIn className="h-3 w-3 mr-1" />
-              Đăng nhập ngay
+              Đăng nhập
             </Button>
           </div>
         )}
