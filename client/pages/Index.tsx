@@ -1,6 +1,8 @@
 import { ChatInterface } from "../components/ChatInterface";
 import { ChatHistory } from "../components/ChatHistory";
 import { Leaderboard } from "../components/Leaderboard";
+import { LandingPage } from "../components/LandingPage";
+import { useAuth } from "../contexts/AuthContext";
 
 interface IndexProps {
   onShowLogin: () => void;
@@ -8,6 +10,19 @@ interface IndexProps {
 }
 
 export default function Index({ onShowLogin, onShowRegister }: IndexProps) {
+  const { user } = useAuth();
+
+  // Show landing page if user is not logged in
+  if (!user.isLoggedIn) {
+    return (
+      <LandingPage
+        onShowLogin={onShowLogin}
+        onShowRegister={onShowRegister}
+      />
+    );
+  }
+
+  // Show main app interface if user is logged in
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
       {/* Mobile-first responsive container */}
