@@ -72,6 +72,8 @@ const handleRegister = (userData: { name: string; email: string }) => {
     message: `Đăng ký thành công! Chào mừng ${userData.name}!`,
     position: "top",
   });
+  // Redirect to chat page after register
+  $router.push('/chat');
 };
 
 const switchToRegister = () => {
