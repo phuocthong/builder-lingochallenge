@@ -101,7 +101,7 @@
               color="primary"
               label="🚀 Đăng nhập Demo (Phước Thông)"
               class="full-width q-py-sm"
-              @click="() => handleLogin({name: 'Phước Thông', email: 'phuocthoang@demo.com'})"
+              @click="doLogin"
             />
             <div class="text-center q-mt-sm text-caption text-grey-6">
               Click để đăng nhập nhanh
@@ -192,7 +192,7 @@ const handleLogin = (userData: { name: string; email: string }) => {
   showLoginDialog.value = false
   $q.notify({
     type: "positive",
-    message: `Chào mừng ${userData.name}!`,
+    message: `Ch��o mừng ${userData.name}!`,
     position: "top",
   })
   router.push('/chat')
