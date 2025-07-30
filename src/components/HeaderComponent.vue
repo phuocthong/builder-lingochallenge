@@ -57,18 +57,18 @@
 
         <template v-else>
           <!-- Login/Register Buttons -->
-          <q-btn 
-            flat 
+          <q-btn
+            flat
             label="Đăng nhập"
             color="grey-7"
-            @click="showLogin"
+            @click="handleLoginClick"
             class="q-mr-sm"
           />
-          <q-btn 
+          <q-btn
             outline
             label="Đăng ký"
             color="primary"
-            @click="showRegister"
+            @click="handleRegisterClick"
           />
         </template>
       </div>
