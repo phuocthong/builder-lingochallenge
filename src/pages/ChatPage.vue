@@ -41,7 +41,7 @@
             <div class="user-name">Người dùng</div>
           </div>
           
-          <div class="logout-btn">
+          <div class="logout-btn" @click="handleLogout">
             <q-icon name="logout" size="16px" />
             <span>Đăng xuất</span>
           </div>
