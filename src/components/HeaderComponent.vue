@@ -85,6 +85,16 @@
         </q-card-section>
 
         <q-card-section>
+          <!-- Test Button -->
+          <div class="q-mb-md">
+            <q-btn
+              color="red"
+              label="TEST CLICK"
+              class="full-width"
+              @click="() => alert('Click hoạt động!')"
+            />
+          </div>
+
           <!-- Demo Login Button -->
           <div class="q-mb-lg">
             <q-btn
