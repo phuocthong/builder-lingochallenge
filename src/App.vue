@@ -56,6 +56,7 @@ provide("showRegister", () => {
 });
 
 const handleLogin = (userData: { name: string; email: string }) => {
+  console.log('App.vue handleLogin called with:', userData);
   authStore.login(userData);
   showLoginDialog.value = false;
   $q.notify({
@@ -64,6 +65,7 @@ const handleLogin = (userData: { name: string; email: string }) => {
     position: "top",
   });
   // Redirect to chat page after login
+  console.log('Redirecting to chat...');
   $router.push('/chat');
 };
 
