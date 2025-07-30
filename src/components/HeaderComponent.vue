@@ -91,7 +91,7 @@
               color="red"
               label="TEST CLICK"
               class="full-width"
-              @click="() => alert('Click hoạt động!')"
+              @click="testClick"
             />
           </div>
 
