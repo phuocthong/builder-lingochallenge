@@ -2,7 +2,7 @@
   <div id="q-app">
     <q-layout view="hHh lpR fFf">
       <!-- Header -->
-      <q-header class="gradient-bg">
+      <q-header class="bg-white text-dark">
         <HeaderComponent />
       </q-header>
 
@@ -82,3 +82,9 @@ const switchToLogin = () => {
   showLoginDialog.value = true;
 };
 </script>
+
+<style>
+#q-app {
+  font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+}
+</style>
