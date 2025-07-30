@@ -77,11 +77,18 @@
 
 <script setup lang="ts">
 import { inject } from 'vue'
+import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 
 const authStore = useAuthStore()
+const router = useRouter()
 const showLogin = inject('showLogin') as () => void
 const showRegister = inject('showRegister') as () => void
+
+const handleLogout = () => {
+  authStore.logout()
+  router.push('/')
+}
 </script>
 
 <style scoped>
