@@ -49,6 +49,9 @@ export const useAuthStore = defineStore("auth", () => {
       avatar: "",
       isLoggedIn: false,
     };
+    // Get router from current context
+    const router = useRouter();
+    router.push('/');
   };
 
   return {
