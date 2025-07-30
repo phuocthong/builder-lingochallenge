@@ -1,7 +1,10 @@
 <template>
   <q-page class="bg-grey-1">
     <!-- Kiểm tra đăng nhập -->
-    <div v-if="!authStore.isLoggedIn" class="flex items-center justify-center min-h-screen">
+    <div
+      v-if="!authStore.isLoggedIn"
+      class="flex items-center justify-center min-h-screen"
+    >
       <q-card class="max-w-md mx-auto">
         <q-card-section class="text-center">
           <q-icon name="lock" size="xl" color="grey-5" class="q-mb-md" />
@@ -9,8 +12,8 @@
           <p class="text-grey-6 q-mb-lg">
             Bạn cần đăng nhập để xem hồ sơ cá nhân
           </p>
-          <q-btn 
-            color="primary" 
+          <q-btn
+            color="primary"
             label="Quay lại trang chủ"
             @click="$router.push('/')"
           />
@@ -65,7 +68,9 @@
                   <q-icon :name="item.icon" />
                 </q-item-section>
                 <q-item-section>
-                  <q-item-label class="text-weight-medium">{{ item.label }}</q-item-label>
+                  <q-item-label class="text-weight-medium">{{
+                    item.label
+                  }}</q-item-label>
                 </q-item-section>
               </q-item>
             </q-list>
@@ -105,27 +110,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useAuthStore } from '../stores/auth'
-import DashboardTab from '../components/profile/DashboardTab.vue'
-import FriendsTab from '../components/profile/FriendsTab.vue'
-import AddFriendsTab from '../components/profile/AddFriendsTab.vue'
-import TasksTab from '../components/profile/TasksTab.vue'
-import ExchangeTab from '../components/profile/ExchangeTab.vue'
+import { ref, computed } from "vue";
+import { useAuthStore } from "../stores/auth";
+import DashboardTab from "../components/profile/DashboardTab.vue";
+import FriendsTab from "../components/profile/FriendsTab.vue";
+import AddFriendsTab from "../components/profile/AddFriendsTab.vue";
+import TasksTab from "../components/profile/TasksTab.vue";
+import ExchangeTab from "../components/profile/ExchangeTab.vue";
 
-const authStore = useAuthStore()
-const activeTab = ref('dashboard')
+const authStore = useAuthStore();
+const activeTab = ref("dashboard");
 
 const sidebarOptions = [
-  { id: 'dashboard', label: 'Dashboard', icon: 'home' },
-  { id: 'friends', label: 'Bạn bè', icon: 'people' },
-  { id: 'add-friends', label: 'Thêm bạn bè', icon: 'person_add' },
-  { id: 'tasks', label: 'Nhiệm vụ', icon: 'assignment' },
-  { id: 'exchange', label: 'Đổi điểm', icon: 'credit_card' }
-]
+  { id: "dashboard", label: "Dashboard", icon: "home" },
+  { id: "friends", label: "Bạn bè", icon: "people" },
+  { id: "add-friends", label: "Thêm bạn bè", icon: "person_add" },
+  { id: "tasks", label: "Nhiệm vụ", icon: "assignment" },
+  { id: "exchange", label: "Đổi điểm", icon: "credit_card" },
+];
 
 const getCurrentTabIcon = () => {
-  const currentTab = sidebarOptions.find(item => item.id === activeTab.value)
-  return currentTab?.icon || 'home'
-}
+  const currentTab = sidebarOptions.find((item) => item.id === activeTab.value);
+  return currentTab?.icon || "home";
+};
 </script>
