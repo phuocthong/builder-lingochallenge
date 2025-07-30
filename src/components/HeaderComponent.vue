@@ -91,7 +91,7 @@
               color="primary"
               label="🚀 Đăng nhập Demo (Phước Thông)"
               class="full-width q-py-sm"
-              @click="handleLogin({name: 'Phước Thông', email: 'phuocthoang@demo.com'})"
+              @click="() => handleLogin({name: 'Phước Thông', email: 'phuocthoang@demo.com'})"
             />
             <div class="text-center q-mt-sm text-caption text-grey-6">
               Click để đăng nhập nhanh
