@@ -30,6 +30,11 @@ const $route = useRoute();
 
 <style>
 #q-app {
-  font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
 }
 </style>

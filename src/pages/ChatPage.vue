@@ -13,8 +13,12 @@
           </div>
           <div class="navigation">
             <div class="nav-item" @click="router.push('/')">Trang chủ</div>
-            <div class="nav-item" @click="router.push('/about')">Giới thiệu</div>
-            <div class="nav-item" @click="router.push('/challenge')">Thử thách</div>
+            <div class="nav-item" @click="router.push('/about')">
+              Giới thiệu
+            </div>
+            <div class="nav-item" @click="router.push('/challenge')">
+              Thử thách
+            </div>
             <div class="nav-item" @click="router.push('/friends')">Bạn bè</div>
             <div class="nav-item" @click="router.push('/profile')">Profile</div>
             <div class="nav-item" @click="router.push('/shop')">Cửa hàng</div>
@@ -37,12 +41,12 @@
               <span class="streak-number">7</span>
             </div>
           </div>
-          
+
           <div class="user-info">
             <div class="user-avatar">ND</div>
             <div class="user-name">Người dùng</div>
           </div>
-          
+
           <div class="logout-btn" @click="handleLogout">
             <q-icon name="logout" size="16px" />
             <span>Đăng xuất</span>
@@ -63,7 +67,9 @@
             </div>
             <div class="chat-title-info">
               <div class="chat-title">Thách đấu với Bot</div>
-              <div class="chat-subtitle">Bot sẽ đưa ra câu hỏi mỗi 30-60 giây</div>
+              <div class="chat-subtitle">
+                Bot sẽ đưa ra câu hỏi mỗi 30-60 giây
+              </div>
             </div>
           </div>
 
@@ -76,7 +82,8 @@
               </div>
               <div class="message-bubble bot-bubble">
                 <div class="message-text">
-                  Xin chào! Tôi là EnglishBot. Tôi sẽ đưa ra các câu hỏi tiếng Anh định kỳ để các bạn trả lời.
+                  Xin chào! Tôi là EnglishBot. Tôi sẽ đưa ra các câu hỏi tiếng
+                  Anh định kỳ để các bạn trả lời.
                 </div>
                 <div class="message-time">21:23</div>
               </div>
@@ -88,12 +95,23 @@
                 <q-icon name="computer" color="black" size="16px" />
               </div>
               <div class="message-bubble bot-bubble">
-                <div class="message-text">Dịch từ "Intelligent" sang tiếng Việt</div>
+                <div class="message-text">
+                  Dịch từ "Intelligent" sang tiếng Việt
+                </div>
                 <div class="message-time">21:23</div>
                 <div class="message-participants">
-                  <img src="https://api.builder.io/api/v1/image/assets/TEMP/94861390f9be0eb42544493a89935a3e8537e779?width=38" class="participant-avatar" />
-                  <img src="https://api.builder.io/api/v1/image/assets/TEMP/808cc85b683761b4f2649b219713e811950b7da6?width=38" class="participant-avatar" />
-                  <img src="https://api.builder.io/api/v1/image/assets/TEMP/d0b0d0d7bf9e895d63b544b8849b7b88a157a184?width=38" class="participant-avatar" />
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/94861390f9be0eb42544493a89935a3e8537e779?width=38"
+                    class="participant-avatar"
+                  />
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/808cc85b683761b4f2649b219713e811950b7da6?width=38"
+                    class="participant-avatar"
+                  />
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/d0b0d0d7bf9e895d63b544b8849b7b88a157a184?width=38"
+                    class="participant-avatar"
+                  />
                 </div>
               </div>
             </div>
@@ -112,12 +130,23 @@
                 <q-icon name="computer" color="black" size="16px" />
               </div>
               <div class="message-bubble bot-bubble">
-                <div class="message-text">Dịch từ "Amazing" sang tiếng Việt</div>
+                <div class="message-text">
+                  Dịch từ "Amazing" sang tiếng Việt
+                </div>
                 <div class="message-time">21:23</div>
                 <div class="message-participants">
-                  <img src="https://api.builder.io/api/v1/image/assets/TEMP/afd6b1f2255dd111fa11b26060334ab2b8550b68?width=34" class="participant-avatar small" />
-                  <img src="https://api.builder.io/api/v1/image/assets/TEMP/57601513ec477a7832bf1a848cd546ad59d68b24?width=34" class="participant-avatar small" />
-                  <img src="https://api.builder.io/api/v1/image/assets/TEMP/a799c61d39d6c04d560750f802eb88c5ea24ee80?width=34" class="participant-avatar small" />
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/afd6b1f2255dd111fa11b26060334ab2b8550b68?width=34"
+                    class="participant-avatar small"
+                  />
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/57601513ec477a7832bf1a848cd546ad59d68b24?width=34"
+                    class="participant-avatar small"
+                  />
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/a799c61d39d6c04d560750f802eb88c5ea24ee80?width=34"
+                    class="participant-avatar small"
+                  />
                 </div>
               </div>
             </div>
@@ -173,11 +202,13 @@
                 <div class="subtitle">20 câu hỏi gần nhất</div>
               </div>
             </div>
-            
+
             <div class="history-list">
               <div class="history-item">
                 <div class="history-content">
-                  <div class="history-question">Dịch từ "Beautiful" sang tiếng Việt</div>
+                  <div class="history-question">
+                    Dịch từ "Beautiful" sang tiếng Việt
+                  </div>
                   <div class="history-details">
                     <div class="history-answer">Đáp án: "đẹp"</div>
                     <div class="history-date">10:30 - 26/07/2024</div>
@@ -196,7 +227,9 @@
 
               <div class="history-item">
                 <div class="history-content">
-                  <div class="history-question">Dịch từ "Happy" sang tiếng Việt</div>
+                  <div class="history-question">
+                    Dịch từ "Happy" sang tiếng Việt
+                  </div>
                   <div class="history-details">
                     <div class="history-answer">Đáp án: "hạnh phúc"</div>
                     <div class="history-date">10:25 - 26/07/2024</div>
@@ -215,7 +248,9 @@
 
               <div class="history-item">
                 <div class="history-content">
-                  <div class="history-question">Dịch từ "Wonderful" sang tiếng Việt</div>
+                  <div class="history-question">
+                    Dịch từ "Wonderful" sang tiếng Việt
+                  </div>
                   <div class="history-details">
                     <div class="history-answer">Đáp án: "tuyệt vời"</div>
                     <div class="history-date">10:20 - 26/07/2024</div>
@@ -271,7 +306,11 @@
               <!-- Rank 2 -->
               <div class="leaderboard-item silver">
                 <div class="rank-icon">
-                  <q-icon name="emoji_events" size="16px" style="opacity: 0.2" />
+                  <q-icon
+                    name="emoji_events"
+                    size="16px"
+                    style="opacity: 0.2"
+                  />
                 </div>
                 <div class="user-avatar-small silver-bg">TH</div>
                 <div class="user-details">
@@ -339,26 +378,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useAuthStore } from '../stores/auth'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "../stores/auth";
 
-const authStore = useAuthStore()
-const router = useRouter()
-const currentMessage = ref('')
+const authStore = useAuthStore();
+const router = useRouter();
+const currentMessage = ref("");
 
 const sendMessage = () => {
   if (currentMessage.value.trim()) {
     // Handle sending message
-    console.log('Sending message:', currentMessage.value)
-    currentMessage.value = ''
+    console.log("Sending message:", currentMessage.value);
+    currentMessage.value = "";
   }
-}
+};
 
 const handleLogout = () => {
-  authStore.logout()
-  router.push('/')
-}
+  authStore.logout();
+  router.push("/");
+};
 </script>
 
 <style scoped>
@@ -378,8 +417,8 @@ const handleLogout = () => {
   padding: 16px 24px 17px 24px;
   flex-direction: column;
   align-items: flex-start;
-  border: 1px solid #E5E7EB;
-  background: #FFF;
+  border: 1px solid #e5e7eb;
+  background: #fff;
 }
 
 .header-content {
@@ -405,7 +444,7 @@ const handleLogout = () => {
   display: flex;
   padding: 8px;
   border-radius: 8px;
-  background: #6D28D9;
+  background: #6d28d9;
 }
 
 .logo-text {
@@ -434,7 +473,7 @@ const handleLogout = () => {
 }
 
 .nav-item:hover {
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
 }
 
 .header-right {
@@ -456,7 +495,7 @@ const handleLogout = () => {
 }
 
 .stat-text {
-  color: #4B5563;
+  color: #4b5563;
   font-family: Inter;
   font-size: 14px;
   font-weight: 400;
@@ -469,7 +508,7 @@ const handleLogout = () => {
 }
 
 .correct-number {
-  color: #16A34A;
+  color: #16a34a;
   font-family: Inter;
   font-size: 14px;
   font-weight: 500;
@@ -477,7 +516,7 @@ const handleLogout = () => {
 }
 
 .correct-text {
-  color: #4B5563;
+  color: #4b5563;
   font-family: Inter;
   font-size: 14px;
   font-weight: 400;
@@ -490,7 +529,7 @@ const handleLogout = () => {
 }
 
 .streak-label {
-  color: #4B5563;
+  color: #4b5563;
   font-family: Inter;
   font-size: 14px;
   font-weight: 400;
@@ -498,7 +537,7 @@ const handleLogout = () => {
 }
 
 .streak-number {
-  color: #2563EB;
+  color: #2563eb;
   font-family: Inter;
   font-size: 14px;
   font-weight: 500;
@@ -515,8 +554,8 @@ const handleLogout = () => {
   display: flex;
   padding: 6px 5px 6px 6px;
   border-radius: 9999px;
-  background: #6D28D9;
-  color: #FFF;
+  background: #6d28d9;
+  color: #fff;
   font-family: Inter;
   font-size: 14px;
   font-weight: 500;
@@ -541,8 +580,8 @@ const handleLogout = () => {
   align-items: center;
   gap: 12px;
   border-radius: 6px;
-  border: 1px solid #E2E8F0;
-  background: #FFF;
+  border: 1px solid #e2e8f0;
+  background: #fff;
   cursor: pointer;
   color: #000;
   font-family: Inter;
@@ -555,7 +594,7 @@ const handleLogout = () => {
 .main-content {
   flex: 1;
   width: 100%;
-  background: #F5F3FF;
+  background: #f5f3ff;
   padding: 24px 38px;
 }
 
@@ -570,8 +609,8 @@ const handleLogout = () => {
 .chat-section {
   width: 728px;
   border-radius: 24px;
-  border: 1px solid #E2E8F0;
-  background: #FFF;
+  border: 1px solid #e2e8f0;
+  background: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
@@ -583,15 +622,15 @@ const handleLogout = () => {
   align-items: center;
   gap: 12px;
   border-radius: 12px 12px 0 0;
-  border: 1px solid #E2E8F0;
-  background: #FFF;
+  border: 1px solid #e2e8f0;
+  background: #fff;
 }
 
 .bot-icon {
   display: flex;
   padding: 8px;
   border-radius: 8px;
-  background: #6D28D9;
+  background: #6d28d9;
 }
 
 .chat-title-info {
@@ -609,7 +648,7 @@ const handleLogout = () => {
 }
 
 .chat-subtitle {
-  color: #6B7280;
+  color: #6b7280;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -636,7 +675,7 @@ const handleLogout = () => {
   display: flex;
   padding: 8px;
   border-radius: 9999px;
-  background: #EDE9FE;
+  background: #ede9fe;
   min-width: 32px;
   height: 32px;
   align-items: center;
@@ -645,13 +684,13 @@ const handleLogout = () => {
 
 .message-bubble {
   border-radius: 8px;
-  background: #F3F4F6;
+  background: #f3f4f6;
   padding: 9px 25px 9px 16px;
   max-width: 500px;
 }
 
 .bot-bubble {
-  background: #F3F4F6;
+  background: #f3f4f6;
 }
 
 .message-text {
@@ -664,7 +703,7 @@ const handleLogout = () => {
 }
 
 .message-time {
-  color: #6B7280;
+  color: #6b7280;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -701,8 +740,8 @@ const handleLogout = () => {
 
 .answer-bubble {
   border-radius: 8px;
-  border: 1px solid #BBF7D0;
-  background: #DCFCE7;
+  border: 1px solid #bbf7d0;
+  background: #dcfce7;
   padding: 10px 16px;
   max-width: 300px;
 }
@@ -717,7 +756,7 @@ const handleLogout = () => {
 }
 
 .answer-time {
-  color: #16A34A;
+  color: #16a34a;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -734,8 +773,8 @@ const handleLogout = () => {
 .chat-input-area {
   padding: 16px;
   border-radius: 0 0 12px 12px;
-  border: 1px solid #E2E8F0;
-  background: #F9FAFB;
+  border: 1px solid #e2e8f0;
+  background: #f9fafb;
 }
 
 .input-container {
@@ -764,11 +803,11 @@ const handleLogout = () => {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #22C55E;
+  background: #22c55e;
 }
 
 .status-text {
-  color: #6B7280;
+  color: #6b7280;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -786,8 +825,8 @@ const handleLogout = () => {
 /* History Panel */
 .history-panel {
   border-radius: 8px;
-  border: 1px solid #E2E8F0;
-  background: #FFF;
+  border: 1px solid #e2e8f0;
+  background: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -796,7 +835,7 @@ const handleLogout = () => {
   padding: 16px;
   align-items: center;
   gap: 8px;
-  border-bottom: 1px solid #E2E8F0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .panel-title {
@@ -812,7 +851,7 @@ const handleLogout = () => {
 }
 
 .subtitle {
-  color: #6B7280;
+  color: #6b7280;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -829,8 +868,8 @@ const handleLogout = () => {
 .history-item {
   padding: 16px;
   border-radius: 8px;
-  border: 1px solid #DBEAFE;
-  background: #EFF6FF;
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
 }
 
 .history-content {
@@ -854,7 +893,7 @@ const handleLogout = () => {
 }
 
 .history-answer {
-  color: #16A34A;
+  color: #16a34a;
   font-family: Inter;
   font-size: 12px;
   font-weight: 500;
@@ -862,7 +901,7 @@ const handleLogout = () => {
 }
 
 .history-date {
-  color: #6B7280;
+  color: #6b7280;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -882,7 +921,7 @@ const handleLogout = () => {
 }
 
 .correct {
-  color: #16A34A;
+  color: #16a34a;
   font-family: Inter;
   font-size: 12px;
   font-weight: 500;
@@ -890,7 +929,7 @@ const handleLogout = () => {
 }
 
 .divider {
-  color: #4B5563;
+  color: #4b5563;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -898,7 +937,7 @@ const handleLogout = () => {
 }
 
 .total {
-  color: #4B5563;
+  color: #4b5563;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -906,7 +945,7 @@ const handleLogout = () => {
 }
 
 .details-link {
-  color: #2563EB;
+  color: #2563eb;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -917,8 +956,8 @@ const handleLogout = () => {
 /* Leaderboard Panel */
 .leaderboard-panel {
   border-radius: 8px;
-  border: 1px solid #E2E8F0;
-  background: #FFF;
+  border: 1px solid #e2e8f0;
+  background: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -926,14 +965,14 @@ const handleLogout = () => {
   display: flex;
   padding: 16px;
   gap: 4px;
-  border-bottom: 1px solid #E2E8F0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .tab {
   display: flex;
   padding: 6px 12px;
   border-radius: 6px;
-  color: #4B5563;
+  color: #4b5563;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -942,8 +981,8 @@ const handleLogout = () => {
 }
 
 .tab.active {
-  background: #EDE9FE;
-  color: #5B21B6;
+  background: #ede9fe;
+  color: #5b21b6;
   font-weight: 500;
 }
 
@@ -972,7 +1011,7 @@ const handleLogout = () => {
   display: flex;
   padding: 12px 9px;
   border-radius: 50%;
-  color: #FFF;
+  color: #fff;
   font-family: Inter;
   font-size: 12px;
   font-weight: 500;
@@ -984,19 +1023,19 @@ const handleLogout = () => {
 }
 
 .gold-bg {
-  background: linear-gradient(90deg, #EAB308 100%, #FACC15 0%);
+  background: linear-gradient(90deg, #eab308 100%, #facc15 0%);
 }
 
 .silver-bg {
-  background: linear-gradient(90deg, #9CA3AF 100%, #D1D5DB 0%);
+  background: linear-gradient(90deg, #9ca3af 100%, #d1d5db 0%);
 }
 
 .bronze-bg {
-  background: linear-gradient(90deg, #D97706 100%, #F59E0B 0%);
+  background: linear-gradient(90deg, #d97706 100%, #f59e0b 0%);
 }
 
 .blue-bg {
-  background: #3B82F6;
+  background: #3b82f6;
 }
 
 .user-details {
@@ -1015,7 +1054,7 @@ const handleLogout = () => {
 }
 
 .user-streak {
-  color: #6B7280;
+  color: #6b7280;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -1038,11 +1077,11 @@ const handleLogout = () => {
 }
 
 .score.blue {
-  color: #2563EB;
+  color: #2563eb;
 }
 
 .score-label {
-  color: #6B7280;
+  color: #6b7280;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -1053,8 +1092,8 @@ const handleLogout = () => {
 .current-user-rank {
   padding: 12px;
   border-radius: 8px;
-  background: #EFF6FF;
-  border: 1px solid #E2E8F0;
+  background: #eff6ff;
+  border: 1px solid #e2e8f0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1067,7 +1106,7 @@ const handleLogout = () => {
 }
 
 .user-stats {
-  color: #4B5563;
+  color: #4b5563;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -1081,7 +1120,7 @@ const handleLogout = () => {
 }
 
 .score-detail {
-  color: #6B7280;
+  color: #6b7280;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;

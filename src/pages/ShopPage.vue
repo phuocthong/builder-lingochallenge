@@ -9,7 +9,9 @@
         <q-card-section class="text-center">
           <q-icon name="lock" size="xl" color="grey-5" class="q-mb-md" />
           <h2 class="text-h5 q-mb-md">🔒 Yêu cầu đăng nhập</h2>
-          <p class="text-grey-6 q-mb-lg">Bạn cần đăng nhập để truy cập cửa hàng</p>
+          <p class="text-grey-6 q-mb-lg">
+            Bạn cần đăng nhập để truy cập cửa hàng
+          </p>
           <q-btn
             color="primary"
             label="Quay lại trang chủ"
@@ -36,9 +38,15 @@
         <q-card-section>
           <div class="row items-center justify-between">
             <div class="col">
-              <h3 class="text-h6 text-weight-medium q-mb-sm">💰 Điểm của bạn</h3>
-              <div class="text-h4 text-weight-bold text-primary">{{ currentPoints }} điểm</div>
-              <p class="text-grey-6">Kiếm thêm điểm bằng cách trả lời đúng câu hỏi!</p>
+              <h3 class="text-h6 text-weight-medium q-mb-sm">
+                💰 Điểm của bạn
+              </h3>
+              <div class="text-h4 text-weight-bold text-primary">
+                {{ currentPoints }} điểm
+              </div>
+              <p class="text-grey-6">
+                Kiếm thêm điểm bằng cách trả lời đúng câu hỏi!
+              </p>
             </div>
             <div class="col-auto">
               <q-icon name="star" size="3rem" color="yellow" />
@@ -76,22 +84,30 @@
                   <div class="provider-logo">
                     {{ card.provider }}
                   </div>
-                  <h3 class="text-h6 text-weight-medium q-mt-sm">{{ card.name }}</h3>
+                  <h3 class="text-h6 text-weight-medium q-mt-sm">
+                    {{ card.name }}
+                  </h3>
                 </div>
 
                 <!-- Card Details -->
                 <div class="card-details q-mb-md">
                   <div class="row justify-between">
                     <span class="text-weight-medium">Mệnh giá:</span>
-                    <span class="text-weight-bold text-green-6">{{ card.value.toLocaleString() }}đ</span>
+                    <span class="text-weight-bold text-green-6"
+                      >{{ card.value.toLocaleString() }}đ</span
+                    >
                   </div>
                   <div class="row justify-between">
                     <span class="text-weight-medium">Giá điểm:</span>
-                    <span class="text-weight-bold text-orange-6">{{ card.points }} điểm</span>
+                    <span class="text-weight-bold text-orange-6"
+                      >{{ card.points }} điểm</span
+                    >
                   </div>
                   <div class="row justify-between">
                     <span class="text-weight-medium">Tiết kiệm:</span>
-                    <span class="text-weight-bold text-purple-6">{{ card.discount }}%</span>
+                    <span class="text-weight-bold text-purple-6"
+                      >{{ card.discount }}%</span
+                    >
                   </div>
                 </div>
 
@@ -121,12 +137,16 @@
               <q-card-section>
                 <div class="text-center q-mb-md">
                   <q-icon :name="gift.icon" size="3rem" :color="gift.color" />
-                  <h3 class="text-h6 text-weight-medium q-mt-sm">{{ gift.name }}</h3>
+                  <h3 class="text-h6 text-weight-medium q-mt-sm">
+                    {{ gift.name }}
+                  </h3>
                   <p class="text-grey-6">{{ gift.description }}</p>
                 </div>
 
                 <div class="text-center q-mb-md">
-                  <div class="text-h5 text-weight-bold text-orange-6">{{ gift.points }} điểm</div>
+                  <div class="text-h5 text-weight-bold text-orange-6">
+                    {{ gift.points }} điểm
+                  </div>
                 </div>
 
                 <q-btn
@@ -153,28 +173,46 @@
             <q-card class="card-hover premium-card">
               <q-card-section>
                 <div class="row items-center q-mb-md">
-                  <q-icon :name="feature.icon" size="2rem" color="yellow" class="q-mr-md" />
+                  <q-icon
+                    :name="feature.icon"
+                    size="2rem"
+                    color="yellow"
+                    class="q-mr-md"
+                  />
                   <div>
-                    <h3 class="text-h6 text-weight-medium">{{ feature.name }}</h3>
-                    <p class="text-grey-6 q-ma-none">{{ feature.description }}</p>
+                    <h3 class="text-h6 text-weight-medium">
+                      {{ feature.name }}
+                    </h3>
+                    <p class="text-grey-6 q-ma-none">
+                      {{ feature.description }}
+                    </p>
                   </div>
                 </div>
 
                 <ul class="feature-list q-mb-md">
                   <li v-for="benefit in feature.benefits" :key="benefit">
-                    <q-icon name="check" color="green" size="sm" class="q-mr-xs" />
+                    <q-icon
+                      name="check"
+                      color="green"
+                      size="sm"
+                      class="q-mr-xs"
+                    />
                     {{ benefit }}
                   </li>
                 </ul>
 
                 <div class="text-center q-mb-md">
-                  <div class="text-h5 text-weight-bold text-orange-6">{{ feature.points }} điểm/tháng</div>
+                  <div class="text-h5 text-weight-bold text-orange-6">
+                    {{ feature.points }} điểm/tháng
+                  </div>
                 </div>
 
                 <q-btn
                   color="yellow"
                   text-color="black"
-                  :label="canAfford(feature.points) ? 'Kích hoạt' : 'Không đủ điểm'"
+                  :label="
+                    canAfford(feature.points) ? 'Kích hoạt' : 'Không đủ điểm'
+                  "
                   :disable="!canAfford(feature.points)"
                   @click="purchaseItem(feature)"
                   class="full-width"
@@ -188,8 +226,10 @@
       <!-- Purchase History -->
       <q-card class="q-mt-xl">
         <q-card-section>
-          <h3 class="text-h6 text-weight-medium q-mb-md">📋 Lịch sử đổi điểm</h3>
-          
+          <h3 class="text-h6 text-weight-medium q-mb-md">
+            📋 Lịch sử đổi điểm
+          </h3>
+
           <div v-if="purchaseHistory.length === 0" class="text-center q-py-md">
             <q-icon name="receipt" size="2rem" color="grey-4" />
             <p class="text-grey-5 q-mt-md">Chưa có giao dịch nào</p>
@@ -209,7 +249,10 @@
                   <q-item-label class="text-weight-bold text-orange-6">
                     -{{ purchase.points }} điểm
                   </q-item-label>
-                  <q-item-label caption :class="getStatusColor(purchase.status)">
+                  <q-item-label
+                    caption
+                    :class="getStatusColor(purchase.status)"
+                  >
                     {{ purchase.status }}
                   </q-item-label>
                 </q-item-section>
@@ -228,7 +271,10 @@
         </q-card-section>
 
         <q-card-section v-if="selectedItem">
-          <p>Bạn có muốn đổi <strong>{{ selectedItem.points }} điểm</strong> để nhận:</p>
+          <p>
+            Bạn có muốn đổi <strong>{{ selectedItem.points }} điểm</strong> để
+            nhận:
+          </p>
           <div class="bg-blue-50 p-4 rounded-lg q-my-md">
             <h4 class="text-weight-medium">{{ selectedItem.name }}</h4>
             <p class="text-grey-6 q-ma-none" v-if="selectedItem.description">
@@ -236,8 +282,10 @@
             </p>
           </div>
           <p class="text-grey-6">
-            Sau giao dịch, bạn sẽ còn lại: 
-            <strong class="text-primary">{{ currentPoints - selectedItem.points }} điểm</strong>
+            Sau giao dịch, bạn sẽ còn lại:
+            <strong class="text-primary"
+              >{{ currentPoints - selectedItem.points }} điểm</strong
+            >
           </p>
         </q-card-section>
 
@@ -426,7 +474,7 @@ const confirmPurchase = () => {
 
   // Simulate processing
   setTimeout(() => {
-    const index = purchaseHistory.value.findIndex(p => p.id === purchase.id);
+    const index = purchaseHistory.value.findIndex((p) => p.id === purchase.id);
     if (index !== -1) {
       purchaseHistory.value[index].status = "Hoàn thành";
     }
@@ -479,7 +527,9 @@ onMounted(() => {
 }
 
 .card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .card-hover:hover {

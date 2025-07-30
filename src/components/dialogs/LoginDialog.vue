@@ -36,7 +36,7 @@
             v-model="formData.name"
             label="Tên đăng nhập"
             outlined
-            :rules="[val => !!val || 'Vui lòng nhập tên đăng nhập']"
+            :rules="[(val) => !!val || 'Vui lòng nhập tên đăng nhập']"
           >
             <template v-slot:prepend>
               <q-icon name="person" />
@@ -49,8 +49,8 @@
             type="email"
             outlined
             :rules="[
-              val => !!val || 'Vui lòng nhập email',
-              val => /.+@.+\..+/.test(val) || 'Email không hợp lệ'
+              (val) => !!val || 'Vui lòng nhập email',
+              (val) => /.+@.+\..+/.test(val) || 'Email không hợp lệ',
             ]"
           >
             <template v-slot:prepend>
@@ -63,7 +63,7 @@
             label="Mật khẩu"
             :type="showPassword ? 'text' : 'password'"
             outlined
-            :rules="[val => !!val || 'Vui lòng nhập mật khẩu']"
+            :rules="[(val) => !!val || 'Vui lòng nhập mật khẩu']"
           >
             <template v-slot:prepend>
               <q-icon name="lock" />
@@ -107,95 +107,98 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch } from "vue";
 
 interface LoginData {
-  name: string
-  email: string
-  password: string
+  name: string;
+  email: string;
+  password: string;
 }
 
 interface Props {
-  modelValue: boolean
+  modelValue: boolean;
 }
 
 interface Emits {
-  (e: 'update:modelValue', value: boolean): void
-  (e: 'login', data: { name: string; email: string }): void
-  (e: 'switch-to-register'): void
+  (e: "update:modelValue", value: boolean): void;
+  (e: "login", data: { name: string; email: string }): void;
+  (e: "switch-to-register"): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
-const isVisible = ref(false)
-const loading = ref(false)
-const showPassword = ref(false)
+const isVisible = ref(false);
+const loading = ref(false);
+const showPassword = ref(false);
 
 const formData = ref<LoginData>({
-  name: '',
-  email: '',
-  password: ''
-})
+  name: "",
+  email: "",
+  password: "",
+});
 
-watch(() => props.modelValue, (newVal) => {
-  isVisible.value = newVal
-})
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    isVisible.value = newVal;
+  },
+);
 
 watch(isVisible, (newVal) => {
-  emit('update:modelValue', newVal)
-})
+  emit("update:modelValue", newVal);
+});
 
 const handleDemoLogin = () => {
-  console.log('Demo login clicked!')
-  loading.value = true
+  console.log("Demo login clicked!");
+  loading.value = true;
 
   setTimeout(() => {
-    console.log('Emitting login event with:', {
-      name: 'Phước Thông',
-      email: 'phuocthoang@demo.com'
-    })
+    console.log("Emitting login event with:", {
+      name: "Phước Thông",
+      email: "phuocthoang@demo.com",
+    });
 
-    emit('login', {
-      name: 'Phước Thông',
-      email: 'phuocthoang@demo.com'
-    })
+    emit("login", {
+      name: "Phước Thông",
+      email: "phuocthoang@demo.com",
+    });
 
-    loading.value = false
-    isVisible.value = false
-    formData.value = { name: '', email: '', password: '' }
-  }, 500)
-}
+    loading.value = false;
+    isVisible.value = false;
+    formData.value = { name: "", email: "", password: "" };
+  }, 500);
+};
 
 const handleSubmit = () => {
-  loading.value = true
+  loading.value = true;
 
   setTimeout(() => {
-    emit('login', {
+    emit("login", {
       name: formData.value.name,
-      email: formData.value.email
-    })
+      email: formData.value.email,
+    });
 
-    loading.value = false
-    isVisible.value = false
-    formData.value = { name: '', email: '', password: '' }
-  }, 1000)
-}
+    loading.value = false;
+    isVisible.value = false;
+    formData.value = { name: "", email: "", password: "" };
+  }, 1000);
+};
 
 const switchToRegister = () => {
-  emit('switch-to-register')
-}
+  emit("switch-to-register");
+};
 
 const testLogin = () => {
-  console.log('Test login clicked - direct emit!')
-  emit('login', {
-    name: 'Test User',
-    email: 'test@example.com'
-  })
-  isVisible.value = false
-}
+  console.log("Test login clicked - direct emit!");
+  emit("login", {
+    name: "Test User",
+    email: "test@example.com",
+  });
+  isVisible.value = false;
+};
 
 const close = () => {
-  isVisible.value = false
-}
+  isVisible.value = false;
+};
 </script>

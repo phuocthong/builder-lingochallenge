@@ -25,7 +25,12 @@
           <!-- User Stats -->
           <div class="user-stats">
             <div class="stat-item">
-              <q-icon name="emoji_events" size="16px" color="grey-6" class="q-mr-xs" />
+              <q-icon
+                name="emoji_events"
+                size="16px"
+                color="grey-6"
+                class="q-mr-xs"
+              />
               <span class="stat-text"># 45</span>
             </div>
             <div class="stat-item">
@@ -39,7 +44,11 @@
           </div>
 
           <!-- User Profile -->
-          <div class="user-profile" @click="router.push('/profile')" style="cursor: pointer;">
+          <div
+            class="user-profile"
+            @click="router.push('/profile')"
+            style="cursor: pointer"
+          >
             <div class="user-avatar">
               {{ authStore.userAvatar }}
             </div>
@@ -47,10 +56,7 @@
           </div>
 
           <!-- Logout Button -->
-          <q-btn
-            class="logout-btn"
-            @click="handleLogout"
-          >
+          <q-btn class="logout-btn" @click="handleLogout">
             <q-icon name="logout" size="16px" class="q-mr-sm" />
             Đăng xuất
           </q-btn>
@@ -139,7 +145,13 @@
               color="primary"
               label="✨ Đăng ký Demo (Phước Thông)"
               class="full-width q-py-sm"
-              @click="() => handleRegister({name: 'Phước Thông', email: 'phuocthoang@demo.com'})"
+              @click="
+                () =>
+                  handleRegister({
+                    name: 'Phước Thông',
+                    email: 'phuocthoang@demo.com',
+                  })
+              "
             />
             <div class="text-center q-mt-sm text-caption text-grey-6">
               Click để tạo tài khoản demo
@@ -162,85 +174,85 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useQuasar } from 'quasar'
-import { useAuthStore } from '../stores/auth'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useQuasar } from "quasar";
+import { useAuthStore } from "../stores/auth";
 
-const authStore = useAuthStore()
-const router = useRouter()
-const $q = useQuasar()
+const authStore = useAuthStore();
+const router = useRouter();
+const $q = useQuasar();
 
 // Local state for dialogs
-const showLoginDialog = ref(false)
-const showRegisterDialog = ref(false)
+const showLoginDialog = ref(false);
+const showRegisterDialog = ref(false);
 
 const handleLoginClick = () => {
-  console.log('Login button clicked!')
-  showRegisterDialog.value = false
-  showLoginDialog.value = true
-}
+  console.log("Login button clicked!");
+  showRegisterDialog.value = false;
+  showLoginDialog.value = true;
+};
 
 const handleRegisterClick = () => {
-  console.log('Register button clicked!')
-  showLoginDialog.value = false
-  showRegisterDialog.value = true
-}
+  console.log("Register button clicked!");
+  showLoginDialog.value = false;
+  showRegisterDialog.value = true;
+};
 
 const handleLogin = (userData: { name: string; email: string }) => {
-  console.log('Login handler called with:', userData)
-  authStore.login(userData)
-  showLoginDialog.value = false
+  console.log("Login handler called with:", userData);
+  authStore.login(userData);
+  showLoginDialog.value = false;
   $q.notify({
     type: "positive",
     message: `Chào mừng ${userData.name}!`,
     position: "top",
-  })
-  router.push('/chat')
-}
+  });
+  router.push("/chat");
+};
 
 const handleRegister = (userData: { name: string; email: string }) => {
-  console.log('Register handler called with:', userData)
-  authStore.login(userData)
-  showRegisterDialog.value = false
+  console.log("Register handler called with:", userData);
+  authStore.login(userData);
+  showRegisterDialog.value = false;
   $q.notify({
     type: "positive",
     message: `Đăng ký thành công! Chào mừng ${userData.name}!`,
     position: "top",
-  })
-  router.push('/chat')
-}
+  });
+  router.push("/chat");
+};
 
 const switchToRegister = () => {
-  showLoginDialog.value = false
-  showRegisterDialog.value = true
-}
+  showLoginDialog.value = false;
+  showRegisterDialog.value = true;
+};
 
 const switchToLogin = () => {
-  showRegisterDialog.value = false
-  showLoginDialog.value = true
-}
+  showRegisterDialog.value = false;
+  showLoginDialog.value = true;
+};
 
 const testClick = () => {
-  alert('TEST BUTTON HOẠT ĐỘNG!')
-  console.log('Test button clicked!')
-}
+  alert("TEST BUTTON HOẠT ĐỘNG!");
+  console.log("Test button clicked!");
+};
 
 const doLogin = () => {
-  console.log('doLogin called!')
-  handleLogin({name: 'Phước Thông', email: 'phuocthoang@demo.com'})
-}
+  console.log("doLogin called!");
+  handleLogin({ name: "Phước Thông", email: "phuocthoang@demo.com" });
+};
 
 const handleLogout = () => {
-  authStore.logout()
-  router.push('/')
-}
+  authStore.logout();
+  router.push("/");
+};
 </script>
 
 <style scoped>
 .header-toolbar {
   background: white;
-  border-bottom: 1px solid #E5E7EB;
+  border-bottom: 1px solid #e5e7eb;
   color: #111827;
   min-height: 73px;
 }
@@ -266,7 +278,7 @@ const handleLogout = () => {
   display: flex;
   padding: 8px;
   border-radius: 8px;
-  background: #6D28D9;
+  background: #6d28d9;
 }
 
 .logo-text {
@@ -294,12 +306,12 @@ const handleLogout = () => {
 }
 
 .nav-link:hover {
-  background: #F3F4F6;
+  background: #f3f4f6;
   color: #111827;
 }
 
 .nav-link.router-link-active {
-  color: #2563EB;
+  color: #2563eb;
   font-weight: 600;
 }
 
@@ -322,28 +334,28 @@ const handleLogout = () => {
 }
 
 .stat-text {
-  color: #4B5563;
+  color: #4b5563;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
 }
 
 .stat-number {
-  color: #16A34A;
+  color: #16a34a;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
 }
 
 .stat-label {
-  color: #4B5563;
+  color: #4b5563;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
 }
 
 .stat-streak {
-  color: #2563EB;
+  color: #2563eb;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -362,7 +374,7 @@ const handleLogout = () => {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #6D28D9;
+  background: #6d28d9;
   color: white;
   font-size: 14px;
   font-weight: 500;
@@ -377,7 +389,7 @@ const handleLogout = () => {
 
 .logout-btn {
   padding: 10px 12px;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #e2e8f0;
   background: white;
   border-radius: 6px;
   color: black;
@@ -387,6 +399,6 @@ const handleLogout = () => {
 }
 
 .logout-btn:hover {
-  background: #F8F9FA;
+  background: #f8f9fa;
 }
 </style>

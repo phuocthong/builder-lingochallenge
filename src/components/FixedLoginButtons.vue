@@ -1,11 +1,7 @@
 <template>
   <div class="fixed-login-buttons" v-if="!authStore.isLoggedIn">
-    <button class="login-btn" @click="doLogin">
-      🚀 ĐĂNG NHẬP
-    </button>
-    <button class="register-btn" @click="doRegister">
-      ✨ ĐĂNG KÝ
-    </button>
+    <button class="login-btn" @click="doLogin">🚀 ĐĂNG NHẬP</button>
+    <button class="register-btn" @click="doRegister">✨ ĐĂNG KÝ</button>
     <div class="user-info" v-if="authStore.isLoggedIn">
       Xin chào {{ authStore.user.name }}!
     </div>
@@ -13,51 +9,51 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
-import { useQuasar } from 'quasar'
-import { useAuthStore } from '../stores/auth'
+import { useRouter } from "vue-router";
+import { useQuasar } from "quasar";
+import { useAuthStore } from "../stores/auth";
 
-const authStore = useAuthStore()
-const router = useRouter()
-const $q = useQuasar()
+const authStore = useAuthStore();
+const router = useRouter();
+const $q = useQuasar();
 
 const doLogin = () => {
-  console.log('Fixed login button clicked!')
-  
+  console.log("Fixed login button clicked!");
+
   // Directly login without any dialog
   authStore.login({
-    name: 'Phước Thông',
-    email: 'phuocthoang@demo.com'
-  })
-  
+    name: "Phước Thông",
+    email: "phuocthoang@demo.com",
+  });
+
   $q.notify({
     type: "positive",
     message: `Chào mừng Phước Thông!`,
     position: "top",
-  })
-  
+  });
+
   // Redirect to chat
-  router.push('/chat')
-}
+  router.push("/chat");
+};
 
 const doRegister = () => {
-  console.log('Fixed register button clicked!')
-  
+  console.log("Fixed register button clicked!");
+
   // Directly register without any dialog
   authStore.login({
-    name: 'Phước Thông',
-    email: 'phuocthoang@demo.com'
-  })
-  
+    name: "Phước Thông",
+    email: "phuocthoang@demo.com",
+  });
+
   $q.notify({
     type: "positive",
     message: `Đăng ký thành công! Chào mừng Phước Thông!`,
     position: "top",
-  })
-  
+  });
+
   // Redirect to chat
-  router.push('/chat')
-}
+  router.push("/chat");
+};
 </script>
 
 <style scoped>
@@ -71,7 +67,8 @@ const doRegister = () => {
   gap: 10px;
 }
 
-.login-btn, .register-btn {
+.login-btn,
+.register-btn {
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
@@ -83,7 +80,7 @@ const doRegister = () => {
 }
 
 .login-btn {
-  background: #2563EB;
+  background: #2563eb;
   color: white;
 }
 
@@ -93,7 +90,7 @@ const doRegister = () => {
 }
 
 .register-btn {
-  background: #16A34A;
+  background: #16a34a;
   color: white;
 }
 

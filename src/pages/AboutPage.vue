@@ -5,8 +5,8 @@
       <div class="about-header">
         <h1 class="page-title">🌟 Về EnglishBot</h1>
         <p class="page-description">
-          Chúng tôi tin rằng việc học tiếng Anh có thể trở nên thú vị và hiệu quả 
-          thông qua công nghệ AI tiên tiến
+          Chúng tôi tin rằng việc học tiếng Anh có thể trở nên thú vị và hiệu
+          quả thông qua công nghệ AI tiên tiến
         </p>
       </div>
 
@@ -16,25 +16,24 @@
           <div class="mission-text">
             <h2 class="mission-title">🎯 Sứ mệnh của chúng tôi</h2>
             <p class="mission-description">
-              EnglishBot được tạo ra với mục tiêu democratize việc học tiếng Anh, 
-              giúp mọi người có thể tiếp cận với phương pháp học tập hiện đại và hiệu quả.
+              EnglishBot được tạo ra với mục tiêu democratize việc học tiếng
+              Anh, giúp mọi người có thể tiếp cận với phương pháp học tập hiện
+              đại và hiệu quả.
             </p>
             <p class="mission-description">
-              Chúng tôi kết hợp trí tuệ nhân tạo với pedagogy để tạo ra trải nghiệm 
-              học tập cá nhân hóa cho từng học viên.
+              Chúng tôi kết hợp trí tuệ nhân tạo với pedagogy để tạo ra trải
+              nghiệm học tập cá nhân hóa cho từng học viên.
             </p>
-            <q-btn 
-              color="primary" 
-              size="lg" 
+            <q-btn
+              color="primary"
+              size="lg"
               label="Bắt đầu học ngay"
               @click="$router.push('/')"
               class="mission-btn"
             />
           </div>
           <div class="mission-visual">
-            <div class="robot-icon">
-              🤖
-            </div>
+            <div class="robot-icon">🤖</div>
           </div>
         </div>
       </div>
@@ -43,7 +42,11 @@
       <div class="why-choose-section">
         <h2 class="section-title">✨ Tại sao chọn EnglishBot?</h2>
         <div class="features-grid">
-          <q-card v-for="feature in features" :key="feature.id" class="feature-card">
+          <q-card
+            v-for="feature in features"
+            :key="feature.id"
+            class="feature-card"
+          >
             <q-card-section class="feature-content">
               <div class="feature-icon">{{ feature.icon }}</div>
               <h3 class="feature-title">{{ feature.title }}</h3>
@@ -57,7 +60,11 @@
       <div class="team-section">
         <h2 class="section-title">👥 Đội ngũ phát triển</h2>
         <div class="team-grid">
-          <q-card v-for="member in teamMembers" :key="member.id" class="team-card">
+          <q-card
+            v-for="member in teamMembers"
+            :key="member.id"
+            class="team-card"
+          >
             <q-card-section class="team-content">
               <q-avatar size="80px" class="team-avatar">
                 <div class="avatar-placeholder">{{ member.avatar }}</div>
@@ -79,16 +86,16 @@
               Có câu hỏi hoặc đề xuất? Chúng tôi rất muốn lắng nghe từ bạn!
             </p>
             <div class="contact-buttons">
-              <q-btn 
-                color="primary" 
-                size="lg" 
+              <q-btn
+                color="primary"
+                size="lg"
                 label="📧 Email: support@englishbot.vn"
                 flat
                 class="contact-btn"
               />
-              <q-btn 
-                color="secondary" 
-                size="lg" 
+              <q-btn
+                color="secondary"
+                size="lg"
                 label="📱 Hotline: 1900-1234"
                 flat
                 class="contact-btn"
@@ -107,39 +114,39 @@ const features = [
     id: 1,
     icon: "🧠",
     title: "AI Thông minh",
-    description: "Sử dụng machine learning để hiểu và phản hồi tự nhiên"
+    description: "Sử dụng machine learning để hiểu và phản hồi tự nhiên",
   },
   {
     id: 2,
     icon: "📚",
     title: "Nội dung phong phú",
-    description: "Hàng nghìn bài học từ cơ bản đến nâng cao"
+    description: "Hàng nghìn bài học từ cơ bản đến nâng cao",
   },
   {
     id: 3,
     icon: "🎮",
     title: "Gamification",
-    description: "Học tập thông qua trò chơi và thử thách thú vị"
+    description: "Học tập thông qua trò chơi và thử thách thú vị",
   },
   {
     id: 4,
     icon: "📊",
     title: "Theo dõi tiến độ",
-    description: "Báo cáo chi tiết về quá trình học tập của bạn"
+    description: "Báo cáo chi tiết về quá trình học tập của bạn",
   },
   {
     id: 5,
     icon: "🌍",
     title: "Cộng đồng",
-    description: "Kết nối và học tập cùng với bạn bè"
+    description: "Kết nối và học tập cùng với bạn bè",
   },
   {
     id: 6,
     icon: "📱",
     title: "Đa nền tảng",
-    description: "Học mọi lúc mọi nơi trên web và mobile"
-  }
-]
+    description: "Học mọi lúc mọi nơi trên web và mobile",
+  },
+];
 
 const teamMembers = [
   {
@@ -147,23 +154,23 @@ const teamMembers = [
     name: "Nguyễn Văn A",
     role: "CEO & Founder",
     description: "Chuyên gia giáo dục với 10+ năm kinh nghiệm",
-    avatar: "CEO"
+    avatar: "CEO",
   },
   {
     id: 2,
     name: "Trần Thị B",
     role: "CTO",
     description: "Kỹ sư AI hàng đầu, chuyên về NLP và Machine Learning",
-    avatar: "CTO"
+    avatar: "CTO",
   },
   {
     id: 3,
     name: "Lê Văn C",
     role: "Head of Education",
     description: "Thạc sĩ Ngôn ngữ Anh, 15+ năm giảng dạy",
-    avatar: "EDU"
-  }
-]
+    avatar: "EDU",
+  },
+];
 </script>
 
 <style scoped>
@@ -187,7 +194,7 @@ const teamMembers = [
 
 .page-description {
   font-size: 20px;
-  color: #4B5563;
+  color: #4b5563;
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.6;
@@ -213,7 +220,7 @@ const teamMembers = [
 
 .mission-description {
   font-size: 18px;
-  color: #4B5563;
+  color: #4b5563;
   margin: 0 0 16px 0;
   line-height: 1.6;
 }
@@ -257,12 +264,14 @@ const teamMembers = [
 }
 
 .feature-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .feature-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .feature-content {
@@ -284,7 +293,7 @@ const teamMembers = [
 
 .feature-description {
   font-size: 14px;
-  color: #4B5563;
+  color: #4b5563;
   line-height: 1.5;
   margin: 0;
 }
@@ -333,13 +342,13 @@ const teamMembers = [
 .member-role {
   font-size: 16px;
   font-weight: 500;
-  color: #7C3AED;
+  color: #7c3aed;
   margin: 0 0 12px 0;
 }
 
 .member-description {
   font-size: 14px;
-  color: #4B5563;
+  color: #4b5563;
   margin: 0;
   line-height: 1.5;
 }
@@ -351,7 +360,7 @@ const teamMembers = [
 .contact-card {
   background: white;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .contact-content {
@@ -368,7 +377,7 @@ const teamMembers = [
 
 .contact-description {
   font-size: 18px;
-  color: #4B5563;
+  color: #4b5563;
   margin: 0 0 32px 0;
   line-height: 1.6;
 }

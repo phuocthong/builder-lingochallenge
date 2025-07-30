@@ -18,24 +18,19 @@
 
         <!-- Description -->
         <p class="hero-description">
-          Khám phá cách học ti��ng Anh hiệu quả nhất với AI chatbot thông minh, thách đấu bạn bè và hệ thống phần thưởng hấp dẫn.
+          Khám phá cách học ti��ng Anh hiệu quả nhất với AI chatbot thông minh,
+          thách đấu bạn bè và hệ thống phần thưởng hấp dẫn.
         </p>
 
         <!-- CTA Buttons -->
         <div class="cta-buttons">
-          <q-btn 
-            class="primary-btn"
-            @click="showRegister"
-          >
+          <q-btn class="primary-btn" @click="showRegister">
             <q-icon name="auto_awesome" class="q-mr-sm" />
             Bắt Đầu Miễn Phí
             <q-icon name="arrow_forward" class="q-ml-sm" />
           </q-btn>
-          
-          <q-btn 
-            class="secondary-btn"
-            @click="showLogin"
-          >
+
+          <q-btn class="secondary-btn" @click="showLogin">
             <q-icon name="play_arrow" class="q-mr-sm" />
             Đăng Nhập
           </q-btn>
@@ -50,7 +45,7 @@
             <div class="stat-number">10,000+</div>
             <div class="stat-label">Người học</div>
           </div>
-          
+
           <div class="stat-item">
             <div class="stat-icon">
               <q-icon name="quiz" size="20px" />
@@ -58,7 +53,7 @@
             <div class="stat-number">50,000+</div>
             <div class="stat-label">Câu hỏi</div>
           </div>
-          
+
           <div class="stat-item">
             <div class="stat-icon">
               <q-icon name="star" size="20px" />
@@ -66,7 +61,7 @@
             <div class="stat-number">95%</div>
             <div class="stat-label">Hài lòng</div>
           </div>
-          
+
           <div class="stat-item">
             <div class="stat-icon">
               <q-icon name="schedule" size="20px" />
@@ -84,7 +79,8 @@
         <div class="section-header">
           <h2 class="section-title">Tại Sao Chọn Lingo?</h2>
           <p class="section-description">
-            Những tính năng độc đáo giúp bạn học tiếng Anh hiệu quả và thú vị hơn bao giờ hết
+            Những tính năng độc đáo giúp bạn học tiếng Anh hiệu quả và thú vị
+            hơn bao giờ hết
           </p>
         </div>
 
@@ -96,7 +92,8 @@
               </div>
               <h3 class="feature-title">AI Chatbot Thông Minh</h3>
               <p class="feature-description">
-                Học tiếng Anh qua trò chuyện tự nhiên với AI bot được thiết kế đặc biệt
+                Học tiếng Anh qua trò chuyện tự nhiên với AI bot được thiết kế
+                đặc biệt
               </p>
             </q-card-section>
           </q-card>
@@ -108,7 +105,8 @@
               </div>
               <h3 class="feature-title">Thách Đấu Bạn Bè</h3>
               <p class="feature-description">
-                Cạnh tranh với bạn bè trong các cuộc thi tiếng Anh thú vị và hấp dẫn
+                Cạnh tranh với bạn bè trong các cuộc thi tiếng Anh thú vị và hấp
+                dẫn
               </p>
             </q-card-section>
           </q-card>
@@ -266,7 +264,12 @@
               color="primary"
               label="✨ Đăng ký Demo (Phước Thông)"
               class="full-width q-py-sm"
-              @click="handleRegister({name: 'Phước Thông', email: 'phuocthoang@demo.com'})"
+              @click="
+                handleRegister({
+                  name: 'Phước Thông',
+                  email: 'phuocthoang@demo.com',
+                })
+              "
             />
             <div class="text-center q-mt-sm text-caption text-grey-6">
               Click để tạo tài khoản demo
@@ -289,74 +292,74 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useQuasar } from 'quasar'
-import { useAuthStore } from '../stores/auth'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useQuasar } from "quasar";
+import { useAuthStore } from "../stores/auth";
 
-const authStore = useAuthStore()
-const router = useRouter()
-const $q = useQuasar()
+const authStore = useAuthStore();
+const router = useRouter();
+const $q = useQuasar();
 
 // Local state for dialogs
-const showLoginDialog = ref(false)
-const showRegisterDialog = ref(false)
+const showLoginDialog = ref(false);
+const showRegisterDialog = ref(false);
 
 const showLogin = () => {
-  console.log('IndexPage: Show login clicked!')
-  showRegisterDialog.value = false
-  showLoginDialog.value = true
-}
+  console.log("IndexPage: Show login clicked!");
+  showRegisterDialog.value = false;
+  showLoginDialog.value = true;
+};
 
 const showRegister = () => {
-  console.log('IndexPage: Show register clicked!')
-  showLoginDialog.value = false
-  showRegisterDialog.value = true
-}
+  console.log("IndexPage: Show register clicked!");
+  showLoginDialog.value = false;
+  showRegisterDialog.value = true;
+};
 
 const handleLogin = (userData: { name: string; email: string }) => {
-  console.log('IndexPage: Login handler called with:', userData)
-  authStore.login(userData)
-  showLoginDialog.value = false
+  console.log("IndexPage: Login handler called with:", userData);
+  authStore.login(userData);
+  showLoginDialog.value = false;
   $q.notify({
     type: "positive",
     message: `Chào mừng ${userData.name}!`,
     position: "top",
-  })
-  router.push('/chat')
-}
+  });
+  router.push("/chat");
+};
 
 const handleRegister = (userData: { name: string; email: string }) => {
-  console.log('IndexPage: Register handler called with:', userData)
-  authStore.login(userData)
-  showRegisterDialog.value = false
+  console.log("IndexPage: Register handler called with:", userData);
+  authStore.login(userData);
+  showRegisterDialog.value = false;
   $q.notify({
     type: "positive",
     message: `Đăng ký thành công! Chào mừng ${userData.name}!`,
     position: "top",
-  })
-  router.push('/chat')
-}
+  });
+  router.push("/chat");
+};
 
 const switchToRegister = () => {
-  showLoginDialog.value = false
-  showRegisterDialog.value = true
-}
+  showLoginDialog.value = false;
+  showRegisterDialog.value = true;
+};
 
 const switchToLogin = () => {
-  showRegisterDialog.value = false
-  showLoginDialog.value = true
-}
+  showRegisterDialog.value = false;
+  showLoginDialog.value = true;
+};
 
 const testClick = () => {
-  alert('INDEX PAGE TEST BUTTON HOẠT ĐỘNG!')
-  console.log('IndexPage test button clicked!')
-}
+  alert("INDEX PAGE TEST BUTTON HOẠT ĐỘNG!");
+  console.log("IndexPage test button clicked!");
+};
 
 const doLogin = () => {
-  console.log('IndexPage doLogin called!')
-  handleLogin({name: 'Phước Thông', email: 'phuocthoang@demo.com'})
-}
+  console.log("IndexPage doLogin called!");
+  handleLogin({ name: "Phước Thông", email: "phuocthoang@demo.com" });
+};
 </script>
 
 <style scoped>
@@ -368,7 +371,11 @@ const doLogin = () => {
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(90deg, rgba(37, 99, 235, 0.10) 100%, rgba(109, 40, 217, 0.10) 0%);
+  background: linear-gradient(
+    90deg,
+    rgba(37, 99, 235, 0.1) 100%,
+    rgba(109, 40, 217, 0.1) 0%
+  );
   padding: 80px 0;
   text-align: center;
 }
@@ -381,8 +388,10 @@ const doLogin = () => {
   display: inline-flex;
   padding: 16px;
   border-radius: 50%;
-  background: linear-gradient(90deg, #2563EB 100%, #6D28D9 0%);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(90deg, #2563eb 100%, #6d28d9 0%);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .hero-title {
@@ -401,13 +410,13 @@ const doLogin = () => {
   font-size: 60px;
   font-weight: 700;
   line-height: 60px;
-  color: #6D28D9;
+  color: #6d28d9;
   margin: 0;
 }
 
 .hero-description {
   font-size: 20px;
-  color: #4B5563;
+  color: #4b5563;
   text-align: center;
   line-height: 32.5px;
   max-width: 732px;
@@ -422,24 +431,30 @@ const doLogin = () => {
 }
 
 .primary-btn {
-  background: linear-gradient(0deg, #8457FF 0%, #8457FF 100%), linear-gradient(90deg, #2563EB 100%, #6D28D9 0%);
+  background:
+    linear-gradient(0deg, #8457ff 0%, #8457ff 100%),
+    linear-gradient(90deg, #2563eb 100%, #6d28d9 0%);
   color: white;
   padding: 8px 32px;
   font-size: 18px;
   font-weight: 600;
   border-radius: 6px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .secondary-btn {
   background: white;
-  color: #5B21B6;
-  border: 2px solid #E9D5FF;
+  color: #5b21b6;
+  border: 2px solid #e9d5ff;
   padding: 8px 32px;
   font-size: 18px;
   font-weight: 600;
   border-radius: 6px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .stats-section {
@@ -459,7 +474,7 @@ const doLogin = () => {
   display: flex;
   padding: 8px;
   border-radius: 50%;
-  background: #EDE9FE;
+  background: #ede9fe;
 }
 
 .stat-number {
@@ -472,7 +487,7 @@ const doLogin = () => {
 .stat-label {
   font-size: 16px;
   font-weight: 500;
-  color: #4B5563;
+  color: #4b5563;
   line-height: 24px;
 }
 
@@ -497,7 +512,7 @@ const doLogin = () => {
 
 .section-description {
   font-size: 20px;
-  color: #4B5563;
+  color: #4b5563;
   line-height: 28px;
   margin: 0;
 }
@@ -510,7 +525,9 @@ const doLogin = () => {
 
 .feature-card {
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .feature-content {
@@ -526,7 +543,7 @@ const doLogin = () => {
   height: 56px;
   margin: 0 auto 22px auto;
   border-radius: 50%;
-  background: linear-gradient(90deg, #EFF6FF 100%, #F5F3FF 0%);
+  background: linear-gradient(90deg, #eff6ff 100%, #f5f3ff 0%);
 }
 
 .feature-title {
@@ -540,14 +557,14 @@ const doLogin = () => {
 
 .feature-description {
   font-size: 14px;
-  color: #4B5563;
+  color: #4b5563;
   line-height: 22.75px;
   margin: 0;
 }
 
 /* How It Works Section */
 .how-it-works-section {
-  background: linear-gradient(90deg, #EFF6FF 100%, #F5F3FF 0%);
+  background: linear-gradient(90deg, #eff6ff 100%, #f5f3ff 0%);
   padding: 80px 0;
 }
 
@@ -572,7 +589,7 @@ const doLogin = () => {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(90deg, #2563EB 100%, #6D28D9 0%);
+  background: linear-gradient(90deg, #2563eb 100%, #6d28d9 0%);
   color: white;
   font-size: 24px;
   font-weight: 700;
@@ -589,7 +606,7 @@ const doLogin = () => {
 
 .step-description {
   font-size: 16px;
-  color: #4B5563;
+  color: #4b5563;
   line-height: 24px;
   margin: 0;
 }
