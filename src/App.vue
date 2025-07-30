@@ -37,6 +37,7 @@ import RegisterDialog from "./components/dialogs/RegisterDialog.vue";
 import { useAuthStore } from "./stores/auth";
 
 const $q = useQuasar();
+const $router = useRouter();
 const authStore = useAuthStore();
 
 const showLoginDialog = ref(false);
