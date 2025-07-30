@@ -60,6 +60,8 @@ const handleLogin = (userData: { name: string; email: string }) => {
     message: `Chào mừng ${userData.name}!`,
     position: "top",
   });
+  // Redirect to chat page after login
+  $router.push('/chat');
 };
 
 const handleRegister = (userData: { name: string; email: string }) => {
