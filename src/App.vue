@@ -23,6 +23,7 @@
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import HeaderComponent from "./components/HeaderComponent.vue";
+import FixedLoginButtons from "./components/FixedLoginButtons.vue";
 
 const $route = useRoute();
 </script>
