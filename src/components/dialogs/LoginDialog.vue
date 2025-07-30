@@ -14,7 +14,7 @@
             v-model="formData.name"
             label="Tên đăng nhập"
             outlined
-            :rules="[val => !!val || 'Vui lòng nhập tên đăng nhập']"
+            :rules="[(val) => !!val || 'Vui lòng nhập tên đăng nhập']"
           >
             <template v-slot:prepend>
               <q-icon name="person" />
@@ -27,8 +27,8 @@
             type="email"
             outlined
             :rules="[
-              val => !!val || 'Vui lòng nhập email',
-              val => /.+@.+\..+/.test(val) || 'Email không hợp lệ'
+              (val) => !!val || 'Vui lòng nhập email',
+              (val) => /.+@.+\..+/.test(val) || 'Email không hợp lệ',
             ]"
           >
             <template v-slot:prepend>
@@ -41,7 +41,7 @@
             label="Mật khẩu"
             :type="showPassword ? 'text' : 'password'"
             outlined
-            :rules="[val => !!val || 'Vui lòng nhập mật khẩu']"
+            :rules="[(val) => !!val || 'Vui lòng nhập mật khẩu']"
           >
             <template v-slot:prepend>
               <q-icon name="lock" />
@@ -85,64 +85,67 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch } from "vue";
 
 interface LoginData {
-  name: string
-  email: string
-  password: string
+  name: string;
+  email: string;
+  password: string;
 }
 
 interface Props {
-  modelValue: boolean
+  modelValue: boolean;
 }
 
 interface Emits {
-  (e: 'update:modelValue', value: boolean): void
-  (e: 'login', data: { name: string; email: string }): void
-  (e: 'switch-to-register'): void
+  (e: "update:modelValue", value: boolean): void;
+  (e: "login", data: { name: string; email: string }): void;
+  (e: "switch-to-register"): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
-const isVisible = ref(false)
-const loading = ref(false)
-const showPassword = ref(false)
+const isVisible = ref(false);
+const loading = ref(false);
+const showPassword = ref(false);
 
 const formData = ref<LoginData>({
-  name: '',
-  email: '',
-  password: ''
-})
+  name: "",
+  email: "",
+  password: "",
+});
 
-watch(() => props.modelValue, (newVal) => {
-  isVisible.value = newVal
-})
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    isVisible.value = newVal;
+  },
+);
 
 watch(isVisible, (newVal) => {
-  emit('update:modelValue', newVal)
-})
+  emit("update:modelValue", newVal);
+});
 
 const handleSubmit = () => {
-  loading.value = true
-  
+  loading.value = true;
+
   setTimeout(() => {
-    emit('login', {
+    emit("login", {
       name: formData.value.name,
-      email: formData.value.email
-    })
-    
-    loading.value = false
-    formData.value = { name: '', email: '', password: '' }
-  }, 1000)
-}
+      email: formData.value.email,
+    });
+
+    loading.value = false;
+    formData.value = { name: "", email: "", password: "" };
+  }, 1000);
+};
 
 const switchToRegister = () => {
-  emit('switch-to-register')
-}
+  emit("switch-to-register");
+};
 
 const close = () => {
-  isVisible.value = false
-}
+  isVisible.value = false;
+};
 </script>

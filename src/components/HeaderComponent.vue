@@ -10,22 +10,22 @@
 
     <!-- Desktop Navigation -->
     <div class="hidden md:flex items-center space-x-6">
-      <router-link 
-        to="/" 
+      <router-link
+        to="/"
         class="text-white hover:text-blue-200 transition-colors"
         active-class="text-blue-200"
       >
         Trang chủ
       </router-link>
-      <router-link 
-        to="/about" 
+      <router-link
+        to="/about"
         class="text-white hover:text-blue-200 transition-colors"
         active-class="text-blue-200"
       >
         Giới thiệu
       </router-link>
-      <router-link 
-        to="/challenge" 
+      <router-link
+        to="/challenge"
         class="text-white hover:text-blue-200 transition-colors"
         active-class="text-blue-200"
       >
@@ -37,14 +37,14 @@
     <div class="flex items-center space-x-3 ml-4">
       <template v-if="!authStore.isLoggedIn">
         <!-- Login/Register Buttons -->
-        <q-btn 
-          flat 
+        <q-btn
+          flat
           label="Đăng nhập"
           color="white"
           @click="showLogin"
           class="hidden sm:block"
         />
-        <q-btn 
+        <q-btn
           label="Đăng ký"
           color="white"
           outline
@@ -52,14 +52,14 @@
           class="hidden sm:block"
         />
       </template>
-      
+
       <template v-else>
         <!-- User Menu -->
         <q-btn flat round>
           <q-avatar color="white" text-color="primary" size="md">
             {{ authStore.userAvatar }}
           </q-avatar>
-          
+
           <q-menu>
             <q-list style="min-width: 200px">
               <q-item clickable v-close-popup @click="$router.push('/profile')">
@@ -68,16 +68,16 @@
                 </q-item-section>
                 <q-item-section>Hồ sơ cá nhân</q-item-section>
               </q-item>
-              
+
               <q-item clickable v-close-popup @click="$router.push('/friends')">
                 <q-item-section avatar>
                   <q-icon name="people" />
                 </q-item-section>
                 <q-item-section>Bạn bè</q-item-section>
               </q-item>
-              
+
               <q-separator />
-              
+
               <q-item clickable v-close-popup @click="authStore.logout">
                 <q-item-section avatar>
                   <q-icon name="logout" />
@@ -102,7 +102,7 @@
             <q-item clickable v-close-popup @click="$router.push('/challenge')">
               <q-item-section>Thử thách</q-item-section>
             </q-item>
-            
+
             <template v-if="!authStore.isLoggedIn">
               <q-separator />
               <q-item clickable v-close-popup @click="showLogin">
@@ -120,12 +120,12 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from 'vue'
-import { useAuthStore } from '../stores/auth'
+import { inject } from "vue";
+import { useAuthStore } from "../stores/auth";
 
-const authStore = useAuthStore()
-const showLogin = inject('showLogin') as () => void
-const showRegister = inject('showRegister') as () => void
+const authStore = useAuthStore();
+const showLogin = inject("showLogin") as () => void;
+const showRegister = inject("showRegister") as () => void;
 </script>
 
 <style scoped>

@@ -12,13 +12,13 @@
       </q-page-container>
 
       <!-- Global Dialogs -->
-      <LoginDialog 
+      <LoginDialog
         v-model="showLoginDialog"
         @login="handleLogin"
         @switch-to-register="switchToRegister"
       />
-      
-      <RegisterDialog 
+
+      <RegisterDialog
         v-model="showRegisterDialog"
         @register="handleRegister"
         @switch-to-login="switchToLogin"
@@ -28,61 +28,61 @@
 </template>
 
 <script setup lang="ts">
-import { ref, provide } from 'vue'
-import { useQuasar } from 'quasar'
-import HeaderComponent from './components/HeaderComponent.vue'
-import LoginDialog from './components/dialogs/LoginDialog.vue'
-import RegisterDialog from './components/dialogs/RegisterDialog.vue'
-import { useAuthStore } from './stores/auth'
+import { ref, provide } from "vue";
+import { useQuasar } from "quasar";
+import HeaderComponent from "./components/HeaderComponent.vue";
+import LoginDialog from "./components/dialogs/LoginDialog.vue";
+import RegisterDialog from "./components/dialogs/RegisterDialog.vue";
+import { useAuthStore } from "./stores/auth";
 
-const $q = useQuasar()
-const authStore = useAuthStore()
+const $q = useQuasar();
+const authStore = useAuthStore();
 
-const showLoginDialog = ref(false)
-const showRegisterDialog = ref(false)
+const showLoginDialog = ref(false);
+const showRegisterDialog = ref(false);
 
 // Provide methods to show dialogs globally
-provide('showLogin', () => {
-  showRegisterDialog.value = false
-  showLoginDialog.value = true
-})
+provide("showLogin", () => {
+  showRegisterDialog.value = false;
+  showLoginDialog.value = true;
+});
 
-provide('showRegister', () => {
-  showLoginDialog.value = false
-  showRegisterDialog.value = true
-})
+provide("showRegister", () => {
+  showLoginDialog.value = false;
+  showRegisterDialog.value = true;
+});
 
 const handleLogin = (userData: { name: string; email: string }) => {
-  authStore.login(userData)
-  showLoginDialog.value = false
+  authStore.login(userData);
+  showLoginDialog.value = false;
   $q.notify({
-    type: 'positive',
+    type: "positive",
     message: `Chào mừng ${userData.name}!`,
-    position: 'top'
-  })
-}
+    position: "top",
+  });
+};
 
 const handleRegister = (userData: { name: string; email: string }) => {
-  authStore.login(userData)
-  showRegisterDialog.value = false
+  authStore.login(userData);
+  showRegisterDialog.value = false;
   $q.notify({
-    type: 'positive',
+    type: "positive",
     message: `Đăng ký thành công! Chào mừng ${userData.name}!`,
-    position: 'top'
-  })
-}
+    position: "top",
+  });
+};
 
 const switchToRegister = () => {
-  showLoginDialog.value = false
-  showRegisterDialog.value = true
-}
+  showLoginDialog.value = false;
+  showRegisterDialog.value = true;
+};
 
 const switchToLogin = () => {
-  showRegisterDialog.value = false
-  showLoginDialog.value = true
-}
+  showRegisterDialog.value = false;
+  showLoginDialog.value = true;
+};
 </script>
 
 <style lang="scss">
-@import 'css/app.scss';
+@import "css/app.scss";
 </style>

@@ -1,51 +1,48 @@
-import { configure } from 'quasar/wrappers'
+import { configure } from "quasar/wrappers";
 
 export default configure((ctx) => {
   return {
     eslint: {
       warnings: true,
-      errors: true
+      errors: true,
     },
 
-    boot: [
-    ],
+    boot: [],
 
-    css: [
-      'app.scss'
-    ],
+    css: ["app.scss"],
 
     extras: [
-      'material-icons',
-      'material-icons-outlined',
-      'material-icons-round',
-      'material-icons-sharp',
-      'fontawesome-v6',
+      "material-icons",
+      "material-icons-outlined",
+      "material-icons-round",
+      "material-icons-sharp",
+      "fontawesome-v6",
     ],
 
     build: {
       target: {
-        browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],
-        node: 'node16'
+        browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
+        node: "node16",
       },
 
-      vueRouterMode: 'history',
+      vueRouterMode: "history",
     },
 
     devServer: {
       open: true,
-      port: 8080
+      port: 8080,
     },
 
     framework: {
       config: {},
 
       plugins: [
-        'Notify',
-        'Dialog',
-        'Loading',
-        'LocalStorage',
-        'SessionStorage'
-      ]
+        "Notify",
+        "Dialog",
+        "Loading",
+        "LocalStorage",
+        "SessionStorage",
+      ],
     },
 
     animations: [],
@@ -53,43 +50,37 @@ export default configure((ctx) => {
     ssr: {
       pwa: false,
       prodPort: 3000,
-      middlewares: [
-        'render'
-      ]
+      middlewares: ["render"],
     },
 
     pwa: {
-      workboxMode: 'generateSW',
+      workboxMode: "generateSW",
       injectPwaMetaTags: true,
-      swFilename: 'sw.js',
-      manifestFilename: 'manifest.json',
+      swFilename: "sw.js",
+      manifestFilename: "manifest.json",
       useCredentialsForManifestTag: false,
     },
 
-    cordova: {
-    },
+    cordova: {},
 
     capacitor: {
-      hideSplashscreen: true
+      hideSplashscreen: true,
     },
 
     electron: {
       inspectPort: 5858,
 
-      bundler: 'packager',
+      bundler: "packager",
 
-      packager: {
-      },
+      packager: {},
 
       builder: {
-        appId: 'lingochallenge'
-      }
+        appId: "lingochallenge",
+      },
     },
 
     bex: {
-      contentScripts: [
-        'my-content-script'
-      ]
-    }
-  }
-})
+      contentScripts: ["my-content-script"],
+    },
+  };
+});

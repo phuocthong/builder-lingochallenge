@@ -14,7 +14,7 @@
             v-model="formData.name"
             label="Họ và tên"
             outlined
-            :rules="[val => !!val || 'Vui lòng nhập họ và tên']"
+            :rules="[(val) => !!val || 'Vui lòng nhập họ và tên']"
           >
             <template v-slot:prepend>
               <q-icon name="person" />
@@ -27,8 +27,8 @@
             type="email"
             outlined
             :rules="[
-              val => !!val || 'Vui lòng nhập email',
-              val => /.+@.+\..+/.test(val) || 'Email không hợp lệ'
+              (val) => !!val || 'Vui lòng nhập email',
+              (val) => /.+@.+\..+/.test(val) || 'Email không hợp lệ',
             ]"
           >
             <template v-slot:prepend>
@@ -42,8 +42,8 @@
             :type="showPassword ? 'text' : 'password'"
             outlined
             :rules="[
-              val => !!val || 'Vui lòng nhập mật khẩu',
-              val => val.length >= 6 || 'Mật khẩu phải có ít nhất 6 ký tự'
+              (val) => !!val || 'Vui lòng nhập mật khẩu',
+              (val) => val.length >= 6 || 'Mật khẩu phải có ít nhất 6 ký tự',
             ]"
           >
             <template v-slot:prepend>
@@ -64,8 +64,8 @@
             :type="showConfirmPassword ? 'text' : 'password'"
             outlined
             :rules="[
-              val => !!val || 'Vui lòng xác nhận mật khẩu',
-              val => val === formData.password || 'Mật khẩu không khớp'
+              (val) => !!val || 'Vui lòng xác nhận mật khẩu',
+              (val) => val === formData.password || 'Mật khẩu không khớp',
             ]"
           >
             <template v-slot:prepend>
@@ -80,10 +80,10 @@
             </template>
           </q-input>
 
-          <q-checkbox 
-            v-model="agreeToTerms" 
+          <q-checkbox
+            v-model="agreeToTerms"
             label="Tôi đồng ý với điều khoản sử dụng"
-            :rules="[val => !!val || 'Bạn phải đồng ý với điều khoản']"
+            :rules="[(val) => !!val || 'Bạn phải đồng ý với điều khoản']"
           />
 
           <div class="q-pt-md">
@@ -117,69 +117,72 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch } from "vue";
 
 interface RegisterData {
-  name: string
-  email: string
-  password: string
-  confirmPassword: string
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 }
 
 interface Props {
-  modelValue: boolean
+  modelValue: boolean;
 }
 
 interface Emits {
-  (e: 'update:modelValue', value: boolean): void
-  (e: 'register', data: { name: string; email: string }): void
-  (e: 'switch-to-login'): void
+  (e: "update:modelValue", value: boolean): void;
+  (e: "register", data: { name: string; email: string }): void;
+  (e: "switch-to-login"): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
-const isVisible = ref(false)
-const loading = ref(false)
-const showPassword = ref(false)
-const showConfirmPassword = ref(false)
-const agreeToTerms = ref(false)
+const isVisible = ref(false);
+const loading = ref(false);
+const showPassword = ref(false);
+const showConfirmPassword = ref(false);
+const agreeToTerms = ref(false);
 
 const formData = ref<RegisterData>({
-  name: '',
-  email: '',
-  password: '',
-  confirmPassword: ''
-})
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+});
 
-watch(() => props.modelValue, (newVal) => {
-  isVisible.value = newVal
-})
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    isVisible.value = newVal;
+  },
+);
 
 watch(isVisible, (newVal) => {
-  emit('update:modelValue', newVal)
-})
+  emit("update:modelValue", newVal);
+});
 
 const handleSubmit = () => {
-  loading.value = true
-  
+  loading.value = true;
+
   setTimeout(() => {
-    emit('register', {
+    emit("register", {
       name: formData.value.name,
-      email: formData.value.email
-    })
-    
-    loading.value = false
-    formData.value = { name: '', email: '', password: '', confirmPassword: '' }
-    agreeToTerms.value = false
-  }, 1000)
-}
+      email: formData.value.email,
+    });
+
+    loading.value = false;
+    formData.value = { name: "", email: "", password: "", confirmPassword: "" };
+    agreeToTerms.value = false;
+  }, 1000);
+};
 
 const switchToLogin = () => {
-  emit('switch-to-login')
-}
+  emit("switch-to-login");
+};
 
 const close = () => {
-  isVisible.value = false
-}
+  isVisible.value = false;
+};
 </script>
