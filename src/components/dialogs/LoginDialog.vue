@@ -80,7 +80,7 @@
           <div class="q-pt-md">
             <q-btn
               type="submit"
-              label="Đăng nh���p"
+              label="Đăng nhập"
               color="primary"
               class="full-width"
               size="lg"
@@ -190,6 +190,7 @@ const testLogin = () => {
     name: 'Test User',
     email: 'test@example.com'
   })
+  isVisible.value = false
 }
 
 const close = () => {
