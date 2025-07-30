@@ -38,6 +38,7 @@ import { useAuthStore } from "./stores/auth";
 
 const $q = useQuasar();
 const $router = useRouter();
+const $route = useRoute();
 const authStore = useAuthStore();
 
 const showLoginDialog = ref(false);
