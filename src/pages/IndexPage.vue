@@ -72,7 +72,7 @@
               <q-icon name="schedule" size="20px" />
             </div>
             <div class="stat-number">24/7</div>
-            <div class="stat-label">Hỗ trợ</div>
+            <div class="stat-label">H�� trợ</div>
           </div>
         </div>
       </div>
@@ -205,10 +205,64 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from 'vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
+import { useAuthStore } from '../stores/auth'
 
-const showRegister = inject('showRegister') as () => void
-const showLogin = inject('showLogin') as () => void
+const authStore = useAuthStore()
+const router = useRouter()
+const $q = useQuasar()
+
+// Local state for dialogs
+const showLoginDialog = ref(false)
+const showRegisterDialog = ref(false)
+
+const showLogin = () => {
+  console.log('IndexPage: Show login clicked!')
+  showRegisterDialog.value = false
+  showLoginDialog.value = true
+}
+
+const showRegister = () => {
+  console.log('IndexPage: Show register clicked!')
+  showLoginDialog.value = false
+  showRegisterDialog.value = true
+}
+
+const handleLogin = (userData: { name: string; email: string }) => {
+  console.log('IndexPage: Login handler called with:', userData)
+  authStore.login(userData)
+  showLoginDialog.value = false
+  $q.notify({
+    type: "positive",
+    message: `Chào mừng ${userData.name}!`,
+    position: "top",
+  })
+  router.push('/chat')
+}
+
+const handleRegister = (userData: { name: string; email: string }) => {
+  console.log('IndexPage: Register handler called with:', userData)
+  authStore.login(userData)
+  showRegisterDialog.value = false
+  $q.notify({
+    type: "positive",
+    message: `Đăng ký thành công! Chào mừng ${userData.name}!`,
+    position: "top",
+  })
+  router.push('/chat')
+}
+
+const switchToRegister = () => {
+  showLoginDialog.value = false
+  showRegisterDialog.value = true
+}
+
+const switchToLogin = () => {
+  showRegisterDialog.value = false
+  showLoginDialog.value = true
+}
 </script>
 
 <style scoped>
