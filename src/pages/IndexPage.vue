@@ -36,6 +36,22 @@
         </div>
       </div>
 
+      <!-- Quick Demo Login -->
+      <div class="q-py-lg bg-blue-1">
+        <div style="max-width: 600px; margin: 0 auto;" class="q-px-md text-center">
+          <h3 class="text-h5 text-weight-bold q-mb-md">🚀 Dùng thử ngay</h3>
+          <p class="text-grey-7 q-mb-lg">Đăng nhập demo để trải nghiệm tất cả tính năng</p>
+          <q-btn 
+            color="primary" 
+            size="lg"
+            label="Đăng nhập Demo"
+            icon="login"
+            @click="showLogin"
+            class="q-px-xl"
+          />
+        </div>
+      </div>
+
       <!-- Features Section -->
       <div class="q-py-xl bg-white">
         <div style="max-width: 1200px; margin: 0 auto;" class="q-px-md">
@@ -84,26 +100,6 @@
         </div>
       </div>
 
-      <!-- CTA Section -->
-      <div class="q-py-xl bg-gradient-to-r text-white">
-        <div style="max-width: 1000px; margin: 0 auto;" class="text-center q-px-md">
-          <h2 class="text-h3 text-weight-bold q-mb-lg">
-            🎓 Sẵn sàng bắt đầu hành trình?
-          </h2>
-          <p class="text-h6 q-mb-lg">
-            Tham gia cùng hàng nghìn học viên đã cải thiện tiếng Anh với EnglishBot
-          </p>
-          <q-btn 
-            size="xl"
-            color="yellow"
-            text-color="dark"
-            label="🚀 Đăng ký miễn phí"
-            @click="showRegister"
-            class="text-weight-bold q-px-xl q-py-md"
-          />
-        </div>
-      </div>
-
       <!-- Footer -->
       <footer class="bg-grey-9 text-white q-py-xl">
         <div style="max-width: 1200px; margin: 0 auto;" class="q-px-md">
@@ -145,20 +141,85 @@
       </footer>
     </div>
 
-    <!-- Giao diện chat cho người dùng đã đăng nhập -->
+    <!-- Dashboard cho người dùng đã đăng nhập -->
     <div v-else class="min-h-screen bg-grey-1">
-      <ChatInterface />
+      <!-- Welcome Header -->
+      <div class="bg-gradient-to-r text-white q-pa-lg">
+        <div class="text-center">
+          <h1 class="text-h4 text-weight-bold q-mb-sm">
+            🎉 Chào mừng {{ authStore.user.name }}!
+          </h1>
+          <p class="text-h6">Sẵn sàng học tiếng Anh hôm nay chưa?</p>
+        </div>
+      </div>
+
+      <!-- Quick Access Cards -->
+      <div class="q-pa-lg">
+        <div class="row q-gutter-lg">
+          <!-- Chat AI -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <q-card class="card-hover cursor-pointer" @click="activeFeature = 'chat'">
+              <q-card-section class="text-center">
+                <q-icon name="smart_toy" size="3rem" color="primary" class="q-mb-md" />
+                <h3 class="text-h6 text-weight-medium q-mb-sm">🤖 Chat AI</h3>
+                <p class="text-grey-6">Trò chuyện với AI để luyện tập</p>
+              </q-card-section>
+            </q-card>
+          </div>
+
+          <!-- Friends -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <q-card class="card-hover cursor-pointer" @click="$router.push('/friends')">
+              <q-card-section class="text-center">
+                <q-icon name="people" size="3rem" color="secondary" class="q-mb-md" />
+                <h3 class="text-h6 text-weight-medium q-mb-sm">👥 Bạn bè</h3>
+                <p class="text-grey-6">Kết nối và thách đấu</p>
+              </q-card-section>
+            </q-card>
+          </div>
+
+          <!-- Profile -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <q-card class="card-hover cursor-pointer" @click="$router.push('/profile')">
+              <q-card-section class="text-center">
+                <q-icon name="person" size="3rem" color="purple" class="q-mb-md" />
+                <h3 class="text-h6 text-weight-medium q-mb-sm">👤 Hồ sơ</h3>
+                <p class="text-grey-6">Quản lý tài khoản</p>
+              </q-card-section>
+            </q-card>
+          </div>
+
+          <!-- Challenge -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <q-card class="card-hover cursor-pointer" @click="$router.push('/challenge')">
+              <q-card-section class="text-center">
+                <q-icon name="emoji_events" size="3rem" color="orange" class="q-mb-md" />
+                <h3 class="text-h6 text-weight-medium q-mb-sm">🏆 Thử thách</h3>
+                <p class="text-grey-6">Kiểm tra kỹ năng</p>
+              </q-card-section>
+            </q-card>
+          </div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div v-if="activeFeature === 'chat'" class="q-mt-lg">
+          <ChatInterface />
+        </div>
+      </div>
     </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { inject } from 'vue'
+import { ref, inject } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import ChatInterface from '../components/ChatInterface.vue'
 
 const authStore = useAuthStore()
 const showRegister = inject('showRegister') as () => void
+const showLogin = inject('showLogin') as () => void
+
+const activeFeature = ref('') // To track which feature is active
 
 const features = [
   {
@@ -182,7 +243,7 @@ const features = [
   {
     id: 4,
     icon: "👥",
-    title: "Học cùng b��n bè",
+    title: "Học cùng bạn bè",
     description: "Kết nối và cạnh tranh với bạn bè để tăng động lực học tập"
   },
   {
@@ -215,5 +276,9 @@ const stats = [
 .card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>
