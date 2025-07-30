@@ -4,12 +4,10 @@
 }
 
 .card-hover {
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   }
 }
 
@@ -25,4 +23,21 @@
   .mobile-optimized {
     padding: 0.5rem;
   }
+}
+
+// Custom utility classes
+.bg-gradient-to-r {
+  background: linear-gradient(to right, #8b5cf6, #3b82f6);
+}
+
+.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #f3e8ff, #dbeafe);
+}
+
+.border {
+  border: 1px solid #e5e7eb;
+}
+
+.text-strike {
+  text-decoration: line-through;
 }
