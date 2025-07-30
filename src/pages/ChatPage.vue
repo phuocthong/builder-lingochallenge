@@ -16,6 +16,7 @@
             <div class="nav-item" @click="router.push('/about')">Giới thiệu</div>
             <div class="nav-item" @click="router.push('/challenge')">Thử thách</div>
             <div class="nav-item" @click="router.push('/friends')">Bạn bè</div>
+            <div class="nav-item" @click="router.push('/shop')">Cửa hàng</div>
           </div>
         </div>
 
