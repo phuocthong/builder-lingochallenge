@@ -13,7 +13,7 @@
         <div class="q-mb-lg">
           <q-btn 
             color="primary" 
-            label="🚀 Đăng nhập Demo (Phước Thông)"
+            label="��� Đăng nhập Demo (Phước Thông)"
             class="full-width q-py-sm"
             @click="handleDemoLogin"
           />
@@ -138,14 +138,20 @@ watch(isVisible, (newVal) => {
 })
 
 const handleDemoLogin = () => {
+  console.log('Demo login clicked!')
   loading.value = true
-  
+
   setTimeout(() => {
+    console.log('Emitting login event with:', {
+      name: 'Phước Thông',
+      email: 'phuocthoang@demo.com'
+    })
+
     emit('login', {
       name: 'Phước Thông',
       email: 'phuocthoang@demo.com'
     })
-    
+
     loading.value = false
     formData.value = { name: '', email: '', password: '' }
   }, 500)
