@@ -1,65 +1,65 @@
 <template>
   <q-toolbar class="text-white">
-    <q-toolbar-title class="flex items-center">
+    <q-toolbar-title>
       <!-- Logo -->
-      <div class="flex items-center space-x-2">
+      <div class="row items-center q-gutter-sm">
         <q-icon name="school" size="md" />
-        <span class="text-xl font-bold">EnglishBot</span>
+        <span class="text-h6 text-weight-bold">EnglishBot</span>
       </div>
     </q-toolbar-title>
 
     <!-- Desktop Navigation -->
-    <div class="hidden md:flex items-center space-x-6">
-      <router-link
-        to="/"
-        class="text-white hover:text-blue-200 transition-colors"
-        active-class="text-blue-200"
+    <div class="gt-sm row items-center q-gutter-lg">
+      <router-link 
+        to="/" 
+        class="text-white text-decoration-none"
+        active-class="text-blue-2"
       >
         Trang chủ
       </router-link>
-      <router-link
-        to="/about"
-        class="text-white hover:text-blue-200 transition-colors"
-        active-class="text-blue-200"
+      <router-link 
+        to="/about" 
+        class="text-white text-decoration-none"
+        active-class="text-blue-2"
       >
         Giới thiệu
       </router-link>
-      <router-link
-        to="/challenge"
-        class="text-white hover:text-blue-200 transition-colors"
-        active-class="text-blue-200"
+      <router-link 
+        to="/challenge" 
+        class="text-white text-decoration-none"
+        active-class="text-blue-2"
       >
         Thử thách
       </router-link>
     </div>
 
     <!-- User Actions -->
-    <div class="flex items-center space-x-3 ml-4">
+    <div class="row items-center q-gutter-sm q-ml-md">
       <template v-if="!authStore.isLoggedIn">
         <!-- Login/Register Buttons -->
-        <q-btn
-          flat
+        <q-btn 
+          flat 
           label="Đăng nhập"
           color="white"
           @click="showLogin"
-          class="hidden sm:block"
+          class="gt-xs"
         />
-        <q-btn
+        <q-btn 
           label="Đăng ký"
           color="white"
           outline
           @click="showRegister"
-          class="hidden sm:block"
+          class="gt-xs"
         />
       </template>
-
+      
       <template v-else>
         <!-- User Menu -->
         <q-btn flat round>
           <q-avatar color="white" text-color="primary" size="md">
             {{ authStore.userAvatar }}
           </q-avatar>
-
+          
           <q-menu>
             <q-list style="min-width: 200px">
               <q-item clickable v-close-popup @click="$router.push('/profile')">
@@ -68,16 +68,16 @@
                 </q-item-section>
                 <q-item-section>Hồ sơ cá nhân</q-item-section>
               </q-item>
-
+              
               <q-item clickable v-close-popup @click="$router.push('/friends')">
                 <q-item-section avatar>
                   <q-icon name="people" />
                 </q-item-section>
                 <q-item-section>Bạn bè</q-item-section>
               </q-item>
-
+              
               <q-separator />
-
+              
               <q-item clickable v-close-popup @click="authStore.logout">
                 <q-item-section avatar>
                   <q-icon name="logout" />
@@ -90,7 +90,7 @@
       </template>
 
       <!-- Mobile Menu -->
-      <q-btn flat round icon="menu" class="md:hidden">
+      <q-btn flat round icon="menu" class="lt-md">
         <q-menu>
           <q-list style="min-width: 150px">
             <q-item clickable v-close-popup @click="$router.push('/')">
@@ -102,7 +102,7 @@
             <q-item clickable v-close-popup @click="$router.push('/challenge')">
               <q-item-section>Thử thách</q-item-section>
             </q-item>
-
+            
             <template v-if="!authStore.isLoggedIn">
               <q-separator />
               <q-item clickable v-close-popup @click="showLogin">
@@ -120,12 +120,12 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from "vue";
-import { useAuthStore } from "../stores/auth";
+import { inject } from 'vue'
+import { useAuthStore } from '../stores/auth'
 
-const authStore = useAuthStore();
-const showLogin = inject("showLogin") as () => void;
-const showRegister = inject("showRegister") as () => void;
+const authStore = useAuthStore()
+const showLogin = inject('showLogin') as () => void
+const showRegister = inject('showRegister') as () => void
 </script>
 
 <style scoped>
