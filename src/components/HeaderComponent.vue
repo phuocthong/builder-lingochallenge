@@ -39,7 +39,7 @@
           </div>
 
           <!-- User Profile -->
-          <div class="user-profile">
+          <div class="user-profile" @click="router.push('/profile')" style="cursor: pointer;">
             <div class="user-avatar">
               {{ authStore.userAvatar }}
             </div>
@@ -100,7 +100,7 @@
           <div class="q-mb-lg">
             <q-btn
               color="primary"
-              label="🚀 Đăng nhập Demo (Phước Thông)"
+              label="🚀 Đăng nhập Demo (Phư��c Thông)"
               class="full-width q-py-sm"
               @click="doLogin"
             />
