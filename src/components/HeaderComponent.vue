@@ -45,9 +45,9 @@
           </div>
 
           <!-- Logout Button -->
-          <q-btn 
+          <q-btn
             class="logout-btn"
-            @click="authStore.logout"
+            @click="handleLogout"
           >
             <q-icon name="logout" size="16px" class="q-mr-sm" />
             Đăng xuất
