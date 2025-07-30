@@ -1,6 +1,9 @@
 <template>
   <div id="q-app">
     <q-layout view="hHh lpR fFf">
+      <!-- Fixed Login Buttons -->
+      <FixedLoginButtons />
+
       <!-- Header -->
       <q-header class="bg-white text-dark" v-if="$route.name !== 'Chat'">
         <HeaderComponent />
