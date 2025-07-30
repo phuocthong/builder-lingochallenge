@@ -1,209 +1,203 @@
 <template>
-  <q-page>
-    <!-- Trang giới thiệu cho người dùng chưa đăng nhập -->
-    <div v-if="!authStore.isLoggedIn" class="min-h-screen bg-gradient-to-br">
-      <!-- Hero Section -->
-      <div class="relative overflow-hidden bg-gradient-to-r text-white">
-        <div class="q-pa-xl">
-          <div class="text-center">
-            <h1 class="text-h2 text-weight-bold q-mb-lg">
-              🚀 Học tiếng Anh thông minh với 
-              <span class="text-yellow-4">EnglishBot</span>
-            </h1>
-            <p class="text-h5 q-mb-xl" style="max-width: 800px; margin: 0 auto;">
-              Nền tảng học tiếng Anh AI thông minh, giúp bạn nâng cao kỹ năng 
-              ngôn ngữ một cách hiệu quả và thú vị
-            </p>
-            <div class="row justify-center q-gutter-md">
-              <q-btn 
-                size="xl"
-                color="yellow"
-                text-color="dark"
-                label="🎯 Bắt đầu ngay"
-                @click="showRegister"
-                class="text-weight-bold q-px-xl q-py-md"
-              />
-              <q-btn 
-                size="xl"
-                outline
-                color="white"
-                label="📚 Tìm hiểu thêm"
-                @click="$router.push('/about')"
-                class="text-weight-bold q-px-xl q-py-md"
-              />
-            </div>
+  <q-page class="bg-white">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <div class="container">
+        <!-- Large Icon -->
+        <div class="hero-icon">
+          <div class="icon-wrapper">
+            <q-icon name="computer" size="48px" color="white" />
           </div>
         </div>
-      </div>
 
-      <!-- Quick Demo Login -->
-      <div class="q-py-lg bg-blue-1">
-        <div style="max-width: 600px; margin: 0 auto;" class="q-px-md text-center">
-          <h3 class="text-h5 text-weight-bold q-mb-md">🚀 Dùng thử ngay</h3>
-          <p class="text-grey-7 q-mb-lg">Đăng nhập demo để trải nghiệm tất cả tính năng</p>
+        <!-- Main Title -->
+        <div class="hero-title">
+          <h1 class="main-title">Học Tiếng Anh Thông Qua</h1>
+          <h1 class="sub-title">Trò Chuyện AI</h1>
+        </div>
+
+        <!-- Description -->
+        <p class="hero-description">
+          Khám phá cách học ti��ng Anh hiệu quả nhất với AI chatbot thông minh, thách đấu bạn bè và hệ thống phần thưởng hấp dẫn.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="cta-buttons">
           <q-btn 
-            color="primary" 
-            size="lg"
-            label="Đăng nhập Demo"
-            icon="login"
+            class="primary-btn"
+            @click="showRegister"
+          >
+            <q-icon name="auto_awesome" class="q-mr-sm" />
+            Bắt Đầu Miễn Phí
+            <q-icon name="arrow_forward" class="q-ml-sm" />
+          </q-btn>
+          
+          <q-btn 
+            class="secondary-btn"
             @click="showLogin"
-            class="q-px-xl"
-          />
+          >
+            <q-icon name="play_arrow" class="q-mr-sm" />
+            Đăng Nhập
+          </q-btn>
         </div>
-      </div>
 
-      <!-- Features Section -->
-      <div class="q-py-xl bg-white">
-        <div style="max-width: 1200px; margin: 0 auto;" class="q-px-md">
-          <div class="text-center q-mb-xl">
-            <h2 class="text-h3 text-weight-bold text-grey-9 q-mb-md">
-              ✨ Tính năng nổi bật
-            </h2>
-            <p class="text-h6 text-grey-6" style="max-width: 800px; margin: 0 auto;">
-              EnglishBot mang đến trải nghiệm học tập toàn diện với công nghệ AI tiên tiến
-            </p>
-          </div>
-
-          <div class="row q-gutter-lg">
-            <div class="col-12 col-md-6 col-lg-4" v-for="feature in features" :key="feature.id">
-              <q-card class="card-hover">
-                <q-card-section class="text-center">
-                  <div class="text-h1 q-mb-md">{{ feature.icon }}</div>
-                  <h3 class="text-h6 text-weight-medium q-mb-sm">{{ feature.title }}</h3>
-                  <p class="text-grey-6">{{ feature.description }}</p>
-                </q-card-section>
-              </q-card>
+        <!-- Stats -->
+        <div class="stats-section">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <q-icon name="people" size="20px" />
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stats Section -->
-      <div class="q-py-xl bg-gradient-to-br">
-        <div style="max-width: 1200px; margin: 0 auto;" class="q-px-md">
-          <div class="text-center q-mb-xl">
-            <h2 class="text-h3 text-weight-bold text-grey-9 q-mb-md">
-              📊 Thống kê ấn tượng
-            </h2>
-          </div>
-
-          <div class="row q-gutter-lg">
-            <div class="col-12 col-md-3" v-for="stat in stats" :key="stat.label">
-              <div class="text-center">
-                <div class="text-h2 text-weight-bold text-primary q-mb-sm">
-                  {{ stat.number }}
-                </div>
-                <div class="text-h6 text-grey-6">{{ stat.label }}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <footer class="bg-grey-9 text-white q-py-xl">
-        <div style="max-width: 1200px; margin: 0 auto;" class="q-px-md">
-          <div class="row q-gutter-lg">
-            <div class="col-12 col-md-6">
-              <div class="row items-center q-gutter-sm q-mb-md">
-                <q-icon name="school" size="md" />
-                <span class="text-h5 text-weight-bold">EnglishBot</span>
-              </div>
-              <p class="text-grey-4 q-mb-md">
-                Nền tảng học tiếng Anh AI thông minh, giúp bạn nâng cao kỹ năng ngôn ngữ hiệu quả
-              </p>
-            </div>
-            
-            <div class="col-12 col-md-3">
-              <h3 class="text-h6 text-weight-medium q-mb-md">Liên kết</h3>
-              <div class="column q-gutter-sm">
-                <router-link to="/about" class="text-grey-4 text-decoration-none">Giới thiệu</router-link>
-                <router-link to="/challenge" class="text-grey-4 text-decoration-none">Thử thách</router-link>
-                <a href="#" class="text-grey-4 text-decoration-none">Hướng dẫn</a>
-              </div>
-            </div>
-            
-            <div class="col-12 col-md-3">
-              <h3 class="text-h6 text-weight-medium q-mb-md">Hỗ trợ</h3>
-              <div class="column q-gutter-sm">
-                <a href="#" class="text-grey-4 text-decoration-none">Trung tâm trợ giúp</a>
-                <a href="#" class="text-grey-4 text-decoration-none">Liên hệ</a>
-                <a href="#" class="text-grey-4 text-decoration-none">Điều khoản</a>
-              </div>
-            </div>
+            <div class="stat-number">10,000+</div>
+            <div class="stat-label">Người học</div>
           </div>
           
-          <q-separator class="q-my-lg" color="grey-8" />
-          <div class="text-center text-grey-4">
-            <p>&copy; 2025 EnglishBot. Tất cả quyền được bảo lưu.</p>
+          <div class="stat-item">
+            <div class="stat-icon">
+              <q-icon name="quiz" size="20px" />
+            </div>
+            <div class="stat-number">50,000+</div>
+            <div class="stat-label">Câu hỏi</div>
           </div>
-        </div>
-      </footer>
-    </div>
-
-    <!-- Dashboard cho người dùng đã đăng nhập -->
-    <div v-else class="min-h-screen bg-grey-1">
-      <!-- Welcome Header -->
-      <div class="bg-gradient-to-r text-white q-pa-lg">
-        <div class="text-center">
-          <h1 class="text-h4 text-weight-bold q-mb-sm">
-            🎉 Chào mừng {{ authStore.user.name }}!
-          </h1>
-          <p class="text-h6">Sẵn sàng học tiếng Anh hôm nay chưa?</p>
+          
+          <div class="stat-item">
+            <div class="stat-icon">
+              <q-icon name="star" size="20px" />
+            </div>
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Hài lòng</div>
+          </div>
+          
+          <div class="stat-item">
+            <div class="stat-icon">
+              <q-icon name="schedule" size="20px" />
+            </div>
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Hỗ trợ</div>
+          </div>
         </div>
       </div>
+    </div>
 
-      <!-- Quick Access Cards -->
-      <div class="q-pa-lg">
-        <div class="row q-gutter-lg">
-          <!-- Chat AI -->
-          <div class="col-12 col-md-6 col-lg-3">
-            <q-card class="card-hover cursor-pointer" @click="activeFeature = 'chat'">
-              <q-card-section class="text-center">
-                <q-icon name="smart_toy" size="3rem" color="primary" class="q-mb-md" />
-                <h3 class="text-h6 text-weight-medium q-mb-sm">🤖 Chat AI</h3>
-                <p class="text-grey-6">Trò chuyện với AI để luyện tập</p>
-              </q-card-section>
-            </q-card>
-          </div>
-
-          <!-- Friends -->
-          <div class="col-12 col-md-6 col-lg-3">
-            <q-card class="card-hover cursor-pointer" @click="$router.push('/friends')">
-              <q-card-section class="text-center">
-                <q-icon name="people" size="3rem" color="secondary" class="q-mb-md" />
-                <h3 class="text-h6 text-weight-medium q-mb-sm">👥 Bạn bè</h3>
-                <p class="text-grey-6">Kết nối và thách đấu</p>
-              </q-card-section>
-            </q-card>
-          </div>
-
-          <!-- Profile -->
-          <div class="col-12 col-md-6 col-lg-3">
-            <q-card class="card-hover cursor-pointer" @click="$router.push('/profile')">
-              <q-card-section class="text-center">
-                <q-icon name="person" size="3rem" color="purple" class="q-mb-md" />
-                <h3 class="text-h6 text-weight-medium q-mb-sm">👤 Hồ sơ</h3>
-                <p class="text-grey-6">Quản lý tài khoản</p>
-              </q-card-section>
-            </q-card>
-          </div>
-
-          <!-- Challenge -->
-          <div class="col-12 col-md-6 col-lg-3">
-            <q-card class="card-hover cursor-pointer" @click="$router.push('/challenge')">
-              <q-card-section class="text-center">
-                <q-icon name="emoji_events" size="3rem" color="orange" class="q-mb-md" />
-                <h3 class="text-h6 text-weight-medium q-mb-sm">🏆 Thử thách</h3>
-                <p class="text-grey-6">Kiểm tra kỹ năng</p>
-              </q-card-section>
-            </q-card>
-          </div>
+    <!-- Features Section -->
+    <div class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Tại Sao Chọn Lingo?</h2>
+          <p class="section-description">
+            Những tính năng độc đáo giúp bạn học tiếng Anh hiệu quả và thú vị hơn bao giờ hết
+          </p>
         </div>
 
-        <!-- Chat Interface -->
-        <div v-if="activeFeature === 'chat'" class="q-mt-lg">
-          <ChatInterface />
+        <div class="features-grid">
+          <q-card class="feature-card">
+            <q-card-section class="feature-content">
+              <div class="feature-icon">
+                <q-icon name="smart_toy" size="32px" />
+              </div>
+              <h3 class="feature-title">AI Chatbot Thông Minh</h3>
+              <p class="feature-description">
+                Học tiếng Anh qua trò chuyện tự nhiên với AI bot được thiết kế đặc biệt
+              </p>
+            </q-card-section>
+          </q-card>
+
+          <q-card class="feature-card">
+            <q-card-section class="feature-content">
+              <div class="feature-icon">
+                <q-icon name="people" size="32px" />
+              </div>
+              <h3 class="feature-title">Thách Đấu Bạn Bè</h3>
+              <p class="feature-description">
+                Cạnh tranh với bạn bè trong các cuộc thi tiếng Anh thú vị và hấp dẫn
+              </p>
+            </q-card-section>
+          </q-card>
+
+          <q-card class="feature-card">
+            <q-card-section class="feature-content">
+              <div class="feature-icon">
+                <q-icon name="emoji_events" size="32px" />
+              </div>
+              <h3 class="feature-title">Hệ Thống Xếp Hạng</h3>
+              <p class="feature-description">
+                Theo dõi tiến bộ và cạnh tranh với hàng nghìn người học khác
+              </p>
+            </q-card-section>
+          </q-card>
+
+          <q-card class="feature-card">
+            <q-card-section class="feature-content">
+              <div class="feature-icon">
+                <q-icon name="target" size="32px" />
+              </div>
+              <h3 class="feature-title">Nhiệm Vụ Hàng Ngày</h3>
+              <p class="feature-description">
+                Hoàn thành các nhiệm vụ để duy trì động lực và nhận phần thưởng
+              </p>
+            </q-card-section>
+          </q-card>
+
+          <q-card class="feature-card">
+            <q-card-section class="feature-content">
+              <div class="feature-icon">
+                <q-icon name="redeem" size="32px" />
+              </div>
+              <h3 class="feature-title">Đổi Thưởng Hấp Dẫn</h3>
+              <p class="feature-description">
+                Quy đổi điểm thành thẻ cào điện thoại và nhiều phần quà khác
+              </p>
+            </q-card-section>
+          </q-card>
+
+          <q-card class="feature-card">
+            <q-card-section class="feature-content">
+              <div class="feature-icon">
+                <q-icon name="analytics" size="32px" />
+              </div>
+              <h3 class="feature-title">Thống Kê Chi Tiết</h3>
+              <p class="feature-description">
+                Theo dõi chi tiết quá trình học tập với biểu đồ và báo cáo
+              </p>
+            </q-card-section>
+          </q-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="how-it-works-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Cách Thức Hoạt Động</h2>
+          <p class="section-description">
+            Chỉ 3 bước đơn giản để bắt đầu hành trình học tiếng Anh
+          </p>
+        </div>
+
+        <div class="steps-container">
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Đăng Ký Miễn Phí</h3>
+            <p class="step-description">
+              Tạo tài khoản chỉ trong 30 giây với email hoặc số điện thoại
+            </p>
+          </div>
+
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Bắt Đầu Chat</h3>
+            <p class="step-description">
+              Trò chuyện với AI bot và trả lời các câu hỏi tiếng Anh thú vị
+            </p>
+          </div>
+
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Nhận Phần Thưởng</h3>
+            <p class="step-description">
+              Tích lũy điểm và đổi lấy thẻ cào, quà tặng hấp dẫn
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -211,74 +205,244 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject } from 'vue'
-import { useAuthStore } from '../stores/auth'
-import ChatInterface from '../components/ChatInterface.vue'
+import { inject } from 'vue'
 
-const authStore = useAuthStore()
 const showRegister = inject('showRegister') as () => void
 const showLogin = inject('showLogin') as () => void
-
-const activeFeature = ref('') // To track which feature is active
-
-const features = [
-  {
-    id: 1,
-    icon: "🤖",
-    title: "AI Thông minh",
-    description: "Chatbot AI hiểu và phản hồi tự nhiên, giúp bạn luyện tập hội thoại"
-  },
-  {
-    id: 2,
-    icon: "🎯",
-    title: "Học theo cấp độ",
-    description: "Nội dung được tùy chỉnh theo trình độ và mục tiêu của bạn"
-  },
-  {
-    id: 3,
-    icon: "🏆",
-    title: "Thử thách thú vị",
-    description: "Tham gia các cuộc thi và thách đấu để kiểm tra kiến thức"
-  },
-  {
-    id: 4,
-    icon: "👥",
-    title: "Học cùng bạn bè",
-    description: "Kết nối và cạnh tranh với bạn bè để tăng động lực học tập"
-  },
-  {
-    id: 5,
-    icon: "📈",
-    title: "Theo dõi tiến độ",
-    description: "Xem báo cáo chi tiết về quá trình học tập của bạn"
-  },
-  {
-    id: 6,
-    icon: "🎁",
-    title: "Phần thưởng hấp dẫn",
-    description: "Nhận điểm thưởng và đổi quà khi hoàn thành mục tiêu"
-  }
-]
-
-const stats = [
-  { number: "10K+", label: "Học viên" },
-  { number: "95%", label: "Hài lòng" },
-  { number: "1M+", label: "Câu hỏi" },
-  { number: "24/7", label: "Hỗ trợ" }
-]
 </script>
 
 <style scoped>
-.card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.10) 100%, rgba(109, 40, 217, 0.10) 0%);
+  padding: 80px 0;
+  text-align: center;
 }
 
-.cursor-pointer {
-  cursor: pointer;
+.hero-icon {
+  margin-bottom: 34px;
+}
+
+.icon-wrapper {
+  display: inline-flex;
+  padding: 16px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #2563EB 100%, #6D28D9 0%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hero-title {
+  margin-bottom: 34px;
+}
+
+.main-title {
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 60px;
+  color: #111827;
+  margin: 0 0 6px 0;
+}
+
+.sub-title {
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 60px;
+  color: #6D28D9;
+  margin: 0;
+}
+
+.hero-description {
+  font-size: 20px;
+  color: #4B5563;
+  text-align: center;
+  line-height: 32.5px;
+  max-width: 732px;
+  margin: 0 auto 34px auto;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+.primary-btn {
+  background: linear-gradient(0deg, #8457FF 0%, #8457FF 100%), linear-gradient(90deg, #2563EB 100%, #6D28D9 0%);
+  color: white;
+  padding: 8px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.secondary-btn {
+  background: white;
+  color: #5B21B6;
+  border: 2px solid #E9D5FF;
+  padding: 8px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stats-section {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-icon {
+  display: flex;
+  padding: 8px;
+  border-radius: 50%;
+  background: #EDE9FE;
+}
+
+.stat-number {
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 36px;
+}
+
+.stat-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4B5563;
+  line-height: 24px;
+}
+
+/* Features Section */
+.features-section {
+  background: white;
+  padding: 80px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 40px;
+  margin: 0 0 16px 0;
+}
+
+.section-description {
+  font-size: 20px;
+  color: #4B5563;
+  line-height: 28px;
+  margin: 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-content {
+  text-align: center;
+  padding: 24px;
+}
+
+.feature-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 22px auto;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #EFF6FF 100%, #F5F3FF 0%);
+}
+
+.feature-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 28px;
+  letter-spacing: -0.5px;
+  margin: 0 0 16px 0;
+}
+
+.feature-description {
+  font-size: 14px;
+  color: #4B5563;
+  line-height: 22.75px;
+  margin: 0;
+}
+
+/* How It Works Section */
+.how-it-works-section {
+  background: linear-gradient(90deg, #EFF6FF 100%, #F5F3FF 0%);
+  padding: 80px 0;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 360px;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #2563EB 100%, #6D28D9 0%);
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 21px;
+}
+
+.step-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 28px;
+  margin: 0 0 21px 0;
+}
+
+.step-description {
+  font-size: 16px;
+  color: #4B5563;
+  line-height: 24px;
+  margin: 0;
 }
 </style>
