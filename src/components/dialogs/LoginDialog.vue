@@ -11,11 +11,13 @@
       <q-card-section>
         <!-- Demo Login Button -->
         <div class="q-mb-lg">
-          <q-btn 
-            color="primary" 
-            label="��� Đăng nhập Demo (Phước Thông)"
+          <q-btn
+            color="primary"
+            label="🚀 Đăng nhập Demo (Phước Thông)"
             class="full-width q-py-sm"
             @click="handleDemoLogin"
+            :loading="loading"
+            :disable="loading"
           />
           <div class="text-center q-mt-sm text-caption text-grey-6">
             Hoặc đăng nhập thủ công bên dưới
