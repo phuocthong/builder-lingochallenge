@@ -83,8 +83,26 @@ import { useAuthStore } from '../stores/auth'
 
 const authStore = useAuthStore()
 const router = useRouter()
-const showLogin = inject('showLogin') as () => void
-const showRegister = inject('showRegister') as () => void
+const showLogin = inject('showLogin') as (() => void) | undefined
+const showRegister = inject('showRegister') as (() => void) | undefined
+
+const handleLoginClick = () => {
+  console.log('Login button clicked!')
+  if (showLogin) {
+    showLogin()
+  } else {
+    console.error('showLogin function not available')
+  }
+}
+
+const handleRegisterClick = () => {
+  console.log('Register button clicked!')
+  if (showRegister) {
+    showRegister()
+  } else {
+    console.error('showRegister function not available')
+  }
+}
 
 const handleLogout = () => {
   authStore.logout()
