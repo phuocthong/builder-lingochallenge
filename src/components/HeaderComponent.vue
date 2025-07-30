@@ -192,7 +192,7 @@ const handleLogin = (userData: { name: string; email: string }) => {
   showLoginDialog.value = false
   $q.notify({
     type: "positive",
-    message: `Ch��o mừng ${userData.name}!`,
+    message: `Chào mừng ${userData.name}!`,
     position: "top",
   })
   router.push('/chat')
@@ -223,6 +223,11 @@ const switchToLogin = () => {
 const testClick = () => {
   alert('TEST BUTTON HOẠT ĐỘNG!')
   console.log('Test button clicked!')
+}
+
+const doLogin = () => {
+  console.log('doLogin called!')
+  handleLogin({name: 'Phước Thông', email: 'phuocthoang@demo.com'})
 }
 
 const handleLogout = () => {
