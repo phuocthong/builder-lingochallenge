@@ -128,7 +128,7 @@
               color="primary"
               label="✨ Đăng ký Demo (Phước Thông)"
               class="full-width q-py-sm"
-              @click="handleRegister({name: 'Phước Thông', email: 'phuocthoang@demo.com'})"
+              @click="() => handleRegister({name: 'Phước Thông', email: 'phuocthoang@demo.com'})"
             />
             <div class="text-center q-mt-sm text-caption text-grey-6">
               Click để tạo tài khoản demo
