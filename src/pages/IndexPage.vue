@@ -213,13 +213,23 @@
         </q-card-section>
 
         <q-card-section>
+          <!-- Test Button -->
+          <div class="q-mb-md">
+            <q-btn
+              color="red"
+              label="TEST CLICK"
+              class="full-width"
+              @click="testClick"
+            />
+          </div>
+
           <!-- Demo Login Button -->
           <div class="q-mb-lg">
             <q-btn
               color="primary"
               label="🚀 Đăng nhập Demo (Phước Thông)"
               class="full-width q-py-sm"
-              @click="handleLogin({name: 'Phước Thông', email: 'phuocthoang@demo.com'})"
+              @click="doLogin"
             />
             <div class="text-center q-mt-sm text-caption text-grey-6">
               Click để đăng nhập nhanh
