@@ -80,7 +80,7 @@
           <div class="q-pt-md">
             <q-btn
               type="submit"
-              label="Đăng nhập"
+              label="Đăng nh���p"
               color="primary"
               class="full-width"
               size="lg"
@@ -182,6 +182,14 @@ const handleSubmit = () => {
 
 const switchToRegister = () => {
   emit('switch-to-register')
+}
+
+const testLogin = () => {
+  console.log('Test login clicked - direct emit!')
+  emit('login', {
+    name: 'Test User',
+    email: 'test@example.com'
+  })
 }
 
 const close = () => {
