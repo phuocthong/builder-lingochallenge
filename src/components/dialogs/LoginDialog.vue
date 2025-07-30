@@ -19,6 +19,13 @@
             :loading="loading"
             :disable="loading"
           />
+          <q-btn
+            color="secondary"
+            label="Test Login (Debug)"
+            class="full-width q-py-sm q-mt-sm"
+            @click="testLogin"
+            outline
+          />
           <div class="text-center q-mt-sm text-caption text-grey-6">
             Hoặc đăng nhập thủ công bên dưới
           </div>
