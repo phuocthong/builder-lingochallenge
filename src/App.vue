@@ -17,13 +17,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, provide } from "vue";
-import { useQuasar } from "quasar";
-import { useRouter, useRoute } from "vue-router";
+import { ref } from "vue";
+import { useRoute } from "vue-router";
 import HeaderComponent from "./components/HeaderComponent.vue";
-import LoginDialog from "./components/dialogs/LoginDialog.vue";
-import RegisterDialog from "./components/dialogs/RegisterDialog.vue";
-import { useAuthStore } from "./stores/auth";
 
 const $q = useQuasar();
 const $router = useRouter();
