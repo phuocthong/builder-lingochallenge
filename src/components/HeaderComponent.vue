@@ -14,6 +14,7 @@
         <router-link to="/" class="nav-link">Trang chủ</router-link>
         <router-link to="/about" class="nav-link">Giới thiệu</router-link>
         <router-link to="/challenge" class="nav-link">Thử thách</router-link>
+        <router-link to="/friends" class="nav-link">Bạn bè</router-link>
       </div>
 
       <!-- User Stats & Profile -->
