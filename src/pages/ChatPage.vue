@@ -12,10 +12,10 @@
             <div class="logo-text">Logo</div>
           </div>
           <div class="navigation">
-            <div class="nav-item">Trang chủ</div>
-            <div class="nav-item">Giới thiệu</div>
-            <div class="nav-item">Thử thách</div>
-            <div class="nav-item">Bạn bè</div>
+            <div class="nav-item" @click="router.push('/')">Trang chủ</div>
+            <div class="nav-item" @click="router.push('/about')">Giới thiệu</div>
+            <div class="nav-item" @click="router.push('/challenge')">Thử thách</div>
+            <div class="nav-item" @click="router.push('/friends')">Bạn bè</div>
           </div>
         </div>
 
