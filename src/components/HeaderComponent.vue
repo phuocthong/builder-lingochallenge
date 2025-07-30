@@ -220,6 +220,11 @@ const switchToLogin = () => {
   showLoginDialog.value = true
 }
 
+const testClick = () => {
+  alert('TEST BUTTON HOẠT ĐỘNG!')
+  console.log('Test button clicked!')
+}
+
 const handleLogout = () => {
   authStore.logout()
   router.push('/')
