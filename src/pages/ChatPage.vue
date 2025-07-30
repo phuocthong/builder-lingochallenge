@@ -426,6 +426,13 @@ const handleLogout = () => {
   font-weight: 500;
   line-height: 20px;
   cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.nav-item:hover {
+  background-color: #F3F4F6;
 }
 
 .header-right {
