@@ -28,6 +28,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import("../pages/FriendsPage.vue"),
   },
   {
+    path: "/profile",
+    name: "Profile",
+    component: () => import("../pages/ProfilePage.vue"),
+  },
+  {
     path: "/challenge",
     name: "Challenge",
     component: () => import("../pages/ChallengePage.vue"),
