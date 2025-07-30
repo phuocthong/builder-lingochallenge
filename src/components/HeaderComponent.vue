@@ -73,6 +73,80 @@
         </template>
       </div>
     </div>
+
+    <!-- Login Dialog -->
+    <q-dialog v-model="showLoginDialog" persistent>
+      <q-card style="min-width: 400px" class="q-pa-md">
+        <q-card-section>
+          <div class="text-h6 text-center">🚀 Đăng nhập EnglishBot</div>
+          <div class="text-subtitle2 text-center text-grey-6">
+            Chào mừng bạn trở lại! Hãy đăng nhập để tiếp tục học tập.
+          </div>
+        </q-card-section>
+
+        <q-card-section>
+          <!-- Demo Login Button -->
+          <div class="q-mb-lg">
+            <q-btn
+              color="primary"
+              label="🚀 Đăng nhập Demo (Phước Thông)"
+              class="full-width q-py-sm"
+              @click="handleLogin({name: 'Phước Thông', email: 'phuocthoang@demo.com'})"
+            />
+            <div class="text-center q-mt-sm text-caption text-grey-6">
+              Click để đăng nhập nhanh
+            </div>
+          </div>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Hủy" @click="showLoginDialog = false" />
+          <q-btn
+            flat
+            label="Chuyển sang Đăng ký"
+            color="primary"
+            @click="switchToRegister"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
+    <!-- Register Dialog -->
+    <q-dialog v-model="showRegisterDialog" persistent>
+      <q-card style="min-width: 400px" class="q-pa-md">
+        <q-card-section>
+          <div class="text-h6 text-center">✨ Đăng ký EnglishBot</div>
+          <div class="text-subtitle2 text-center text-grey-6">
+            Tạo tài khoản mới để bắt đầu hành trình học tiếng Anh!
+          </div>
+        </q-card-section>
+
+        <q-card-section>
+          <!-- Demo Register Button -->
+          <div class="q-mb-lg">
+            <q-btn
+              color="primary"
+              label="✨ Đăng ký Demo (Phước Thông)"
+              class="full-width q-py-sm"
+              @click="handleRegister({name: 'Phước Thông', email: 'phuocthoang@demo.com'})"
+            />
+            <div class="text-center q-mt-sm text-caption text-grey-6">
+              Click để tạo tài khoản demo
+            </div>
+          </div>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Hủy" @click="showRegisterDialog = false" />
+          <q-btn
+            flat
+            label="Đã có tài khoản? Đăng nhập"
+            color="primary"
+            @click="switchToLogin"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-toolbar>
 </template>
 
