@@ -338,9 +338,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 
 const authStore = useAuthStore()
+const router = useRouter()
 const currentMessage = ref('')
 
 const sendMessage = () => {
@@ -349,6 +351,11 @@ const sendMessage = () => {
     console.log('Sending message:', currentMessage.value)
     currentMessage.value = ''
   }
+}
+
+const handleLogout = () => {
+  authStore.logout()
+  router.push('/')
 }
 </script>
 
