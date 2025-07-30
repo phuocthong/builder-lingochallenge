@@ -169,14 +169,15 @@ const handleDemoLogin = () => {
 
 const handleSubmit = () => {
   loading.value = true
-  
+
   setTimeout(() => {
     emit('login', {
       name: formData.value.name,
       email: formData.value.email
     })
-    
+
     loading.value = false
+    isVisible.value = false
     formData.value = { name: '', email: '', password: '' }
   }, 1000)
 }
