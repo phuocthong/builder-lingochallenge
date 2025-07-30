@@ -8,7 +8,7 @@ import App from "./App.vue";
 import "@quasar/extras/material-icons/material-icons.css";
 
 // Import Quasar css
-import "quasar/src/css/index.sass";
+import "quasar/dist/quasar.css";
 
 // Import our custom styles
 import "./css/app.scss";
