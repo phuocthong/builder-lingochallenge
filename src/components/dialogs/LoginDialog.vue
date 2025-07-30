@@ -162,6 +162,7 @@ const handleDemoLogin = () => {
     })
 
     loading.value = false
+    isVisible.value = false
     formData.value = { name: '', email: '', password: '' }
   }, 500)
 }
