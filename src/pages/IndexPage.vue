@@ -347,6 +347,16 @@ const switchToLogin = () => {
   showRegisterDialog.value = false
   showLoginDialog.value = true
 }
+
+const testClick = () => {
+  alert('INDEX PAGE TEST BUTTON HOẠT ĐỘNG!')
+  console.log('IndexPage test button clicked!')
+}
+
+const doLogin = () => {
+  console.log('IndexPage doLogin called!')
+  handleLogin({name: 'Phước Thông', email: 'phuocthoang@demo.com'})
+}
 </script>
 
 <style scoped>
