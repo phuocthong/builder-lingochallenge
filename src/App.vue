@@ -11,18 +11,7 @@
         <router-view />
       </q-page-container>
 
-      <!-- Global Dialogs -->
-      <LoginDialog
-        v-model="showLoginDialog"
-        @login="handleLogin"
-        @switch-to-register="switchToRegister"
-      />
-
-      <RegisterDialog
-        v-model="showRegisterDialog"
-        @register="handleRegister"
-        @switch-to-login="switchToLogin"
-      />
+      <!-- Dialogs are now handled locally in each component -->
     </q-layout>
   </div>
 </template>
