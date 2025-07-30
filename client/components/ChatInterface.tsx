@@ -319,89 +319,96 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
         </div>
       )}
 
-      {/* Messages - Mobile Optimized */}
-      <div className="flex-1 p-3 sm:p-4 space-y-3 sm:space-y-4 overflow-y-auto">
+      {/* Messages - Mobile Optimized (AI left, User right) */}
+      <div className="flex-1 p-2 sm:p-4 space-y-2 sm:space-y-3 overflow-y-auto">
         {messages.map((message) => (
           <div
             key={message.id}
             className={cn(
-              "flex items-start space-x-2 sm:space-x-3",
-              message.sender === "user" ? "" : "flex-row-reverse space-x-reverse",
+              "flex w-full",
+              message.sender === "user" ? "justify-end" : "justify-start"
             )}
           >
-            {/* Avatar */}
             <div
               className={cn(
-                "p-1.5 sm:p-2 rounded-full flex-shrink-0",
-                message.sender === "bot" ? "bg-purple-100" : 
-                message.sender === "system" ? "bg-green-100" :
-                "bg-blue-100",
+                "flex items-start max-w-[85%] sm:max-w-[75%]",
+                message.sender === "user" ? "flex-row-reverse space-x-reverse space-x-2" : "space-x-2"
               )}
             >
-              {message.sender === "bot" ? (
-                <Bot className="h-3 w-3 sm:h-4 sm:w-4 text-purple-600" />
-              ) : message.sender === "system" ? (
-                <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
-              ) : (
-                <User className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
-              )}
-            </div>
+              {/* Avatar */}
+              <div
+                className={cn(
+                  "p-1.5 sm:p-2 rounded-full flex-shrink-0 mt-0.5",
+                  message.sender === "bot" ? "bg-purple-100" :
+                  message.sender === "system" ? "bg-green-100" :
+                  "bg-blue-100",
+                )}
+              >
+                {message.sender === "bot" ? (
+                  <Bot className="h-3 w-3 sm:h-4 sm:w-4 text-purple-600" />
+                ) : message.sender === "system" ? (
+                  <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
+                ) : (
+                  <User className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
+                )}
+              </div>
 
-            {/* Message Bubble */}
-            <div
-              className={cn(
-                "max-w-[75%] sm:max-w-xs lg:max-w-md px-3 py-2 rounded-2xl",
-                message.sender === "bot"
-                  ? "bg-gray-100 text-gray-900 rounded-br-sm"
-                  : message.sender === "system"
-                  ? "bg-green-100 text-green-800 border border-green-200 rounded-br-sm"
-                  : message.isCorrect === true
-                  ? "bg-green-500 text-white rounded-bl-sm"
-                  : message.isCorrect === false
-                  ? "bg-red-500 text-white rounded-bl-sm"
-                  : "bg-blue-500 text-white rounded-bl-sm",
-              )}
-            >
-              <div className="flex items-center">
-                <p className="text-sm flex-1">{message.text}</p>
-                {message.sender === "user" && message.isCorrect !== undefined && (
-                  <div className="ml-2">
-                    {message.isCorrect ? (
-                      <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4" />
-                    ) : (
-                      <XCircle className="h-3 w-3 sm:h-4 sm:w-4" />
-                    )}
+              {/* Message Bubble */}
+              <div
+                className={cn(
+                  "px-3 py-2 rounded-lg break-words",
+                  message.sender === "bot"
+                    ? "bg-gray-100 text-gray-900 rounded-tl-sm"
+                    : message.sender === "system"
+                    ? "bg-green-100 text-green-800 border border-green-200 rounded-tl-sm"
+                    : message.isCorrect === true
+                    ? "bg-green-500 text-white rounded-tr-sm"
+                    : message.isCorrect === false
+                    ? "bg-red-500 text-white rounded-tr-sm"
+                    : "bg-blue-500 text-white rounded-tr-sm",
+                )}
+              >
+                <div className="flex items-start">
+                  <p className="text-sm leading-relaxed flex-1">{message.text}</p>
+                  {message.sender === "user" && message.isCorrect !== undefined && (
+                    <div className={cn("ml-2 flex-shrink-0", message.sender === "user" ? "mr-0" : "ml-0")}>
+                      {message.isCorrect ? (
+                        <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4" />
+                      ) : (
+                        <XCircle className="h-3 w-3 sm:h-4 sm:w-4" />
+                      )}
+                    </div>
+                  )}
+                </div>
+                <p
+                  className={cn(
+                    "text-xs mt-1 opacity-75",
+                    message.sender === "bot"
+                      ? "text-gray-500"
+                      : message.sender === "system"
+                      ? "text-green-600"
+                      : "text-white",
+                  )}
+                >
+                  {message.timestamp}
+                </p>
+                {message.isQuestion && (
+                  <div className="mt-2 p-2 bg-yellow-100 rounded-lg text-xs text-yellow-800 border">
+                    ⏰ Câu hỏi đang chờ trả lời...
                   </div>
                 )}
               </div>
-              <p
-                className={cn(
-                  "text-xs mt-1",
-                  message.sender === "bot"
-                    ? "text-gray-500"
-                    : message.sender === "system"
-                    ? "text-green-600"
-                    : "text-white/80",
-                )}
-              >
-                {message.timestamp}
-              </p>
-              {message.isQuestion && (
-                <div className="mt-2 p-2 bg-yellow-100 rounded-lg text-xs text-yellow-800 border">
-                  ⏰ Câu hỏi đang chờ trả lời...
-                </div>
-              )}
             </div>
           </div>
         ))}
 
         {/* Current question active users - Mobile Optimized */}
         {waitingForAnswer && answeredUsers.length > 0 && (
-          <div className="text-sm text-gray-500 mt-4 p-3 bg-blue-50 rounded-lg">
-            <p className="mb-2 font-medium">👥 Đã trả lời ({answeredUsers.length}):</p>
-            <div className="flex flex-wrap gap-1.5">
+          <div className="text-sm text-gray-500 mt-4 p-2 sm:p-3 bg-blue-50 rounded-lg mx-2">
+            <p className="mb-2 font-medium text-xs sm:text-sm">👥 Đã trả lời ({answeredUsers.length}):</p>
+            <div className="flex flex-wrap gap-1">
               {answeredUsers.slice(0, 10).map((user, index) => (
-                <span key={`${user.userId}-${index}`} className="text-blue-600 bg-white px-2 py-1 rounded-full text-xs font-medium">
+                <span key={`${user.userId}-${index}`} className="text-blue-600 bg-white px-1.5 py-0.5 rounded-full text-xs font-medium">
                   {user.userName}
                 </span>
               ))}
@@ -412,9 +419,9 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input - Mobile Optimized */}
-      <div className="p-3 sm:p-4 border-t bg-gray-50">
-        <div className="flex space-x-2 sm:space-x-3">
+      {/* Input - Mobile Optimized for 440px */}
+      <div className="p-2 sm:p-4 border-t bg-gray-50">
+        <div className="flex space-x-2">
           <Input
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
@@ -426,50 +433,52 @@ export function ChatInterface({ onShowLogin, onShowRegister }: ChatInterfaceProp
                 : "Đăng nhập để trả lời..."
             }
             className={cn(
-              "flex-1 text-sm",
+              "flex-1 text-sm h-9",
               user.isLoggedIn ? "bg-white" : "bg-gray-100 cursor-pointer"
             )}
             disabled={!user.isLoggedIn || !waitingForAnswer}
           />
           <Button
             onClick={handleSendMessage}
-            className="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4"
+            className="bg-blue-600 hover:bg-blue-700 px-3 h-9"
             disabled={!inputText.trim() || !user.isLoggedIn || !waitingForAnswer}
             size="sm"
           >
             {user.isLoggedIn ? <Send className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
           </Button>
         </div>
-        
+
         <div className="flex items-center justify-center mt-2 text-xs text-gray-500">
           <div className={cn(
-            "w-2 h-2 rounded-full mr-2",
+            "w-1.5 h-1.5 rounded-full mr-1.5",
             user.isLoggedIn ? "bg-green-500" : "bg-red-500"
           )}></div>
-          {user.isLoggedIn ?
-            `✅ Đã đăng nhập - ${user.name}` :
-            "❌ Chưa đăng nhập"
-          }
+          <span className="truncate">
+            {user.isLoggedIn ?
+              `✅ ${user.name}` :
+              "❌ Chưa đăng nhập"
+            }
+          </span>
         </div>
 
         {/* Call to action for non-logged-in users - Mobile Optimized */}
         {!user.isLoggedIn && (
-          <div className="mt-3 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-2">
+          <div className="mt-2 flex space-x-2">
             <Button
               size="sm"
               variant="outline"
               onClick={onShowRegister}
-              className="text-xs border-purple-200 text-purple-700 hover:bg-purple-50 flex-1 sm:flex-none"
+              className="text-xs border-purple-200 text-purple-700 hover:bg-purple-50 flex-1 h-8"
             >
-              🎯 Đăng ký miễn phí
+              🎯 Đăng ký
             </Button>
             <Button
               size="sm"
               onClick={onShowLogin}
-              className="text-xs bg-purple-600 hover:bg-purple-700 flex-1 sm:flex-none"
+              className="text-xs bg-purple-600 hover:bg-purple-700 flex-1 h-8"
             >
               <LogIn className="h-3 w-3 mr-1" />
-              Đăng nhập ngay
+              Đăng nhập
             </Button>
           </div>
         )}

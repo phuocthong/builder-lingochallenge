@@ -12,6 +12,7 @@ import { LoginModal } from "./components/LoginModal";
 import { RegisterModal } from "./components/RegisterModal";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Index from "./pages/Index";
+import About from "./pages/About";
 import ChallengeRoom from "./pages/ChallengeRoom";
 import Friends from "./pages/Friends";
 import Profile from "./pages/Profile";
@@ -49,7 +50,7 @@ const AppRoutes = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
+    <div className="min-h-screen">
       <Header
         onShowLogin={handleShowLogin}
         onShowRegister={handleShowRegister}
@@ -64,7 +65,7 @@ const AppRoutes = () => {
             />
           }
         />
-        <Route path="/about" element={<PlaceholderPage title="Giới thiệu" />} />
+        <Route path="/about" element={<About />} />
         <Route path="/guide" element={<PlaceholderPage title="Hướng dẫn" />} />
         <Route path="/challenge" element={<ChallengeRoom />} />
         <Route path="/friends" element={<Friends />} />
