@@ -2,7 +2,7 @@
   <div id="q-app">
     <q-layout view="hHh lpR fFf">
       <!-- Header -->
-      <q-header class="bg-white text-dark">
+      <q-header class="bg-white text-dark" v-if="$route.name !== 'Chat'">
         <HeaderComponent />
       </q-header>
 
