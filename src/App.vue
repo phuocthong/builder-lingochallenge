@@ -82,7 +82,3 @@ const switchToLogin = () => {
   showLoginDialog.value = true;
 };
 </script>
-
-<style lang="scss">
-@import "css/app.scss";
-</style>
