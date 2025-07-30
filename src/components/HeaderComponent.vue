@@ -77,31 +77,63 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
 import { useAuthStore } from '../stores/auth'
 
 const authStore = useAuthStore()
 const router = useRouter()
-const showLogin = inject('showLogin') as (() => void) | undefined
-const showRegister = inject('showRegister') as (() => void) | undefined
+const $q = useQuasar()
+
+// Local state for dialogs
+const showLoginDialog = ref(false)
+const showRegisterDialog = ref(false)
 
 const handleLoginClick = () => {
   console.log('Login button clicked!')
-  if (showLogin) {
-    showLogin()
-  } else {
-    console.error('showLogin function not available')
-  }
+  showRegisterDialog.value = false
+  showLoginDialog.value = true
 }
 
 const handleRegisterClick = () => {
   console.log('Register button clicked!')
-  if (showRegister) {
-    showRegister()
-  } else {
-    console.error('showRegister function not available')
-  }
+  showLoginDialog.value = false
+  showRegisterDialog.value = true
+}
+
+const handleLogin = (userData: { name: string; email: string }) => {
+  console.log('Login handler called with:', userData)
+  authStore.login(userData)
+  showLoginDialog.value = false
+  $q.notify({
+    type: "positive",
+    message: `Chào mừng ${userData.name}!`,
+    position: "top",
+  })
+  router.push('/chat')
+}
+
+const handleRegister = (userData: { name: string; email: string }) => {
+  console.log('Register handler called with:', userData)
+  authStore.login(userData)
+  showRegisterDialog.value = false
+  $q.notify({
+    type: "positive",
+    message: `Đăng ký thành công! Chào mừng ${userData.name}!`,
+    position: "top",
+  })
+  router.push('/chat')
+}
+
+const switchToRegister = () => {
+  showLoginDialog.value = false
+  showRegisterDialog.value = true
+}
+
+const switchToLogin = () => {
+  showRegisterDialog.value = false
+  showLoginDialog.value = true
 }
 
 const handleLogout = () => {
